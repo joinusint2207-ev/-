@@ -640,7 +640,7 @@ export default function App() {
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-5 text-white">
                     <p className="text-xs font-black text-amber-400">E-LOOP SELF-REGENERATIVE MOBILITY CONCEPT</p>
                     <p className="text-[10px] text-slate-300 mt-1 font-bold">
-                      実際の試作製作に向け設計を進めている車載用シャシープラットフォームの工学的CGレンダリング。前輪駆動モーターの配置を支え、走行の反作用から生じる発電（回生電力）を損失なく対のバッテリーパックへと帰還・分配させる構成です。
+                      新開発の革新的発電機『Newly invented Electric Generator』を搭載することで、現代の電気自動車（EV）最大のアキレス腱である「充電スタンドの必要性」を完全に克服した革新的システムです。外部充電インフラから完全に解放された無充電EVの未来を実現します。さらに、その極めて高い設計合理性により、従来のガソリン車を製造するよりも遥かに低コストで車両を構築できる点も極めて革新的です。
                     </p>
                   </div>
 
