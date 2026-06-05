@@ -434,48 +434,48 @@ export default function App() {
                       <path d="M50,40 L320,40 C340,40 350,60 350,80 L350,160 C350,180 340,200 320,200 L50,200 Z" fill="none" stroke="#64748b" strokeWidth="3" />
                       
                       {/* Drive Motor (Front axle connected) */}
-                      <rect x="40" y="95" width="50" height="50" rx="4" fill="#f8fafc" stroke="#3b82f6" strokeWidth="2" />
-                      <text x="65" y="118" textAnchor="middle" fill="#1e3a8a" fontSize="8" fontWeight="bold">Drive motor</text>
-                      <text x="65" y="130" textAnchor="middle" fill="#2563eb" fontSize="7">駆動用モーター</text>
+                      <rect x="35" y="93" width="60" height="54" rx="4" fill="#f8fafc" stroke="#3b82f6" strokeWidth="2" />
+                      <text x="65" y="115" textAnchor="middle" fill="#1e3a8a" fontSize="7.5" fontWeight="bold">Drive motor</text>
+                      <text x="65" y="127" textAnchor="middle" fill="#2563eb" fontSize="6.5">駆動用モーター</text>
 
                       {/* Connection Line with Flow to Motor */}
-                      <line x1="115" y1="120" x2="90" y2="120" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray={isRunning ? "3,3" : ""} markerEnd="url(#arr-blue)" />
+                      <line x1="110" y1="120" x2="95" y2="120" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray={isRunning ? "3,3" : ""} markerEnd="url(#arr-blue)" />
 
                       {/* Battery drive switch (Double direction switching relay) */}
-                      <rect x="115" y="102" width="50" height="36" rx="4" fill="#f8fafc" stroke="#f59e0b" strokeWidth="2" />
-                      <text x="140" y="118" textAnchor="middle" fill="#78350f" fontSize="8" fontWeight="bold">Drive switch</text>
-                      <text x="140" y="128" textAnchor="middle" fill="#d97706" fontSize="6">瞬間切替スイッチ</text>
+                      <rect x="110" y="97" width="60" height="46" rx="4" fill="#f8fafc" stroke="#f59e0b" strokeWidth="2" />
+                      <text x="140" y="115" textAnchor="middle" fill="#78350f" fontSize="7.5" fontWeight="bold">Drive switch</text>
+                      <text x="140" y="127" textAnchor="middle" fill="#d97706" fontSize="6">瞬間切替スイッチ</text>
 
                       {/* Connection Routes from batteries to switcher */}
                       <path d="M180,75 L165,115" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arr-amber)" />
                       <path d="M180,165 L165,125" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arr-amber)" />
 
                       {/* Battery (A) */}
-                      <rect x="180" y="55" width="55" height="42" rx="4" fill={activeBattery === 'A' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'A' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'A' ? '2.5' : '1.5'} />
-                      <text x="207" y="73" textAnchor="middle" fill={activeBattery === 'A' ? '#047857' : '#64748b'} fontSize="8" fontWeight="black">Battery (A)</text>
-                      <text x="207" y="84" textAnchor="middle" fill="#94a3b8" fontSize="6">放電・駆動用電源</text>
+                      <rect x="180" y="52" width="60" height="46" rx="4" fill={activeBattery === 'A' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'A' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'A' ? '2.5' : '1.5'} />
+                      <text x="210" y="73" textAnchor="middle" fill={activeBattery === 'A' ? '#047857' : '#64748b'} fontSize="7.5" fontWeight="black">Battery (A)</text>
+                      <text x="210" y="84" textAnchor="middle" fill="#94a3b8" fontSize="6">放電・駆動用電源</text>
 
                       {/* Battery (B) */}
-                      <rect x="180" y="143" width="55" height="42" rx="4" fill={activeBattery === 'B' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'B' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'B' ? '2.5' : '1.5'} />
-                      <text x="207" y="161" textAnchor="middle" fill={activeBattery === 'B' ? '#047857' : '#64748b'} fontSize="8" fontWeight="black">Battery (B)</text>
-                      <text x="207" y="172" textAnchor="middle" fill="#94a3b8" fontSize="6">放電・駆動用電源</text>
+                      <rect x="180" y="142" width="60" height="46" rx="4" fill={activeBattery === 'B' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'B' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'B' ? '2.5' : '1.5'} />
+                      <text x="210" y="163" textAnchor="middle" fill={activeBattery === 'B' ? '#047857' : '#64748b'} fontSize="7.5" fontWeight="black">Battery (B)</text>
+                      <text x="210" y="174" textAnchor="middle" fill="#94a3b8" fontSize="6">放電・駆動用電源</text>
 
                       {/* Controller */}
-                      <rect x="250" y="100" width="45" height="40" rx="4" fill="#f8fafc" stroke="#6366f1" strokeWidth="1.5" />
-                      <text x="272" y="120" textAnchor="middle" fill="#312e81" fontSize="8" fontWeight="bold">Controller</text>
-                      <text x="272" y="130" textAnchor="middle" fill="#4f46e5" fontSize="6">制御分配盤</text>
+                      <rect x="245" y="97" width="55" height="46" rx="4" fill="#f8fafc" stroke="#6366f1" strokeWidth="1.5" />
+                      <text x="272.5" y="117" textAnchor="middle" fill="#312e81" fontSize="7.5" fontWeight="bold">Controller</text>
+                      <text x="272.5" y="128" textAnchor="middle" fill="#4f46e5" fontSize="6.5">制御分配盤</text>
 
                       {/* Routes to batteries from controller */}
-                      <path d="M250,115 L235,75" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arr-indigo)" />
-                      <path d="M250,125 L235,165" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arr-indigo)" />
-                      <line x1="310" y1="120" x2="295" y2="120" stroke="#ec4899" strokeWidth="1.5" markerEnd="url(#arr-pink)" />
+                      <path d="M245,115 L235,75" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arr-indigo)" />
+                      <path d="M245,125 L235,165" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arr-indigo)" />
+                      <line x1="305" y1="120" x2="295" y2="120" stroke="#ec4899" strokeWidth="1.5" markerEnd="url(#arr-pink)" />
 
                       {/* Newly Invented Electric Generator */}
-                      <rect x="310" y="85" width="55" height="70" rx="4" fill="#fdf2f8" stroke="#ec4899" strokeWidth="2.5" />
-                      <text x="337" y="112" textAnchor="middle" fill="#9d174d" fontSize="8" fontWeight="black">Newly invented</text>
-                      <text x="337" y="122" textAnchor="middle" fill="#9d174d" fontSize="8" fontWeight="black">Electric Generator</text>
-                      <text x="337" y="134" textAnchor="middle" fill="#db2777" fontSize="6" fontWeight="bold">新開発発電機</text>
-                      <text x="337" y="145" textAnchor="middle" fill="#047857" fontSize="6">特許 2025-160784</text>
+                      <rect x="305" y="80" width="80" height="80" rx="4" fill="#fdf2f8" stroke="#ec4899" strokeWidth="2.5" />
+                      <text x="345" y="100" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Newly invented</text>
+                      <text x="345" y="111" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Electric Generator</text>
+                      <text x="345" y="127" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="bold">新開発発電機</text>
+                      <text x="345" y="141" textAnchor="middle" fill="#047857" fontSize="6" fontWeight="bold">特願 2026-83613</text>
                     </svg>
 
                   </div>
@@ -739,7 +739,7 @@ export default function App() {
 
                   {/* Switch */}
                   <g className="cursor-pointer" onClick={() => setSelectedComponent('switch')}>
-                    <rect x="125" y="120" width="80" height="50" rx="5" fill={selectedComponent === 'switch' ? '#fffbeb' : '#ffffff'} stroke="#f59e0b" strokeWidth={selectedComponent === 'switch' ? "2" : "1"} />
+                    <rect x="120" y="120" width="90" height="50" rx="5" fill={selectedComponent === 'switch' ? '#fffbeb' : '#ffffff'} stroke="#f59e0b" strokeWidth={selectedComponent === 'switch' ? "2" : "1"} />
                     <text x="165" y="145" textAnchor="middle" fill="#78350f" fontSize="8" fontWeight="bold">Battery drive switch</text>
                     <text x="165" y="157" textAnchor="middle" fill="#d97706" fontSize="7">駆動切替機構</text>
                   </g>
