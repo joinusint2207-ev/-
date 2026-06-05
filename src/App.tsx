@@ -442,9 +442,10 @@ export default function App() {
                       <line x1="110" y1="120" x2="95" y2="120" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray={isRunning ? "3,3" : ""} markerEnd="url(#arr-blue)" />
 
                       {/* Battery drive switch (Double direction switching relay) */}
-                      <rect x="110" y="97" width="60" height="46" rx="4" fill="#f8fafc" stroke="#f59e0b" strokeWidth="2" />
-                      <text x="140" y="115" textAnchor="middle" fill="#78350f" fontSize="7.5" fontWeight="bold">Drive switch</text>
-                      <text x="140" y="127" textAnchor="middle" fill="#d97706" fontSize="6">瞬間切替スイッチ</text>
+                      <rect x="110" y="96" width="60" height="48" rx="4" fill="#f8fafc" stroke="#f59e0b" strokeWidth="2" />
+                      <text x="140" y="112" textAnchor="middle" fill="#78350f" fontSize="6.5" fontWeight="black" letterSpacing="-0.1">Battery drive</text>
+                      <text x="140" y="122" textAnchor="middle" fill="#78350f" fontSize="6.5" fontWeight="black" letterSpacing="-0.1">switch</text>
+                      <text x="140" y="135" textAnchor="middle" fill="#d97706" fontSize="6" fontWeight="bold">瞬間切替スイッチ</text>
 
                       {/* Connection Routes from batteries to switcher */}
                       <path d="M180,75 L165,115" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arr-amber)" />
