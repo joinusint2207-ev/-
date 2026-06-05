@@ -782,11 +782,11 @@ export default function App() {
               </div>
 
               {/* Information disclaimer explaining focus */}
-              <div className="mt-4 p-4 bg-white rounded-lg text-xs leading-relaxed text-slate-650 border border-slate-200">
+              <div className="mt-4 p-4 bg-white rounded-lg text-xs leading-relaxed text-slate-700 border border-slate-200">
                 <span className="text-slate-900 font-bold block mb-1">■ 基本動作フロー：</span>
-                車体が走行を始めると、走行に伴う回転運動力が後部【Newly invented Electric Generator（新開発発電機）】を回します。
+                車体が走行を始めると、走行に伴う回転運動力が後部【Newly invented Electric Generator（新開発発電機：特許出願 2026-83613）】を回します。
                 このとき発生する還元電力を【Controller】がバッテリーに返します。
-                森 幸信 博士の発明の神髄は、【Battery drive switch】が、前輪駆動に使っている方の電槽と、発電電力を無瞬断で急速受電する反対側の電槽を交互に完璧に切り替える自律往還サイクルにあります。
+                森 幸信 博士の発明の神髄は、【Battery drive switch（駆動切替機構：特許出願 2025-160784）】が、前輪駆動に使っている方の電槽と、発電電力を無瞬断で急速受電する反対側の電槽を交互に完璧に切り替える自律往還サイクルにあります。
               </div>
 
             </div>
@@ -822,7 +822,7 @@ export default function App() {
                       </h5>
                     </div>
 
-                    <p className="text-xs text-slate-600 leading-relaxed font-semibold">
+                    <p className="text-xs text-slate-650 leading-relaxed font-semibold">
                       {getComponentInfo(selectedComponent).desc}
                     </p>
                   </div>
@@ -844,30 +844,42 @@ export default function App() {
             </div>
 
           </div>
-
-          {/* 🌟 2대 핵심 혁신특허 상세 설명 파트 (The 2 Core Patents of E-LOOP) */}
+            
           <div className="mt-12 bg-slate-900 rounded-3xl p-6 sm:p-10 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-            
             <div className="relative z-10">
               
               {/* Heading */}
-              <div className="text-center mb-10 space-y-3">
-                <span className="text-[10px] sm:text-xs font-black tracking-widest text-[#fbbf24] bg-[#fbbf24]/10 px-3.5 py-1 rounded-full uppercase border border-[#fbbf24]/20">
-                  CORE PATENT INVENTIONS
+              <div className="text-center mb-10 space-y-4">
+                <span className="text-[10px] sm:text-xs font-black tracking-widest text-[#fbbf24] bg-[#fbbf24]/10 px-4 py-1.5 rounded-full uppercase border border-[#fbbf24]/20 inline-block font-mono">
+                  WORLD-FIRST DUAL CORE PATENT INVENTIONS
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mt-2 text-white">
-                  外部充電を必要としない自律走行の実現：<span className="text-amber-400">「2大核心となる革新特許」</span>
+                <h3 className="text-3xl sm:text-4xl font-black tracking-tight mt-2 text-white">
+                  充電スタンドが完全に不要な電気自動車の実現：<span className="text-amber-400 block sm:inline">「2大核心となる特許」</span>
                 </h3>
-                <p className="text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto font-medium leading-relaxed">
-                  E-LOOPが外部の固定充電スタンドを必要とせず自律走行できる最も重要なメカニズムを解説します。走行しながら電力を生産する発電機特許と、充放電の競合（ロス）を完全シャットアウトする「バッテリー相互切替機構」の2つが結合されることで実現します。
+                
+                {/* Revolutionary Message Bullet */}
+                <div className="bg-amber-400 text-slate-950 px-6 py-4 rounded-2xl max-w-3xl mx-auto shadow-xl font-extrabold text-sm sm:text-base leading-relaxed border border-amber-300 mt-6 animate-pulse">
+                  「これまで世界中の誰も成し得ず、想像さえできなかったこれら強力な2つの技術力によって、外部の急速充電ステーションを一切必要としない『究極の自己給電EV』を創り出します。」
+                </div>
+
+                <p className="text-slate-400 text-xs sm:text-sm max-w-3.5xl mx-auto font-medium leading-relaxed pt-2">
+                  森 幸信 博士の新発明した2つの相互補完特許は、一方が<strong>走行中に発電を自律回収する心臓部</strong>、他方が<strong>その電力を充放電干渉なく電池に蓄えるシステム</strong>となり、完璧なクローズドループ（自給自足のエネルギー循環）を実現します。
                 </p>
+
+                {/* Patent status indicator */}
+                <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 bg-slate-950/60 rounded-xl border border-slate-800 text-[11px] sm:text-xs">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                  <span className="text-slate-300 font-extrabold">【世界標準保証】</span>
+                  <span className="text-white font-black">日本国内特許出願済 ＆ 同時に国際特許出願中（PCT）</span>
+                  <span className="text-slate-400">で知的財産権を世界レベルで強固に保護。</span>
+                </div>
               </div>
 
               {/* Three pillars grid */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 
-                {/* PATENT 1 CARD */}
+                {/* PATENT 1 CARD - Newly invented Electric Generator */}
                 <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-amber-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-amber-500/30 transition-all duration-300">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -876,35 +888,47 @@ export default function App() {
                       </div>
                       <div>
                         <span className="text-[9px] bg-amber-500/10 text-amber-400 font-extrabold px-2 py-0.5 rounded border border-amber-500/20 tracking-wider">
-                          PATENT 01 • ENERGY RECOVERY
+                          PATENT 01 • HEART OF CHARGING
                         </span>
                         <h4 className="text-lg font-black text-white mt-1">
-                          低速度3相交流発電フィードバック
+                          新開発高効率自己発電機
                         </h4>
-                        <p className="text-slate-500 text-[10px] font-bold">
-                          低速度風力3相交流発電機フィードバック・クローズドループ
+                        <p className="text-amber-400 font-mono text-[9px] font-extrabold">
+                          Newly Invented Electric Generator
                         </p>
                       </div>
                     </div>
 
+                    {/* Patent Reference */}
+                    <div className="px-3 py-1.5 bg-amber-500/5 rounded border border-amber-500/20 text-[10px] text-amber-400 font-mono font-black flex justify-between items-center">
+                      <span>【日本特許出願番号】</span>
+                      <span>特願 2026-83613</span>
+                    </div>
+
                     <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                      通常の発電機は発電時の負荷（逆起電力）により車輪の回転を大きく阻害しますが、本特許技術は<strong>極めて低い速度や微細な駆動慣性からでも、走行抵抗とならずに高効率な電力を自己回生する特殊な3相交流設計</strong>です。
+                      走行しながらEVのバッテリーを充電し続ける<strong>もっとも重要な「心臓部」に該当する新開発発電機特許</strong>です。通常のオルタネーターが持つ致命的な弱点（電力を生み出す際の逆起電力による重いブレーキ抵抗）を独自の3相交流極設計とエアギャップ最適化により打ち消しました。
                     </p>
 
                     <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
                       <div className="flex items-start gap-2">
                         <span className="text-amber-400 font-bold text-xs mt-0.5">✔</span>
-                        <p className="text-xs text-slate-300 leading-relaxed font-semibold">
-                          <strong className="text-white block">完全な閉ループ（クローズドループ）：</strong> 
-                          外部エネルギーを全く別途注入せずとも、走行によって生じる回転運動力が自動的に発電機を回し、発生した電力を対称側の回路系統へ即時に連続フィードバックします。
+                        <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
+                          <strong className="text-white block mb-0.5">極低負荷 ＆ 100% 閉ループ：</strong> 
+                          車輪が回転するごく微細な推進力から、走行を一切邪魔することなく高出力な電気エネルギーに回生し、常時バッテリーへと送り込むことができる唯一無二の回路・磁気設計です。
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-800/60 flex justify-between items-center text-[11px] text-amber-400 font-black">
-                    <span>運動力を直接再発電</span>
-                    <span>100% 閉ループ循環体系</span>
+                  <div className="pt-3 border-t border-slate-800/60 flex flex-col gap-1 text-[10px] font-bold text-amber-400 font-mono">
+                    <div className="flex justify-between">
+                      <span>・日本国内</span>
+                      <span>特願 2026-83613 出願済</span>
+                    </div>
+                    <div className="flex justify-between text-slate-400">
+                      <span>・グローバル</span>
+                      <span>PCT国際出願手続き 同時進行中</span>
+                    </div>
                   </div>
                 </div>
 
@@ -929,13 +953,13 @@ export default function App() {
                         referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                      <div className="absolute bottom-2 left-2 bg-slate-900/90 text-[8px] text-slate-300 px-1.5 py-0.5 rounded font-mono font-bold">
-                        PATENT IMPLEMENTATION DESIGN
+                      <div className="absolute bottom-2 left-2 bg-slate-900/90 text-[8px] text-slate-300 px-1.5 py-0.5 rounded font-mono font-bold font-mono">
+                        PATENT DESIGN NO. 2026-83613 / 2025-160784
                       </div>
                     </div>
 
                     <p className="text-xs text-slate-400 leading-relaxed font-semibold">
-                      森 幸信 博士の「発電機 ⇄ A/Bスワップバッテリー」自律往還理論を現実の車載シャーシに適応させるため、高度にシミュレーション設計された3Dモデル。
+                      森 幸信 博士の2大特許「特願 2026-83613（高効率発電機）」と「特願 2025-160784（A/B切替システム）」のコンビネーションが実証された、未来の完全自律循環EVプラットフォーム。
                     </p>
                   </div>
 
@@ -947,44 +971,56 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* PATENT 2 CARD */}
+                {/* PATENT 2 CARD - Dual Swapping Battery System */}
                 <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-emerald-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-emerald-500/30 transition-all duration-300">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
-                        <BatteryCharging className="w-6 h-6 text-emerald-400" />
+                        <BatteryCharging className="w-6 h-6 text-emerald-400 animate-pulse" />
                       </div>
                       <div>
                         <span className="text-[9px] bg-emerald-500/10 text-emerald-400 font-extrabold px-2 py-0.5 rounded border border-emerald-500/20 tracking-wider">
-                          PATENT 02 • POWER SWAPPING
+                          PATENT 02 • SYSTEM CONTROLLERS
                         </span>
                         <h4 className="text-lg font-black text-white mt-1">
-                          A/B独立 相互スワッピング充電構造
+                          A/B独立 相互スワッピング充電システム
                         </h4>
-                        <p className="text-slate-500 text-[10px] font-bold">
-                          A/B独立電槽リアルタイム相互スワッピング充電
+                        <p className="text-emerald-400 font-mono text-[9px] font-extrabold">
+                          Dual Swapping Battery Structure for EV
                         </p>
                       </div>
                     </div>
 
+                    {/* Patent Reference */}
+                    <div className="px-3 py-1.5 bg-emerald-500/5 rounded border border-emerald-500/20 text-[10px] text-emerald-400 font-mono font-black flex justify-between items-center">
+                      <span>【日本特許出願番号】</span>
+                      <span>特願 2025-160784</span>
+                    </div>
+
                     <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                      走行しながら同一電池に高能率充電しようとすると、充放電が干渉し合い効率が極端に落ちます。本特許はバッテリーを<strong>【一次電槽A】と【二次電槽B】の2組に明確に分離</strong>します。
+                      走行のために放電している同一バッテリーに、同時に充電を流気させようとすると電気的衝突（逆サージや発熱抵抗）が起き能率がゼロに落ち込みます。本特許は、バッテリー構成を<strong>【一次電槽A】と【二次電槽B】という独立した2つのグループに完全二重分離</strong>します。
                     </p>
 
                     <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-bold text-xs mt-0.5">✔</span>
-                        <p className="text-xs text-slate-300 leading-relaxed font-semibold">
-                          <strong className="text-white block">リアルタイム・自動スワッピング：</strong> 
-                          【電槽A】がモーターを動かして走行している時に、回生によって新開発発電機が作り出した高能率電力は、完璧に電気的隔離された【電槽B】側へ急速に直接充電されます。一定時間で役割をマイクロ秒単位（無瞬断）で相互交互切替を繰り返します。
+                        <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
+                          <strong className="text-white block mb-0.5">走行中のリアルタイム自動充電スワップ：</strong> 
+                          【電槽A】がモーターを動かして車輪を走らせている背後で、発電機特許（2026-83613）が作り出した回生電流が、電気的に完全遮断されたもう一方の【電槽B】へ急速受電されます。一定の間隔（マイクロ秒〜分単位）で役割を非力化ロスなく相互交互に自動スワップを繰り返します。
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-800/60 flex justify-between items-center text-[11px] text-emerald-400 font-black">
-                    <span>独立電槽による交互稼働</span>
-                    <span>逆起電力およびノイズの完全分離</span>
+                  <div className="pt-3 border-t border-slate-800/60 flex flex-col gap-1 text-[10px] font-bold text-emerald-400 font-mono">
+                    <div className="flex justify-between">
+                      <span>・日本国内</span>
+                      <span>特願 2025-160784 出願済</span>
+                    </div>
+                    <div className="flex justify-between text-slate-400">
+                      <span>・グローバル</span>
+                      <span>PCT国際出願手続き 同時進行中</span>
+                    </div>
                   </div>
                 </div>
 
