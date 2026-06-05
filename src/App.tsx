@@ -666,7 +666,7 @@ export default function App() {
               PATENT BLUEPRINT & SCHEMATICS
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              送って頂いた特許設計図面と中核機能
+              特許設計図面と中核機能
             </h2>
             <p className="text-slate-500 text-sm font-medium">
               森 幸信 博士の特許出願要旨「特許出願 2025-160784」に基づき、
@@ -844,6 +844,171 @@ export default function App() {
             </div>
 
           </div>
+
+          {/* 🌟 2대 핵심 혁신특허 상세 설명 파트 (The 2 Core Patents of E-LOOP) */}
+          <div className="mt-12 bg-slate-900 rounded-3xl p-6 sm:p-10 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+            
+            <div className="relative z-10">
+              
+              {/* Heading */}
+              <div className="text-center mb-10 space-y-3">
+                <span className="text-[10px] sm:text-xs font-black tracking-widest text-[#fbbf24] bg-[#fbbf24]/10 px-3.5 py-1 rounded-full uppercase border border-[#fbbf24]/20">
+                  CORE PATENT INVENTIONS
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black tracking-tight mt-2 text-white">
+                  外部充電を必要としない自律走行の実現：<span className="text-amber-400">「2大核心となる革新特許」</span>
+                </h3>
+                <p className="text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto font-medium leading-relaxed">
+                  E-LOOPが外部の固定充電スタンドを必要とせず自律走行できる最も重要なメカニズムを解説します。走行しながら電力を生産する発電機特許と、充放電の競合（ロス）を完全シャットアウトする「バッテリー相互切替機構」の2つが結合されることで実現します。
+                </p>
+              </div>
+
+              {/* Three pillars grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                
+                {/* PATENT 1 CARD */}
+                <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-amber-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-amber-500/30 transition-all duration-300">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0">
+                        <RotateCw className="w-6 h-6 animate-spin" style={{ animationDuration: '8s' }} />
+                      </div>
+                      <div>
+                        <span className="text-[9px] bg-amber-500/10 text-amber-400 font-extrabold px-2 py-0.5 rounded border border-amber-500/20 tracking-wider">
+                          PATENT 01 • ENERGY RECOVERY
+                        </span>
+                        <h4 className="text-lg font-black text-white mt-1">
+                          低速度3相交流発電フィードバック
+                        </h4>
+                        <p className="text-slate-500 text-[10px] font-bold">
+                          低速度風力3相交流発電機フィードバック・クローズドループ
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                      通常の発電機は発電時の負荷（逆起電力）により車輪の回転を大きく阻害しますが、本特許技術は<strong>極めて低い速度や微細な駆動慣性からでも、走行抵抗とならずに高効率な電力を自己回生する特殊な3相交流設計</strong>です。
+                    </p>
+
+                    <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
+                      <div className="flex items-start gap-2">
+                        <span className="text-amber-400 font-bold text-xs mt-0.5">✔</span>
+                        <p className="text-xs text-slate-300 leading-relaxed font-semibold">
+                          <strong className="text-white block">完全な閉ループ（クローズドループ）：</strong> 
+                          外部エネルギーを全く別途注入せずとも、走行によって生じる回転運動力が自動的に発電機を回し、発生した電力を対称側の回路系統へ即時に連続フィードバックします。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-800/60 flex justify-between items-center text-[11px] text-amber-400 font-black">
+                    <span>運動力を直接再発電</span>
+                    <span>100% 閉ループ循環体系</span>
+                  </div>
+                </div>
+
+                {/* MIDDLE COLUMN: THE VEHICLE VISUALIZATION CARD */}
+                <div className="lg:col-span-4 bg-slate-950/40 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-950/90 pointer-events-none z-10" />
+                  
+                  <div className="space-y-3 z-10">
+                    <span className="text-[9px] bg-blue-500/10 text-blue-400 font-extrabold px-2 py-0.5 rounded border border-blue-500/20 tracking-wider inline-block">
+                      E-LOOP VEHICLE CONCEPT
+                    </span>
+                    <h4 className="text-base font-black text-white">
+                      無充電型・自律移動EV コンセプトカー
+                    </h4>
+                    
+                    {/* Concept Car Image Display */}
+                    <div className="relative rounded-xl overflow-hidden border-2 border-slate-800 aspect-video bg-slate-900 bg-opacity-40 select-none shadow-inner">
+                      <img 
+                        src={regenerativeEvImage} 
+                        alt="E-LOOP Concept Electric Vehicle" 
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                      <div className="absolute bottom-2 left-2 bg-slate-900/90 text-[8px] text-slate-300 px-1.5 py-0.5 rounded font-mono font-bold">
+                        PATENT IMPLEMENTATION DESIGN
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-400 leading-relaxed font-semibold">
+                      森 幸信 博士の「発電機 ⇄ A/Bスワップバッテリー」自律往還理論を現実の車載シャーシに適応させるため、高度にシミュレーション設計された3Dモデル。
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-800/60 flex justify-center items-center text-[10px] text-amber-400 font-black z-10 bg-slate-950/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      自律移動型電動エネルギー循環プラットフォーム
+                    </span>
+                  </div>
+                </div>
+
+                {/* PATENT 2 CARD */}
+                <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-emerald-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-emerald-500/30 transition-all duration-300">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                        <BatteryCharging className="w-6 h-6 text-emerald-400" />
+                      </div>
+                      <div>
+                        <span className="text-[9px] bg-emerald-500/10 text-emerald-400 font-extrabold px-2 py-0.5 rounded border border-emerald-500/20 tracking-wider">
+                          PATENT 02 • POWER SWAPPING
+                        </span>
+                        <h4 className="text-lg font-black text-white mt-1">
+                          A/B独立 相互スワッピング充電構造
+                        </h4>
+                        <p className="text-slate-500 text-[10px] font-bold">
+                          A/B独立電槽リアルタイム相互スワッピング充電
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                      走行しながら同一電池に高能率充電しようとすると、充放電が干渉し合い効率が極端に落ちます。本特許はバッテリーを<strong>【一次電槽A】と【二次電槽B】の2組に明確に分離</strong>します。
+                    </p>
+
+                    <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
+                      <div className="flex items-start gap-2">
+                        <span className="text-emerald-400 font-bold text-xs mt-0.5">✔</span>
+                        <p className="text-xs text-slate-300 leading-relaxed font-semibold">
+                          <strong className="text-white block">リアルタイム・自動スワッピング：</strong> 
+                          【電槽A】がモーターを動かして走行している時に、回生によって新開発発電機が作り出した高能率電力は、完璧に電気的隔離された【電槽B】側へ急速に直接充電されます。一定時間で役割をマイクロ秒単位（無瞬断）で相互交互切替を繰り返します。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-800/60 flex justify-between items-center text-[11px] text-emerald-400 font-black">
+                    <span>独立電槽による交互稼働</span>
+                    <span>逆起電力およびノイズの完全分離</span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Intuitive visual loop banner */}
+              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 to-emerald-500/10 border border-slate-700/60 flex flex-col md:flex-row gap-5 items-center justify-between">
+                <div className="space-y-1 text-center md:text-left">
+                  <h5 className="text-sm font-black text-white flex items-center justify-center md:justify-start gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+                    💡 最も重要な核心コンセプト：プラグイン不要・究極の自律走行システム
+                  </h5>
+                  <p className="text-slate-300 text-[11px] sm:text-xs leading-relaxed max-w-3xl font-medium">
+                    「走行中に失われる機械エネルギーが <b>① 特別設計された3相交流フィードバック発電機</b> によって摩擦ロス・負荷抵抗を極限まで抑えて高能率な電気へ回生され、これを相互に干渉しない <b>② A/Bに二重分割された独立バッテリー構造が完全自律スワッピング制御</b> で交互に充電し合います。常に『一方が走行、同時にもう一方が充電』の完全な閉ループが完成するため、本来自動車を走らせるために必要であった外部の専用急速充電スタンドが不要になり、究極の電力自給自給EVが誕生します。」
+                  </p>
+                </div>
+                <div className="text-sm font-black text-slate-950 bg-amber-400 border border-amber-300 px-5 py-3 rounded-2xl shadow-lg tracking-tight whitespace-nowrap">
+                  🔌 外部充電用インフラへの依存度0
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </section>
 
