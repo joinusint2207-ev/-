@@ -196,8 +196,8 @@ export default function App() {
         };
       case 'switch':
         return {
-          title: "Battery drive switch (バッテリー駆動切替機構)",
-          desc: "森 幸信 博士の発案による極めて重要な切替機構。バッテリー(A)が走行駆動として放電している間、バッテリー(B)は完全回路遮断の上で新発明発電機から直接フィードバックされる急峻な再充電エネルギーのみを受け取ります。インジケータに基づき、放電と受電の役割を交互かつ無瞬断でスイッチング（双方向往還）します。"
+          title: "Battery drive switch（バッテリー駆動切替機構：特願 2025-160784）",
+          desc: "バッテリーをAとBの2つのグループに分割し、相互にスワッピング（自律切替）しながら持続的に充電し続けるシステム。一方のバッテリーで走行駆動を受け持ちつつ、他方は完全に隔離させて新新開発発電機から返却される自家循環用の還元電力を高効率で急速に充電します。これらを交互に瞬時切替しながら循環させます。"
         };
       case 'batteryA':
         return {
@@ -216,8 +216,8 @@ export default function App() {
         };
       case 'generator':
         return {
-          title: "Newly invented Electric Generator (新たに発明された発電機)",
-          desc: "出願番号「2025-160784」の最中核パーツ。森 幸信 博士の新発明による、EV搭載型の高効率運動力回収発電機。従来の発電用ダイナモで問題となっていた、逆起電力による回転抵抗（制動ロス）を、多極巻き線と独自ステーター構造により最適化。極限まで少ない回転負担で効率的な電力を再生成します。"
+          title: "Newly invented Electric Generator（新開発発電機：特願 2026-83613）",
+          desc: "低速度風力3相交流発電機を知的に分配して使用するフィードバック構造（閉ループ自家循環システム）。走行時に発生する運動を余すことなくフィードバックエネルギーとして分配・自家充電回路へ回生する、森 幸信 博士考案の中核発電システムです。"
         };
       default:
         return {
@@ -907,15 +907,15 @@ export default function App() {
                     </div>
 
                     <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                      走行しながらEVのバッテリーを充電し続ける<strong>もっとも重要な「心臓部」に該当する新開発発電機特許</strong>です。通常のオルタネーターが持つ致命的な弱点（電力を生み出す際の逆起電力による重いブレーキ抵抗）を独自の3相交流極設計とエアギャップ最適化により打ち消しました。
+                      走行しながら車輪や空気から回収した回転駆動力を、低速度風力3相交流発電機を知的に分配して使用するフィードバック構造（閉ループ自家循環システム）で余すことなく電力化します。従来の発電機と異なり、エネルギーロスを防ぐ自家循環回路を構築しています。
                     </p>
 
                     <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
                       <div className="flex items-start gap-2">
                         <span className="text-amber-400 font-bold text-xs mt-0.5">✔</span>
                         <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
-                          <strong className="text-white block mb-0.5">極低負荷 ＆ 100% 閉ループ：</strong> 
-                          車輪が回転するごく微細な推進力から、走行を一切邪魔することなく高出力な電気エネルギーに回生し、常時バッテリーへと送り込むことができる唯一無二の回路・磁気設計です。
+                          <strong className="text-white block mb-0.5">自家循環型 フィードバック発電：</strong> 
+                          低速度でも3相交流を知的分配して使うことで、摩擦ロスや負荷抵抗を抑え、安定した逆還流電力を無充電EVプラットフォームに供給し続ける核心特許技術です。
                         </p>
                       </div>
                     </div>
@@ -999,15 +999,15 @@ export default function App() {
                     </div>
 
                     <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                      走行のために放電している同一バッテリーに、同時に充電を流気させようとすると電気的衝突（逆サージや発熱抵抗）が起き能率がゼロに落ち込みます。本特許は、バッテリー構成を<strong>【一次電槽A】と【二次電槽B】という独立した2つのグループに完全二重分離</strong>します。
+                      充放電の干渉抵抗や発熱ロスをカットするため、バッテリー構成をAとBの2つの大きなグループに分割し、自律的にスワッピングしながら持続的に充電し続ける画期的な充電制御構造です。
                     </p>
 
                     <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-bold text-xs mt-0.5">✔</span>
                         <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
-                          <strong className="text-white block mb-0.5">走行中のリアルタイム自動充電スワップ：</strong> 
-                          【電槽A】がモーターを動かして車輪を走らせている背後で、発電機特許（2026-83613）が作り出した回生電流が、電気的に完全遮断されたもう一方の【電槽B】へ急速受電されます。一定の間隔（マイクロ秒〜分単位）で役割を非力化ロスなく相互交互に自動スワップを繰り返します。
+                          <strong className="text-white block mb-0.5">交互スワップ ＆ 自動持続充電サイクル：</strong> 
+                          グループAが放電してモーターを動かしている際、発電機（特願 2026-83613）からの電力は電気的に隔離されたグループBへと急速受電され、一定間隔での瞬時スワッピング運転を行うため、外部での有線充電時間を原則として不要にします。
                         </p>
                       </div>
                     </div>
@@ -1428,10 +1428,10 @@ export default function App() {
                   </div>
                   <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
                     <span className="text-slate-500 font-bold">主要技術内容:</span>
-                    <span className="font-semibold text-slate-800 text-right">逆起電力キャンセル型 3相交流自己発電コア</span>
+                    <span className="font-semibold text-slate-800 text-right">3相交流 自家循環型フィードバック構造</span>
                   </div>
                   <p className="text-[11px] text-slate-600 font-sans leading-relaxed px-1 font-semibold">
-                    通常の発電時に発生するローター抵抗（電磁ブレーキ）を独自のエアギャップ極性レイアウトによって極限まで相殺する極小負荷発電。
+                    低速度風力3相交流発電機を知的に分配して使用するフィードバック構造（閉ループ自家循環システム）。
                   </p>
                 </div>
 
@@ -1447,10 +1447,10 @@ export default function App() {
                   </div>
                   <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
                     <span className="text-slate-500 font-bold">主要技術内容:</span>
-                    <span className="font-semibold text-slate-800 text-right">A/B独立二重電槽 往還無瞬断スイッチング機構</span>
+                    <span className="font-semibold text-slate-800 text-right">A/B二重バッテリー 相互スワッピング充電システム</span>
                   </div>
                   <p className="text-[11px] text-slate-600 font-sans leading-relaxed px-1 font-semibold">
-                    放電駆動中の電槽と、発電電力の急速充電を受ける隔離中の電槽を、1ミリ秒未満で完全に切り替え駆動力を往還維持する回路技術。
+                    A/Bの2つのグループに分けたバッテリーをスワッピングしながら持続的に充電するシステム。
                   </p>
                 </div>
 
