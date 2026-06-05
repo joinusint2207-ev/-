@@ -32,8 +32,9 @@ import {
   Sparkles
 } from 'lucide-react';
 
+import regenerativeEvImage from './assets/images/regenerative_ev_1780636321278.png';
+
 export default function App() {
-  const regenerativeEvImage = "/src/assets/images/regenerative_ev_1780636321278.png";
 
   // Navigation tabs or active section
   const [activeTab, setActiveTab] = useState<'concept' | 'diagram' | 'demokit' | 'video' | 'patent' | 'contact'>('concept');
