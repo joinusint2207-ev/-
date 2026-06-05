@@ -216,7 +216,7 @@ export default function App() {
         };
       case 'generator':
         return {
-          title: "Newly invented Electric Generator（新開発発電機：特願 2026-83613）",
+          title: "Newly Invented Electric Generator（新開発発電機：特願 2026-83613）",
           desc: "低速度風力3相交流発電機を知的に分配して使用するフィードバック構造（閉ループ自家循環システム）。走行時に発生する運動を余すことなくフィードバックエネルギーとして分配・自家充電回路へ回生する、森 幸信 博士考案の中核発電システムです。"
         };
       default:
@@ -473,7 +473,7 @@ export default function App() {
 
                       {/* Newly Invented Electric Generator */}
                       <rect x="305" y="80" width="80" height="80" rx="4" fill="#fdf2f8" stroke="#ec4899" strokeWidth="2.5" />
-                      <text x="345" y="100" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Newly invented</text>
+                      <text x="345" y="100" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Newly Invented</text>
                       <text x="345" y="111" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Electric Generator</text>
                       <text x="345" y="127" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="bold">新開発発電機</text>
                       <text x="345" y="141" textAnchor="middle" fill="#047857" fontSize="6" fontWeight="bold">特願 2026-83613</text>
@@ -641,7 +641,7 @@ export default function App() {
                   <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-5 text-white">
                     <p className="text-xs font-black text-amber-400">E-LOOP SELF-REGENERATIVE MOBILITY CONCEPT</p>
                     <p className="text-[10px] text-slate-300 mt-1 font-bold">
-                      新開発の革新的発電機『Newly invented Electric Generator』を搭載することで、現代の電気自動車（EV）最大のアキレス腱である「充電スタンドの必要性」を完全に克服した革新的システムです。外部充電インフラから完全に解放された無充電EVの未来を実現します。さらに、その極めて高い設計合理性により、従来のガソリン車を製造するよりも遥かに低コストで車両を構築できる点も極めて革新的です。
+                      新開発の革新的発電機『Newly Invented Electric Generator』を搭載することで、現代の電気自動車（EV）最大のアキレス腱である「充電スタンドの必要性」を完全に克服した革新的システムです。外部充電インフラから完全に解放された無充電EVの未来を実現します。さらに、その極めて高い設計合理性により、従来のガソリン車を製造するよりも遥かに低コストで車両を構築できる点も極めて革新的です。
                     </p>
                   </div>
 
@@ -672,7 +672,7 @@ export default function App() {
             </h2>
             <p className="text-slate-500 text-sm font-medium">
               森 幸信 博士の特許出願要旨「特許出願 2025-160784」に基づき、
-              システムの構造から最も重要な「Newly invented Electric Generator（新開発発電機）」をクローズアップして網羅しています。
+              システムの構造から最も重要な「Newly Invented Electric Generator（新開発発電機）」をクローズアップして網羅しています。
             </p>
           </div>
 
@@ -786,7 +786,7 @@ export default function App() {
               {/* Information disclaimer explaining focus */}
               <div className="mt-4 p-4 bg-white rounded-lg text-xs leading-relaxed text-slate-700 border border-slate-200">
                 <span className="text-slate-900 font-bold block mb-1">■ 基本動作フロー：</span>
-                車体が走行を始めると、走行に伴う回転運動力が後部【Newly invented Electric Generator（新開発発電機：特許出願 2026-83613）】を回します。
+                車体が走行を始めると、走行に伴う回転運動力が後部【Newly Invented Electric Generator（新開発発電機：特許出願 2026-83613）】を回します。
                 このとき発生する還元電力を【Controller】がバッテリーに返します。
                 森 幸信 博士の発明の神髄は、【Battery drive switch（駆動切替機構：特許出願 2025-160784）】が、前輪駆動に使っている方の電槽と、発電電力を無瞬断で急速受電する反対側の電槽を交互に完璧に切り替える自律往還サイクルにあります。
               </div>
@@ -881,7 +881,7 @@ export default function App() {
               {/* Three pillars grid */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                 
-                {/* PATENT 1 CARD - Newly invented Electric Generator */}
+                {/* PATENT 1 CARD - Newly Invented Electric Generator */}
                 <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-amber-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-amber-500/30 transition-all duration-300">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -1135,7 +1135,7 @@ export default function App() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-pink-500 animate-ping" />
                     <h3 className="text-xs font-black uppercase text-slate-700 tracking-wide">
-                      【コア特許構造】 Newly invented Electric Generator
+                      【コア特許構造】 Newly Invented Electric Generator
                     </h3>
                   </div>
                   <span className="text-[9px] bg-pink-50 text-pink-600 px-2.5 py-0.5 rounded border border-pink-200 font-mono font-bold">
