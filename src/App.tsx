@@ -1413,35 +1413,52 @@ export default function App() {
               <div className="space-y-4">
                 <h3 className="text-base font-black text-slate-900 flex items-center gap-1.5 border-b border-slate-100 pb-2">
                   <FileText className="w-4 h-4 text-blue-500" />
-                  特許権利の出願根拠
+                  2大核心特許 出願ポートフォリオ
                 </h3>
                 
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4 font-mono text-xs text-slate-700 shadow-inner">
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-505 font-bold">権利ステータス:</span>
-                    <span className="font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-150">特許出願中 (Pending)</span>
+                {/* PATENT 01 CARD IN PROFILE */}
+                <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200/80 space-y-3 font-mono text-xs text-slate-705 shadow-sm">
+                  <div className="flex justify-between items-center bg-amber-100/50 px-2 py-1 rounded">
+                    <span className="font-extrabold text-amber-850">【核心特許 01】新開発高効率自己発電機</span>
+                    <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">出願済</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-505 font-bold">国内特許出願番号:</span>
-                    <span className="font-extrabold text-slate-900">2025-160784</span>
+                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
+                    <span className="text-slate-500 font-bold">特許出願番号:</span>
+                    <span className="font-extrabold text-slate-900">特願 2026-83613</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-200 pb-2">
-                    <span className="text-slate-505 font-bold">主要発明タイトル:</span>
-                    <span className="font-extrabold text-slate-900 text-right">EV搭載型 新発明発電システム</span>
+                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
+                    <span className="text-slate-500 font-bold">主要技術内容:</span>
+                    <span className="font-semibold text-slate-800 text-right">逆起電力キャンセル型 3相交流自己発電コア</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-505 font-bold">権利取得可能範囲:</span>
-                    <span className="font-extrabold text-blue-600">自己循環およびバッテリースイッチング全般</span>
-                  </div>
+                  <p className="text-[11px] text-slate-600 font-sans leading-relaxed px-1 font-semibold">
+                    通常の発電時に発生するローター抵抗（電磁ブレーキ）を独自のエアギャップ極性レイアウトによって極限まで相殺する極小負荷発電。
+                  </p>
                 </div>
 
-                <div className="p-4 bg-blue-50/70 text-blue-900 rounded-xl border border-blue-200 text-xs leading-relaxed font-semibold">
-                  <strong>■ 特許技術の主な特徴：</strong>
-                  <ul className="list-disc list-inside space-y-1 mt-1 font-medium text-blue-950">
-                    <li>多極巻き線と独自ステーター極設計による極小回転抵抗</li>
-                    <li>双方向での無損失な自律バッテリースイッチング（往還式）</li>
-                    <li>実際に連動・発電試験を執り行える実動デモ装置の完備</li>
-                  </ul>
+                {/* PATENT 02 CARD IN PROFILE */}
+                <div className="p-4 rounded-xl bg-emerald-50/40 border border-emerald-200/80 space-y-3 font-mono text-xs text-slate-705 shadow-sm">
+                  <div className="flex justify-between items-center bg-emerald-100/50 px-2 py-1 rounded">
+                    <span className="font-extrabold text-emerald-850">【核心特許 02】バッテリー相互切替システム</span>
+                    <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">出願済</span>
+                  </div>
+                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
+                    <span className="text-slate-500 font-bold">特許出願番号:</span>
+                    <span className="font-extrabold text-slate-900">特願 2025-160784</span>
+                  </div>
+                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
+                    <span className="text-slate-500 font-bold">主要技術内容:</span>
+                    <span className="font-semibold text-slate-800 text-right">A/B独立二重電槽 往還無瞬断スイッチング機構</span>
+                  </div>
+                  <p className="text-[11px] text-slate-600 font-sans leading-relaxed px-1 font-semibold">
+                    放電駆動中の電槽と、発電電力の急速充電を受ける隔離中の電槽を、1ミリ秒未満で完全に切り替え駆動力を往還維持する回路技術。
+                  </p>
+                </div>
+
+                <div className="p-3 bg-blue-50/70 text-blue-900 rounded-xl border border-blue-200 text-xs leading-relaxed font-semibold">
+                  <strong>■ 特許ポートフォリオの取得範囲：</strong>
+                  <p className="text-[11px] text-blue-950 font-medium mt-1">
+                    日本国内での2大特許出願を完了し、すでに優先権を確保しております。さらにPCTルートを通じた主要諸国（アメリカ、欧州、アジア圏）へのグローバル国際出願手続きを一本化して同時移行・準備を進めております。
+                  </p>
                 </div>
               </div>
 
