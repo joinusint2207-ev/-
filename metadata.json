@@ -1,0 +1,6 @@
+{
+  "name": "E-LOOP",
+  "description": "充電不要の自律エネルギー型EVコンセプト『E-LOOP』の先進的Webサイト",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
