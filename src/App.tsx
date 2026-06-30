@@ -1,45 +1,102 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useEffect } from 'react';
 import { 
   Zap, 
   RotateCw, 
-  Cpu, 
-  BatteryCharging, 
   Globe, 
-  Building2, 
-  Home, 
-  Flame, 
   ShieldCheck, 
-  Check, 
   ArrowRight, 
   Clock, 
   Play, 
   Pause, 
   Gauge, 
   ChevronRight, 
-  FileText,
   User,
   Building,
-  Info,
   Mail,
   Video,
-  FileCode,
   Sliders,
-  Sparkles
+  Sparkles,
+  Youtube,
+  Link
 } from 'lucide-react';
 
 import regenerativeEvImage from './assets/images/regenerative_ev_1780636321278.png';
+import { translations } from './translations';
+
+function extractYouTubeId(url: string): string | null {
+  if (!url) return null;
+  const trimmed = url.trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
+    return trimmed;
+  }
+  
+  const patterns = [
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
+    /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/v\/([a-zA-Z0-9_-]{11})/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/live\/([a-zA-Z0-9_-]{11})/
+  ];
+
+  for (const pattern of patterns) {
+    const match = trimmed.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+  return null;
+}
+
+function isYouTubeChannelUrl(url: string): boolean {
+  if (!url) return false;
+  const trimmed = url.trim();
+  return trimmed.includes('youtube.com/@') || 
+         trimmed.includes('youtube.com/channel/') || 
+         trimmed.includes('youtube.com/c/') || 
+         trimmed.includes('youtube.com/user/') ||
+         trimmed.startsWith('@') ||
+         trimmed.toLowerCase().includes('yukimori2207');
+}
+
+function getYouTubeChannelCleanUrl(url: string): string {
+  const trimmed = url.trim();
+  if (trimmed.startsWith('@')) {
+    return `https://youtube.com/${trimmed}`;
+  }
+  if (!trimmed.startsWith('http') && trimmed.toLowerCase().includes('yukimori2207')) {
+    return `https://youtube.com/@yukimori2207`;
+  }
+  return trimmed;
+}
 
 export default function App() {
+  // 1. Language State with LocalStorage persistence
+  const [lang, setLang] = useState<'en' | 'jp'>(() => {
+    const saved = localStorage.getItem('mori_eloop_lang');
+    return (saved === 'en' || saved === 'jp') ? saved : 'en';
+  });
 
-  // Navigation tabs or active section
-  const [activeTab, setActiveTab] = useState<'concept' | 'diagram' | 'demokit' | 'video' | 'patent' | 'contact'>('concept');
+  const handleSwitchLanguage = () => {
+    setLang(prev => {
+      const next = prev === 'jp' ? 'en' : 'jp';
+      localStorage.setItem('mori_eloop_lang', next);
+      return next;
+    });
+  };
 
-  // Simulation & Visual State
+  useEffect(() => {
+    // Dynamic document title based on active language selection
+    if (lang === 'jp') {
+      document.title = "E-LOOP 自己回生・車載発電システム — 森 幸信 博士";
+    } else {
+      document.title = "Zero Charging EV — E-LOOP Regenerative System";
+    }
+  }, [lang]);
+
+  const t = translations[lang];
+
+  // 2. Simulation & Visual State
   const [isRunning, setIsRunning] = useState<boolean>(true);
   const [activeBattery, setActiveBattery] = useState<'A' | 'B'>('A');
   const [batteryACharge, setBatteryACharge] = useState<number>(78);
@@ -49,10 +106,56 @@ export default function App() {
 
   // Interactive Video Player & Oscilloscope demonstration logic
   const [videoPlaying, setVideoPlaying] = useState<boolean>(true);
-  const [currentVideoPhase, setCurrentVideoPhase] = useState<'start' | 'switching'>('start');
   const [wavePoints, setWavePoints] = useState<number[]>([]);
 
-  // Form states with correct Email Integration
+  // YouTube Integration State
+  const [youtubeInput, setYoutubeInput] = useState<string>(() => {
+    return localStorage.getItem('mori_eloop_youtube_input') || 'https://youtube.com/@yukimori2207?si=DFuoZCKzcdr25_tS';
+  });
+  const [youtubeChannelUrl, setYoutubeChannelUrl] = useState<string>(() => {
+    return localStorage.getItem('mori_eloop_youtube_channel') || 'https://youtube.com/@yukimori2207?si=DFuoZCKzcdr25_tS';
+  });
+  const [youtubeVideoId, setYoutubeVideoId] = useState<string | null>(() => {
+    const saved = localStorage.getItem('mori_eloop_youtube_input') || 'https://youtube.com/@yukimori2207?si=DFuoZCKzcdr25_tS';
+    if (isYouTubeChannelUrl(saved)) {
+      return null;
+    }
+    return extractYouTubeId(saved);
+  });
+  const [youtubeInputError, setYoutubeInputError] = useState<string>('');
+
+  const handleConnectYouTube = () => {
+    setYoutubeInputError('');
+    const inputStr = youtubeInput.trim();
+    if (!inputStr) {
+      setYoutubeInputError(lang === 'jp' 
+        ? 'YouTubeのURL、チャンネルリンク、または動画IDを入力してください。' 
+        : 'Please enter a YouTube video URL, channel URL, or ID.'
+      );
+      return;
+    }
+
+    if (isYouTubeChannelUrl(inputStr)) {
+      const cleanChannelUrl = getYouTubeChannelCleanUrl(inputStr);
+      setYoutubeChannelUrl(cleanChannelUrl);
+      setYoutubeVideoId(null);
+      localStorage.setItem('mori_eloop_youtube_channel', cleanChannelUrl);
+      localStorage.setItem('mori_eloop_youtube_input', cleanChannelUrl);
+    } else {
+      const extracted = extractYouTubeId(inputStr);
+      if (extracted) {
+        setYoutubeVideoId(extracted);
+        localStorage.setItem('mori_eloop_youtube_input', inputStr);
+      } else {
+        setYoutubeInputError(lang === 'jp' 
+          ? '有効なYouTubeのURL（動画またはチャンネル）を入力してください。' 
+          : 'Invalid YouTube URL format. Please provide a valid channel URL or video URL.'
+        );
+      }
+    }
+  };
+
+  // Form states with correct Email Integration (Formspree)
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -66,7 +169,7 @@ export default function App() {
   const [submissionToken, setSubmissionToken] = useState<string>('');
   const [submitError, setSubmitError] = useState<string>('');
 
-  // 1. Oscilloscope wave effect for the generator monitoring view
+  // Oscilloscope wave effect for the generator monitoring view
   useEffect(() => {
     const interval = setInterval(() => {
       if (videoPlaying || isRunning) {
@@ -83,7 +186,7 @@ export default function App() {
     return () => clearInterval(interval);
   }, [videoPlaying, isRunning, activeBattery]);
 
-  // 2. Continuous Battery Charge & Swap Logic
+  // Continuous Battery Charge & Swap Logic (Endless Clean Demonstration Loop)
   useEffect(() => {
     let interval: any = null;
     if (isRunning) {
@@ -128,11 +231,14 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isRunning, activeBattery]);
 
-  // 3. Official Formspree Integration
+  // Formspree Submission Integration
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.company || !formData.email || !formData.message || !formData.privacyAccepted) {
-      setSubmitError('Please fill in all required fields and check the box to agree to the privacy policy.');
+      setSubmitError(lang === 'jp' 
+        ? '必須フィールドをすべて入力し、プライバシーポリシーへの同意ボックスにチェックを入れてください。'
+        : 'Please fill in all required fields and check the box to agree to the privacy policy.'
+      );
       return;
     }
     setIsSubmitting(true);
@@ -162,12 +268,15 @@ export default function App() {
         setSubmissionToken(`ELP-${Math.floor(100000 + Math.random() * 900000)}`);
       } else {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Formspree forms integration error. Status: ' + response.status);
+        throw new Error(errorData.error || 'Formspree integration error. Status: ' + response.status);
       }
     })
     .catch((error) => {
       console.error('Submission failed:', error);
-      setSubmitError('Failed to submit the form. Please try again after a few moments.');
+      setSubmitError(lang === 'jp'
+        ? 'フォームの送信に失敗しました。しばらく経ってからもう一度お試しください。'
+        : 'Failed to submit the form. Please try again after a few moments.'
+      );
       setIsSubmitting(false);
     });
   };
@@ -186,58 +295,105 @@ export default function App() {
     setSubmitError('');
   };
 
-  // Structured Component Data based on user PDF diagram
+  // Localized Component Info panel for interactive SVG schematic
   const getComponentInfo = (id: string) => {
-    switch(id) {
-      case 'motor':
-        return {
-          title: "Drive Motor",
-          desc: "The core propulsion unit that directly converts electricity into wheel rotation to drive the vehicle forward with maximum torque and efficiency, powered by the dual self-circulating battery system."
-        };
-      case 'switch':
-        return {
-          title: "Battery Drive Switch (Patent Application No. 2025-160784)",
-          desc: "A revolutionary switching relay that divides the battery storage cells into two separate groups (A and B). While one battery group is actively driving the motor, the other group is completely isolated to receive high-rate regenerative energy returned from the Newly Invented Electric Generator. The system continuously alternates their roles in real-time."
-        };
-      case 'batteryA':
-        return {
-          title: "Main Battery Pack (Group A)",
-          desc: "One of the two main high-voltage propulsion batteries that power the electric vehicle's main drive motor. While Group A is actively driving the motor, it provides continuous propulsion current. Once swapped by the Battery Drive Switch, it transitions instantly into an isolated charging state to receive current from the on-board high-efficiency generator."
-        };
-      case 'batteryB':
-        return {
-          title: "Main Battery Pack (Group B)",
-          desc: "Identical and fully symmetrical to Group A, this is the other half of the vehicle's main high-voltage propulsion battery system. While Group A drives the vehicle, Group B is completely isolated and directly charged by the on-board generator. They switch roles continuously, maintaining a non-stop driving loop."
-        };
-      case 'controller':
-        return {
-          title: "System Controller & Voltage Regulator",
-          desc: "An intelligent control board that detects the regenerative output of the Newly Invented Electric Generator, performs step-up voltage regulation, and directs the charging current to the idle battery pack. It works in perfect synchronization with the Battery Drive Switch to maintain the balance of the system."
-        };
-      case 'generator':
-        return {
-          title: "Newly Invented Electric Generator (Patent Application No. 2026-83613)",
-          desc: "An innovative generator designed by Dr. Yukinobu Mori. It utilizes an engineered 3-phase AC feedback loop to generate power from a continuous, consistent rotational force with extremely low rotational resistance, delivering feedback power directly to the dual battery packs and rendering external charging stations obsolete."
-        };
-      default:
-        return {
-          title: "Click on any component above",
-          desc: "These are the 5 core units of the patent-pending E-LOOP technology. Tap or click on any module in the interactive diagram to view its details, mechanical role, and patent specifications."
-        };
+    if (lang === 'jp') {
+      switch(id) {
+        case 'motor':
+          return {
+            title: "駆動用モーター",
+            desc: "電気エネルギーを車輪の回転力に直接変換し、最大のトルクと効率で車両を前進させる中核推進ユニット。二系統の Energy Regenerative & Management System によって給電されます。"
+          };
+        case 'switch':
+          return {
+            title: "バッテリー切替スイッチ (特許出願番号 2025-160784)",
+            desc: "メインの蓄電池セルを2つの独立したグループ（AとB）に分割する、革新的な高速切替リレー。一方のバッテリーグループがアクティブにモーターを駆動している間、もう一方は完全に隔離され、新開発の高効率車載発電機から戻される高レートの回生電力を直接受け取ります。システムは、これら2つの役割をリアルタイムで継続的に交互に切り替えます。"
+          };
+        case 'batteryA':
+          return {
+            title: "メインバッテリーパック (グループA)",
+            desc: "電気自動車の主推進モーターに電力を供給する、2つの高電圧推進用バッテリーの片系統。グループAがアクティブに駆動している間は、安定した駆動用電流を供給します。バッテリー切替スイッチによってスワップされると、即座に隔離された充電状態へと移行し、車載の高効率車載発電機からの回生電流を受け取ります。"
+          };
+        case 'batteryB':
+          return {
+            title: "メインバッテリーパック (グループB)",
+            desc: "グループAと完全に同一かつ対称的な構成を持つ、もう一つの高電圧推進用バッテリー系統。グループAが車両を駆動している間、グループBは完全に電気的に隔離され、車載発電機から直接高速充電されます。この役割を自動で交互にスワップし続けることで、外部充電不要の駆動ループを維持します。"
+          };
+        case 'controller':
+          return {
+            title: "システムコントローラー ＆ 電圧レギュレーター",
+            desc: "新開発高効率車載発電機の回生出力を検出し、最適な電圧に昇圧調整した上で、待機状態（充電側）のバッテリーパックへ充電電流を導くインテリジェントな制御基板。バッテリー切替スイッチと完全に同期して動作し、システム全体のエネルギーバランスを維持します。"
+          };
+        case 'generator':
+          return {
+            title: "新開発高効率車載発電機 (特許出願番号 2026-83613)",
+            desc: "森幸信 博士によって設計された革新的な発電機。独自の3相ACフィードバックループを採用し、連続的かつ安定した回転力から、3相AC発電機をフィードバックシステムとして使用し、独立した発電機（車内のミニ充電スタンド）として高効率に電力を生成。回収された電力を直接二系統のバッテリーパックへフィードバックし、外部の充電スタンドを不要にする中核メカニズムです。"
+          };
+        default:
+          return {
+            title: "図中のコンポーネントをクリックしてください",
+            desc: "これらは特許出願中技術「E-LOOP」を構成する5つの中核ユニットです。インタラクティブ回路図内の各モジュールをタップまたはクリックすると、その詳細な機能、機構的役割、および特許仕様が表示されます。"
+          };
+      }
+    } else {
+      switch(id) {
+        case 'motor':
+          return {
+            title: "Drive Motor",
+            desc: "The core propulsion unit that directly converts electricity into wheel rotation to drive the vehicle forward with maximum torque and efficiency, powered by the dual Energy Regenerative & Management System."
+          };
+        case 'switch':
+          return {
+            title: "Battery Drive Switch (Patent Application No. 2025-160784)",
+            desc: "A revolutionary switching relay that divides the battery storage cells into two separate groups (A and B). While one battery group is actively driving the motor, the other group is completely isolated to receive high-rate regenerative energy returned from the Newly Invented Electric Generator. The system continuously alternates their roles in real-time."
+          };
+        case 'batteryA':
+          return {
+            title: "Main Battery Pack (Group A)",
+            desc: "One of the two main high-voltage propulsion batteries that power the electric vehicle's main drive motor. While Group A is actively driving the motor, it provides continuous propulsion current. Once swapped by the Battery Drive Switch, it transitions instantly into an isolated charging state to receive current from the on-board high-efficiency generator."
+          };
+        case 'batteryB':
+          return {
+            title: "Main Battery Pack (Group B)",
+            desc: "Identical and fully symmetrical to Group A, this is the other half of the vehicle's main high-voltage propulsion battery system. While Group A drives the vehicle, Group B is completely isolated and directly charged by the on-board generator. They switch roles continuously, maintaining a non-stop driving loop."
+          };
+        case 'controller':
+          return {
+            title: "System Controller & Voltage Regulator",
+            desc: "An intelligent control board that detects the regenerative output of the Newly Invented Electric Generator, performs step-up voltage regulation, and directs the charging current to the idle battery pack. It works in perfect synchronization with the Battery Drive Switch to maintain the balance of the system."
+          };
+        case 'generator':
+          return {
+            title: "Newly Invented Electric Generator (Patent Application No. 2026-83613)",
+            desc: "An innovative generator designed by Dr. Yukinobu Mori. It utilizes an engineered 3-phase AC feedback loop to generate power from a continuous, consistent rotational force by utilizing a 3-phase AC generator feedback system to act as an independent generator (a mini charging station inside the vehicle), delivering feedback power directly to the dual battery packs and rendering external charging stations obsolete."
+          };
+        default:
+          return {
+            title: "Click on any component above",
+            desc: "These are the 5 core units of the patent-pending E-LOOP technology. Tap or click on any module in the interactive diagram to view its details, mechanical role, and patent specifications."
+          };
+      }
     }
   };
 
+  const categories = [
+    { value: 'Investment / Capital Partnership (IR)', label: t.categoryOption1 },
+    { value: 'Technical License Agreement', label: t.categoryOption2 },
+    { value: 'Joint Research and Development', label: t.categoryOption3 },
+    { value: 'Requesting Empirical Data', label: t.categoryOption4 }
+  ];
+
   return (
-    <div id="mori-eloop-website" className="min-h-screen bg-[#faf8f5] text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-850 font-sans selection:bg-blue-600 selection:text-white" id="mori-multilingual-wrapper">
       
       {/* ⚠️ TOP PATENT PENDING ALERT STRIP */}
       <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white text-xs sm:text-sm py-2.5 px-4 shadow-sm text-center font-bold tracking-wider flex items-center justify-center gap-x-3 gap-y-1 flex-wrap border-b border-blue-500">
         <span className="inline-flex items-center gap-1 bg-yellow-400 text-slate-950 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-tight">
           WORLD FIRST
         </span>
-        <span className="font-extrabold">Japanese Patent Filed (Patent Application No. 2025-160784) ／ PCT International Patent Pending</span>
-        <span className="text-blue-250">|</span>
-        <span>Inventor & Applicant: Dr. Yukinobu Mori</span>
+        <span className="font-extrabold">{t.alert}</span>
+        <span className="text-blue-200">|</span>
+        <span>{t.inventorLabel}</span>
       </div>
 
       {/* STICKY NAV HEADER */}
@@ -255,56 +411,47 @@ export default function App() {
                 <span className="text-xl font-black text-slate-900 tracking-tight">E-LOOP</span>
                 <span className="text-[9px] bg-blue-50 text-blue-600 font-extrabold px-1.5 py-0.5 rounded border border-blue-200">PATENTED SYSTEM</span>
               </div>
-              <p className="text-[10px] text-slate-500 font-bold tracking-wide">Dr. Yukinobu Mori's Technology Verification</p>
+              <p className="text-[10px] text-slate-500 font-bold tracking-wide">{t.subtitle}</p>
             </div>
           </div>
 
           {/* Desktop Nav tabs link scrolling */}
           <nav className="hidden lg:flex items-center gap-1 text-sm font-bold text-slate-600">
-            <a 
-              href="#concept" 
-              onClick={() => setActiveTab('concept')}
-              className={`px-3.5 py-2 rounded-lg transition-colors ${activeTab === 'concept' ? 'text-blue-600 bg-blue-50/70' : 'hover:text-slate-900 hover:bg-slate-50'}`}
-            >
-              Vision
+            <a href="#concept" className="px-3.5 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50">
+              {t.navVision}
             </a>
-            <a 
-              href="#patent-images" 
-              onClick={() => setActiveTab('diagram')}
-              className={`px-3.5 py-2 rounded-lg transition-colors ${activeTab === 'diagram' ? 'text-blue-600 bg-blue-50/70' : 'hover:text-slate-900 hover:bg-slate-50'}`}
-            >
-              System Blueprint
+            <a href="#patent-images" className="px-3.5 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50">
+              {t.navBlueprint}
             </a>
-            <a 
-              href="#demokit" 
-              onClick={() => setActiveTab('demokit')}
-              className={`px-3.5 py-2 rounded-lg transition-colors ${activeTab === 'demokit' ? 'text-blue-600 bg-blue-50/70' : 'hover:text-slate-900 hover:bg-slate-50'}`}
-            >
-              Demo Kit
+            <a href="#demokit" className="px-3.5 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50">
+              {t.navDemokit}
             </a>
-            <a 
-              href="#video-section" 
-              onClick={() => setActiveTab('video')}
-              className={`px-3.5 py-2 rounded-lg transition-colors ${activeTab === 'video' ? 'text-blue-600 bg-blue-50/70' : 'hover:text-slate-900 hover:bg-slate-50'}`}
-            >
-              Verification Video
+            <a href="#video-section" className="px-3.5 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50">
+              {t.navVideo}
             </a>
-            <a 
-              href="#patent-facts" 
-              onClick={() => setActiveTab('patent')}
-              className={`px-3.5 py-2 rounded-lg transition-colors ${activeTab === 'patent' ? 'text-blue-600 bg-blue-50/70' : 'hover:text-slate-900 hover:bg-slate-50'}`}
-            >
-              Inventor Profile
+            <a href="#patent-facts" className="px-3.5 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50">
+              {t.navInventor}
+            </a>
+            <a href="#contact" className="px-3.5 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50">
+              {t.navContact}
             </a>
           </nav>
 
-          {/* CTA Action Direct Link */}
+          {/* CTA Action Direct Link & Language Switcher */}
           <div className="flex items-center gap-2">
+            <button 
+              onClick={handleSwitchLanguage}
+              className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition active:scale-[0.98] border border-slate-200"
+              title={lang === 'en' ? "Switch to Japanese" : "Switch to English"}
+            >
+              <Globe className="w-4 h-4 text-slate-500 animate-pulse" />
+              <span>{lang === 'en' ? "日本語" : "English"}</span>
+            </button>
             <a 
               href="#contact" 
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 transition active:scale-[0.98] shadow-lg shadow-blue-600/10 hover:shadow-blue-500/20"
             >
-              <span>Investment Inquiry</span>
+              <span>{t.navContact}</span>
               <ArrowRight className="w-4 h-4 text-blue-200" />
             </a>
           </div>
@@ -312,35 +459,38 @@ export default function App() {
         </div>
       </header>
 
-      {/* CORE HERO WRAPPER */}
-      <section id="concept" className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 border-b border-slate-200 py-16 lg:py-24">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-60" />
+      {/* 🔮 HERO SECTION */}
+      <section id="concept" className="relative py-20 bg-gradient-to-b from-white via-[#faf8f5] to-[#faf8f5] overflow-hidden border-b border-slate-200">
+        
+        {/* Decorative Grid Mesh */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Title & Slogans directly using user PDF elements */}
+            {/* Title & Slogans */}
             <div className="lg:col-span-7 space-y-8">
               
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5 text-blue-500 animate-spin" />
-                <span>World First! Patented On-Board EV Generator Active</span>
+                <span>{t.heroBadge}</span>
               </div>
 
               <div className="space-y-4">
-                <p className="text-sm text-blue-600 font-extrabold tracking-widest uppercase">E-LOOP SYSTEM BY DR. YUKINOBU MORI</p>
+                <p className="text-sm text-blue-600 font-extrabold tracking-widest uppercase">{t.heroSystemTitle}</p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight">
-                  No Charging Stations.
+                  {lang === 'jp' ? "充電スタンドは不要。" : "No Charging Stations."}
                   <br />
-                  Zero Emissions.
+                  {lang === 'jp' ? "排出ガスはゼロ。" : "Zero Emissions."}
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600">Just Drive.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600">
+                    {lang === 'jp' ? "ただ、走るだけ。" : "Just Drive."}
+                  </span>
                 </h1>
               </div>
 
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-medium">
-                Overcoming the biggest limitation of modern electric vehicles—the constant anxiety of searching for charging spots. 
-                Designed by Dr. Yukinobu Mori, the E-LOOP system integrates a proprietary high-efficiency generator for **Dynamic Energy Harvesting** from a continuous, consistent rotational force, managed by an intelligent battery swap relay. Instead of auxiliary storage, the system directly charges and swaps the main propulsion batteries. By dividing the vehicle's main battery bank into Group A and Group B and dynamically swapping their roles, the system achieves continuous on-board energy replenishment, completely eliminating the need for charging stations.
+                {t.heroDescription}
               </p>
 
               {/* Real Patent Certificate Status Frame */}
@@ -349,10 +499,10 @@ export default function App() {
                   <ShieldCheck className="w-7 h-7" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-black uppercase text-emerald-600 tracking-wider">OFFICIAL PATENT FILED</span>
-                  <p className="text-base font-black text-slate-950 mt-0.5">Patent Status: Application No. 2025-160784</p>
+                  <span className="text-[10px] font-black uppercase text-emerald-600 tracking-wider">{t.patentTitle}</span>
+                  <p className="text-base font-black text-slate-950 mt-0.5">{t.patentStatus}</p>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed font-medium">
-                    This technology is not a mere theoretical hypothesis or simulated data, but a physical patented invention designed by Dr. Yukinobu Mori. Complete, fully functional physical demonstration units are built and verified.
+                    {t.patentDesc}
                   </p>
                 </div>
               </div>
@@ -363,37 +513,37 @@ export default function App() {
                   href="#patent-images" 
                   className="px-6 py-3.5 rounded-lg text-base font-bold bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/10 hover:shadow-blue-500/20 transition flex items-center gap-2"
                 >
-                  Explore System Blueprint
+                  {t.btnBlueprint}
                   <ChevronRight className="w-5 h-5 text-blue-200" />
                 </a>
                 <a 
                   href="#contact" 
                   className="px-6 py-3.5 rounded-lg text-base font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition"
                 >
-                  Request Empirical Data
+                  {t.btnEmpirical}
                 </a>
               </div>
 
             </div>
 
-            {/* Right Side Column - Interactive E-LOOP System Diagram simulation directly mirroring user picture */}
+            {/* Right Side Column - Interactive E-LOOP System Diagram */}
             <div className="lg:col-span-5">
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl relative">
                 
                 <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-blue-50 text-blue-600 px-2 py-0.5 rounded text-[10px] font-bold border border-blue-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  <span>Interactive System Model</span>
+                  <span>{t.interactiveTitle}</span>
                 </div>
 
                 <div className="border-b border-slate-150 pb-3 mb-5">
                   <h3 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
                     <Sliders className="w-4 h-4 text-blue-600" />
-                    E-LOOP System Diagram
+                    {t.diagramTitle}
                   </h3>
-                  <p className="text-[11px] text-slate-500 font-medium">Invented by Dr. Yukinobu Mori - Interactive Simulator of the Patented Circuit</p>
+                  <p className="text-[11px] text-slate-500 font-medium">{t.diagramSubtitle}</p>
                 </div>
 
-                {/* SVG Car Chassis Wireframe reproducing the PDF Layout */}
+                {/* SVG Car Chassis Wireframe */}
                 <div className="py-6 flex flex-col items-center justify-center">
                   <div className="w-full max-w-sm bg-slate-50 rounded-xl p-4 border border-slate-200/80">
                     
@@ -426,44 +576,45 @@ export default function App() {
                       <line x1="320" y1="28" x2="320" y2="212" stroke="#94a3b8" strokeWidth="3" />
                       
                       {/* Front / Rear clear orientation labels */}
-                      <text x="65" y="16" textAnchor="middle" fill="#2563eb" fontSize="7" fontWeight="black" letterSpacing="0.5">◀ FRONT (Propulsion)</text>
-                      <text x="320" y="16" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="black" letterSpacing="0.5">REAR (Regeneration) ▶</text>
+                      <text x="65" y="16" textAnchor="middle" fill="#2563eb" fontSize="7" fontWeight="black" letterSpacing="0.5">{t.frontLabel}</text>
+                      <text x="320" y="16" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="black" letterSpacing="0.5">{t.rearLabel}</text>
                       
                       {/* Main Car Chassis boundaries */}
                       <path d="M50,40 L320,40 C340,40 350,60 350,80 L350,160 C350,180 340,200 320,200 L50,200 Z" fill="none" stroke="#64748b" strokeWidth="3" />
                       
                       {/* Drive Motor (Front axle connected) */}
-                      <rect x="35" y="93" width="60" height="54" rx="4" fill="#f8fafc" stroke="#3b82f6" strokeWidth="2" />
-                      <text x="65" y="115" textAnchor="middle" fill="#1e3a8a" fontSize="7.5" fontWeight="bold">Drive Motor</text>
-                      <text x="65" y="127" textAnchor="middle" fill="#2563eb" fontSize="6.5">Propulsion unit</text>
+                      <rect x="35" y="93" width="60" height="54" rx="4" fill="#f8fafc" stroke="#3b82f6" strokeWidth="2" className="cursor-pointer" onClick={() => setSelectedComponent('motor')} />
+                      <text x="65" y="115" textAnchor="middle" fill="#1e3a8a" fontSize="7.5" fontWeight="bold" className="cursor-pointer" onClick={() => setSelectedComponent('motor')}>{t.driveMotor}</text>
+                      <text x="65" y="127" textAnchor="middle" fill="#2563eb" fontSize="6.5" className="cursor-pointer" onClick={() => setSelectedComponent('motor')}>{t.driveMotorDesc}</text>
 
                       {/* Connection Line with Flow to Motor */}
                       <line x1="110" y1="120" x2="95" y2="120" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray={isRunning ? "3,3" : ""} markerEnd="url(#arr-blue)" />
 
                       {/* Battery drive switch (Double direction switching relay) */}
-                      <rect x="110" y="96" width="60" height="48" rx="4" fill="#f8fafc" stroke="#f59e0b" strokeWidth="2" />
-                      <text x="140" y="112" textAnchor="middle" fill="#78350f" fontSize="6.5" fontWeight="black" letterSpacing="-0.1">Battery Drive</text>
-                      <text x="140" y="122" textAnchor="middle" fill="#78350f" fontSize="6.5" fontWeight="black" letterSpacing="-0.1">Switch</text>
-                      <text x="140" y="135" textAnchor="middle" fill="#d97706" fontSize="6" fontWeight="bold">Auto Swap Relay</text>
+                      <rect x="110" y="96" width="60" height="48" rx="4" fill="#f8fafc" stroke="#f59e0b" strokeWidth="2" className="cursor-pointer" onClick={() => setSelectedComponent('switch')} />
+                      {t.batteryDriveSwitch.split('\n').map((line, i) => (
+                        <text key={i} x="140" y={112 + i * 10} textAnchor="middle" fill="#78350f" fontSize="6.5" fontWeight="black" letterSpacing="-0.1" className="cursor-pointer" onClick={() => setSelectedComponent('switch')}>{line}</text>
+                      ))}
+                      <text x="140" y="135" textAnchor="middle" fill="#d97706" fontSize="6" fontWeight="bold" className="cursor-pointer" onClick={() => setSelectedComponent('switch')}>{t.batterySwitchDesc}</text>
 
                       {/* Connection Routes from batteries to switcher */}
                       <path d="M180,75 L165,115" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arr-amber)" />
                       <path d="M180,165 L165,125" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arr-amber)" />
 
                       {/* Battery (A) */}
-                      <rect x="180" y="52" width="60" height="46" rx="4" fill={activeBattery === 'A' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'A' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'A' ? '2.5' : '1.5'} />
-                      <text x="210" y="73" textAnchor="middle" fill={activeBattery === 'A' ? '#047857' : '#64748b'} fontSize="7.5" fontWeight="black">Battery (A)</text>
-                      <text x="210" y="84" textAnchor="middle" fill="#94a3b8" fontSize="6">Active power source</text>
+                      <rect x="180" y="52" width="60" height="46" rx="4" fill={activeBattery === 'A' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'A' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'A' ? '2.5' : '1.5'} className="cursor-pointer" onClick={() => setSelectedComponent('batteryA')} />
+                      <text x="210" y="73" textAnchor="middle" fill={activeBattery === 'A' ? '#047857' : '#64748b'} fontSize="7.5" fontWeight="black" className="cursor-pointer" onClick={() => setSelectedComponent('batteryA')}>{t.batteryA}</text>
+                      <text x="210" y="84" textAnchor="middle" fill="#94a3b8" fontSize="6" className="cursor-pointer" onClick={() => setSelectedComponent('batteryA')}>{t.batteryActiveSource}</text>
 
                       {/* Battery (B) */}
-                      <rect x="180" y="142" width="60" height="46" rx="4" fill={activeBattery === 'B' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'B' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'B' ? '2.5' : '1.5'} />
-                      <text x="210" y="163" textAnchor="middle" fill={activeBattery === 'B' ? '#047857' : '#64748b'} fontSize="7.5" fontWeight="black">Battery (B)</text>
-                      <text x="210" y="174" textAnchor="middle" fill="#94a3b8" fontSize="6">Active power source</text>
+                      <rect x="180" y="142" width="60" height="46" rx="4" fill={activeBattery === 'B' ? '#ecfdf5' : '#ffffff'} stroke={activeBattery === 'B' ? '#10b981' : '#cbd5e1'} strokeWidth={activeBattery === 'B' ? '2.5' : '1.5'} className="cursor-pointer" onClick={() => setSelectedComponent('batteryB')} />
+                      <text x="210" y="163" textAnchor="middle" fill={activeBattery === 'B' ? '#047857' : '#64748b'} fontSize="7.5" fontWeight="black" className="cursor-pointer" onClick={() => setSelectedComponent('batteryB')}>{t.batteryB}</text>
+                      <text x="210" y="174" textAnchor="middle" fill="#94a3b8" fontSize="6" className="cursor-pointer" onClick={() => setSelectedComponent('batteryB')}>{t.batteryActiveSource}</text>
 
                       {/* Controller */}
-                      <rect x="245" y="97" width="55" height="46" rx="4" fill="#f8fafc" stroke="#6366f1" strokeWidth="1.5" />
-                      <text x="272.5" y="117" textAnchor="middle" fill="#312e81" fontSize="7.5" fontWeight="bold">Controller</text>
-                      <text x="272.5" y="128" textAnchor="middle" fill="#4f46e5" fontSize="6.5">Synced distribution</text>
+                      <rect x="245" y="97" width="55" height="46" rx="4" fill="#f8fafc" stroke="#6366f1" strokeWidth="1.5" className="cursor-pointer" onClick={() => setSelectedComponent('controller')} />
+                      <text x="272.5" y="117" textAnchor="middle" fill="#312e81" fontSize="7.5" fontWeight="bold" className="cursor-pointer" onClick={() => setSelectedComponent('controller')}>{t.controller}</text>
+                      <text x="272.5" y="128" textAnchor="middle" fill="#4f46e5" fontSize="6.5" className="cursor-pointer" onClick={() => setSelectedComponent('controller')}>{t.controllerDesc}</text>
 
                       {/* Routes to batteries from controller */}
                       <path d="M245,115 L235,75" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arr-indigo)" />
@@ -471,11 +622,11 @@ export default function App() {
                       <line x1="305" y1="120" x2="295" y2="120" stroke="#ec4899" strokeWidth="1.5" markerEnd="url(#arr-pink)" />
 
                       {/* Newly Invented Electric Generator */}
-                      <rect x="305" y="80" width="80" height="80" rx="4" fill="#fdf2f8" stroke="#ec4899" strokeWidth="2.5" />
-                      <text x="345" y="100" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Newly Invented</text>
-                      <text x="345" y="111" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1">Electric Generator</text>
-                      <text x="345" y="127" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="bold">Innovative Stator</text>
-                      <text x="345" y="141" textAnchor="middle" fill="#047857" fontSize="6" fontWeight="bold">Patent No. 2026-83613</text>
+                      <rect x="305" y="80" width="80" height="80" rx="4" fill="#fdf2f8" stroke="#ec4899" strokeWidth="2.5" className="cursor-pointer" onClick={() => setSelectedComponent('generator')} />
+                      {t.newlyInventedGenerator.split('\n').map((line, i) => (
+                        <text key={i} x="345" y={100 + i * 11} textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black" letterSpacing="-0.1" className="cursor-pointer" onClick={() => setSelectedComponent('generator')}>{line}</text>
+                      ))}
+                      <text x="345" y="141" textAnchor="middle" fill="#047857" fontSize="6" fontWeight="bold" className="cursor-pointer" onClick={() => setSelectedComponent('generator')}>{t.patentNo2026}</text>
                     </svg>
 
                   </div>
@@ -485,22 +636,22 @@ export default function App() {
                     
                     <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs space-y-2.5">
                       <div className="flex justify-between items-center text-slate-700">
-                        <span className="font-medium">Primary Propulsion Source:</span>
+                        <span className="font-medium">{t.simPrimarySource}</span>
                         <span className="font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                          {activeBattery === 'A' ? 'Battery Pack (A)' : 'Battery Pack (B)'}
+                          {activeBattery === 'A' ? `${t.batteryA}` : `${t.batteryB}`}
                         </span>
                       </div>
                       <div className="flex justify-between items-center text-slate-700">
-                        <span className="font-medium">Background Charging Source:</span>
+                        <span className="font-medium">{t.simBackgroundSource}</span>
                         <span className="font-extrabold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                          {activeBattery === 'A' ? 'Battery Pack (B) [Charging]' : 'Battery Pack (A) [Charging]'}
+                          {activeBattery === 'A' ? `${t.batteryB} ${t.simCharging}` : `${t.batteryA} ${t.simCharging}`}
                         </span>
                       </div>
                       <div className="flex justify-between items-center text-slate-700 font-medium">
-                        <span>Regenerative Loop Circuit Status:</span>
+                        <span>{t.simCircuitStatus}</span>
                         <span className="font-bold text-pink-600 flex items-center gap-1 bg-pink-50/50 px-1.5 py-0.5 rounded">
                           <Zap className="w-3 h-3 text-pink-500 animate-bounce" />
-                          Dynamic Energy Harvesting from continuous rotation feedback
+                          {t.simCircuitDesc}
                         </span>
                       </div>
                     </div>
@@ -510,7 +661,7 @@ export default function App() {
                         onClick={() => setIsRunning(!isRunning)}
                         className="flex-1 py-2.5 px-3 bg-slate-900 text-white rounded-lg font-bold text-xs hover:bg-slate-800 transition flex items-center justify-center gap-1.5 shadow-xs"
                       >
-                        {isRunning ? <><Pause className="w-4 h-4 text-white" />Pause Simulation</> : <><Play className="w-4 h-4 text-white" />Start Simulation</>}
+                        {isRunning ? <><Pause className="w-4 h-4 text-white" />{t.simPause}</> : <><Play className="w-4 h-4 text-white" />{t.simStart}</>}
                       </button>
                       <button 
                         onClick={() => {
@@ -519,11 +670,25 @@ export default function App() {
                         }}
                         className="flex-1 py-2.5 px-3 bg-white text-slate-700 border border-slate-200 rounded-lg font-bold text-xs hover:bg-slate-50 transition shadow-xs"
                       >
-                        Swap Battery System ⇄
+                        {t.simSwap}
                       </button>
                     </div>
 
                   </div>
+                </div>
+
+                {/* Selected Schematic Component Meta Panel */}
+                <div className="mt-2 p-4 rounded-xl bg-slate-950 text-white border border-slate-800 shadow-inner relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-xl pointer-events-none" />
+                  <span className="text-[9px] font-mono font-bold tracking-widest text-slate-500 block uppercase">
+                    {t.circuitModuleMetadata}
+                  </span>
+                  <h4 className="text-sm font-black text-blue-400 mt-1">
+                    {getComponentInfo(selectedComponent).title}
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-1.5 leading-relaxed font-semibold">
+                    {getComponentInfo(selectedComponent).desc}
+                  </p>
                 </div>
 
               </div>
@@ -536,130 +701,132 @@ export default function App() {
       {/* 🚀 EXCLUSIVE INNOVATION INEVITABLE HERO IMAGE SHOWCASE & YOUTUBE ANNOUNCEMENT */}
       <section className="py-16 bg-gradient-to-b from-[#faf8f5] via-amber-50/25 to-white border-b border-amber-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="bg-white rounded-3xl border border-amber-100 p-8 md:p-12 shadow-[0_20px_50px_rgba(217,119,6,0.04)] relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Elegant Amber Glow Decoration */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-amber-100/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-8 -left-8 w-96 h-96 bg-blue-500/5 rounded-full blur-2xl pointer-events-none" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            {/* YouTube Broadcast and Timeline Block */}
+            <div className="lg:col-span-7 space-y-6">
               
-              {/* Text Side */}
-              <div className="lg:col-span-7 space-y-8">
-                
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1 bg-amber-400 text-slate-950 font-black px-3 py-1 rounded-full text-[11px] tracking-wider uppercase border border-amber-500">
-                    <Sparkles className="w-3.5 h-3.5 animate-bounce" />
-                    KICKOFF ANNOUNCEMENT
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-red-100 text-red-750 font-bold px-3 py-1 rounded-full text-[11px] border border-red-200">
-                    <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-                    YouTube Development Documentary Series
-                  </span>
-                </div>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 bg-amber-100 text-amber-850 font-black px-3.5 py-1 rounded-full text-[10px] border border-amber-250 tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5 animate-bounce" />
+                  {t.kickoffBadge}
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-red-100 text-red-850 font-bold px-3 py-1 rounded-full text-[11px] border border-red-250">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                  {t.youtubeBadge}
+                </span>
+              </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-                    We Cordially Welcome You to the <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-650 to-amber-700 font-black">
-                      "No Charging Station Required EV"
-                    </span> <br />
-                    First Prototype Verification & Production Launch Project!
-                  </h2>
-                  <p className="text-slate-500 font-bold text-xs sm:text-sm tracking-wide leading-relaxed">
-                    "We welcome everyone interested in the first and only 'no charging station required EV' that is about to enter production!"
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                  {lang === 'jp' ? (
+                    <>
+                      「充電スタンド不要のEV」 <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 font-black">
+                        初号試作車の実証および量産立ち上げプロジェクト
+                      </span> へ、 <br />
+                      皆様を心より歓迎いたします！
+                    </>
+                  ) : (
+                    <>
+                      We Cordially Welcome You to the <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 font-black">
+                        "No Charging Station Required EV"
+                      </span> <br />
+                      First Prototype Verification & Production Launch Project!
+                    </>
+                  )}
+                </h2>
+                <p className="text-slate-500 font-bold text-xs sm:text-sm tracking-wide leading-relaxed">
+                  {t.welcomeSub}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <div className="p-5 bg-gradient-to-br from-amber-50/55 to-amber-50 rounded-2xl border border-amber-200/50 shadow-xs">
+                  <div className="flex items-center gap-2 mb-2 text-amber-850">
+                    <Clock className="w-5 h-5 text-amber-600" />
+                    <span className="text-xs font-black uppercase tracking-wider">{t.projectTimeline}</span>
+                  </div>
+                  <p className="text-2xl font-black text-slate-900">
+                    {t.buildPhaseTitle}<span className="text-amber-600">{t.buildPhaseValue}</span>
+                  </p>
+                  <p className="text-xs text-slate-500 mt-1.5 leading-relaxed font-bold">
+                    {t.buildPhaseDesc}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
-                  <div className="p-5 bg-gradient-to-br from-amber-50/55 to-amber-50 rounded-2xl border border-amber-200/50 shadow-xs">
-                    <div className="flex items-center gap-2 mb-2 text-amber-800">
-                      <Clock className="w-5 h-5 text-amber-600" />
-                      <span className="text-xs font-black uppercase tracking-wider">PROJECT TIMELINE</span>
-                    </div>
-                    <p className="text-2xl font-black text-slate-900">
-                      Total Build Phase: <span className="text-amber-600">2 Months</span>
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1.5 leading-relaxed font-bold">
-                      We are setting off on a fast-track, highly focused manufacturing roadmap aiming to build, inspect, and road-test the full-scale vehicle within a tight 2-month window.
-                    </p>
+                <div className="p-5 bg-gradient-to-br from-red-50/20 to-red-50/50 rounded-2xl border border-red-200/50 shadow-xs">
+                  <div className="flex items-center gap-2 mb-2 text-red-800">
+                    <Video className="w-5 h-5 text-red-600" />
+                    <span className="text-xs font-black uppercase tracking-wider">{t.entireProcess}</span>
                   </div>
-
-                  <div className="p-5 bg-gradient-to-br from-red-50/20 to-red-50/50 rounded-2xl border border-red-200/50 shadow-xs">
-                    <div className="flex items-center gap-2 mb-2 text-red-800">
-                      <Video className="w-5 h-5 text-red-600" />
-                      <span className="text-xs font-black uppercase tracking-wider">ENTIRE PROCESS BROADCAST</span>
-                    </div>
-                    <p className="text-xl font-black text-slate-900">
-                      Fully Public on <span className="text-red-600">YouTube!</span>
-                    </p>
-                    <p className="text-xs text-slate-500 mt-1.5 leading-relaxed font-bold">
-                      To guarantee maximum transparency and objective verification of our patented technology, we pledge to share every single step from component sourcing to CNC machining and field-testing.
-                    </p>
-                  </div>
-
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold">
-                  💡 By integrating Dr. Yukinobu Mori's lifelong engineering research with a unique alternator-inspired closed-loop approach, this system is built to provide absolute freedom of mobility—even in harsh environments and isolated regions lacking any charging infrastructure. We warmly welcome automotive industrial partners, institutional investors, and technology enthusiasts who wish to watch, support, or participate in this historic prototyping journey.
-                </p>
-
-                {/* Subscribing placeholder button */}
-                <div className="pt-2">
-                  <a 
-                    href="#contact"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-900 hover:bg-slate-850 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-amber-600/5 active:scale-95"
-                  >
-                    <span>Subscribe to YouTube Series & Project Updates</span>
-                    <ArrowRight className="w-4 h-4 text-amber-400" />
-                  </a>
+                  <p className="text-xl font-black text-slate-900">
+                    {t.publicOn} <span className="text-red-600">{t.youtube}</span>
+                  </p>
+                  <p className="text-xs text-slate-500 mt-1.5 leading-relaxed font-bold">
+                    {t.entireProcessDesc}
+                  </p>
                 </div>
 
               </div>
 
-              {/* Showcase Image Side (The absolute single-one EV) */}
-              <div className="lg:col-span-5 space-y-4">
-                <div className="relative rounded-2xl overflow-hidden border-4 border-white shadow-2xl shadow-blue-500/10 aspect-video lg:aspect-square bg-slate-100 group">
-                  
-                  {/* Glowing frame overlay */}
-                  <div className="absolute inset-0 border border-amber-500/20 rounded-xl pointer-events-none z-20" />
-                  <div className="absolute top-3 left-3 bg-slate-900/85 text-white font-black text-[10px] tracking-widest px-3 py-1 rounded-full z-10 backdrop-blur-xs border border-white/20">
-                    E-LOOP REALIZATION DRAFT
-                  </div>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold">
+                {t.moriIdea}
+              </p>
 
-                  <img 
-                    src={regenerativeEvImage} 
-                    alt="E-LOOP Concept Electric Vehicle" 
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-
-                  {/* Aesthetic Caption */}
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-5 text-white">
-                    <p className="text-xs font-black text-amber-400">E-LOOP SELF-REGENERATIVE MOBILITY CONCEPT</p>
-                    <p className="text-[10px] text-slate-300 mt-1 font-bold">
-                      Equipped with the newly developed revolutionary "Newly Invented Electric Generator", this innovative system completely overcomes the biggest Achilles' heel of modern electric vehicles (EVs)—the constant necessity of a charging stand. It unlocks a future of zero-external-charging EVs, completely freed from external charging grid infrastructure. Furthermore, thanks to its high design efficiency and minimal part count, vehicles can be constructed at a significantly lower cost than conventional internal combustion engine cars.
-                    </p>
-                  </div>
-
-                </div>
-
-                <div className="p-3 bg-amber-50/50 rounded-xl border border-amber-200/50 text-center text-[11px] text-amber-800 font-bold">
-                  🌟 The conceptual rendering above represents our latest design draft of the highly efficient EV powered by our proprietary energy regeneration system, specifically engineered to host Dr. Yukinobu Mori's patented generator system.
-                </div>
+              {/* Subscribing placeholder button */}
+              <div className="pt-2">
+                <a 
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-amber-600/5 active:scale-95"
+                >
+                  <span>{t.subscribeYoutube}</span>
+                  <ArrowRight className="w-4 h-4 text-amber-400" />
+                </a>
               </div>
 
             </div>
 
-          </div>
+            {/* Showcase Image Side (The absolute single-one EV) */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="relative rounded-2xl overflow-hidden border-4 border-white shadow-2xl shadow-blue-500/10 aspect-video lg:aspect-square bg-slate-100 group">
+                
+                {/* Glowing frame overlay */}
+                <div className="absolute inset-0 border border-amber-500/20 rounded-xl pointer-events-none z-20" />
+                <div className="absolute top-3 left-3 bg-slate-900/85 text-white font-black text-[10px] tracking-widest px-3 py-1 rounded-full z-10 backdrop-blur-xs border border-white/20">
+                  {t.realizationDraft}
+                </div>
 
+                <img 
+                  src={regenerativeEvImage} 
+                  alt="E-LOOP Concept Electric Vehicle" 
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+
+                {/* Aesthetic Caption */}
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-5 text-white">
+                  <p className="text-xs font-black text-amber-400">{t.conceptTitle}</p>
+                  <p className="text-[10px] text-slate-300 mt-1 font-bold">
+                    {t.conceptDesc}
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="p-3 bg-amber-50/50 rounded-xl border border-amber-200/50 text-center text-[11px] text-amber-800 font-bold">
+                {t.conceptDraftLabel}
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* 🔮 THE NEW PATENT IMAGES & SCHEMATIC SECTION */}
-      <section id="patent-images" className="py-20 bg-white border-b border-slate-200">
+      {/* 🔮 PATENT SCHEMATICS COMPREHENSIVE SECTION */}
+      <section id="patent-images" className="py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center space-y-3 max-w-3xl mx-auto mb-16">
@@ -667,693 +834,420 @@ export default function App() {
               PATENT BLUEPRINT & SCHEMATICS
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Patent Blueprints & Core Mechanics
+              {t.blueprintTitle}
             </h2>
             <p className="text-slate-500 text-sm font-medium">
-              Based on Dr. Yukinobu Mori's official patent filing "Patent Application No. 2025-160784," this section outlines the system architecture and zooms in on the crucial "Newly Invented Electric Generator."
+              {t.blueprintSub}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* PATENT SPECIFICATION 1: CYCLING OVERVIEW */}
-            <div className="lg:col-span-8 bg-slate-50 rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
+            {/* Explanation Column */}
+            <div className="lg:col-span-5 space-y-6">
               
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-[11px] font-black uppercase text-slate-600 tracking-wider">
-                  ■ System Schematic Blueprint (System Diagram Overview)
+              <div className="space-y-4">
+                <span className="text-xs font-bold uppercase text-slate-400 tracking-wider">
+                  {t.schematicTitle}
                 </span>
-                <span className="text-xs font-mono text-slate-400">
-                  Status: Patent Pending
-                </span>
-              </div>
-
-              {/* Precise SVG mimicking user document precisely */}
-              <div className="bg-white rounded-xl border border-slate-200 p-6 flex items-center justify-center relative overflow-hidden shadow-xs">
-                <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-                
-                {/* Visual Patent Drawing (White clean style, looking like a real draft document blueprint) */}
-                <svg viewBox="0 0 500 300" className="w-full h-auto max-w-2xl text-slate-600">
-                  <defs>
-                    <marker id="arrow-blue-bp" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6" />
-                    </marker>
-                    <marker id="arrow-amber-bp" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f59e0b" />
-                    </marker>
-                    <marker id="arrow-indigo-bp" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366f1" />
-                    </marker>
-                    <marker id="arrow-pink-bp" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ec4899" />
-                    </marker>
-                  </defs>
-
-                  {/* Grid Back Lines */}
-                  <line x1="10" y1="50" x2="490" y2="50" stroke="#f1f5f9" strokeDasharray="5,5" strokeWidth="1" />
-                  <line x1="10" y1="150" x2="490" y2="150" stroke="#f1f5f9" strokeDasharray="5,5" strokeWidth="1" />
-                  <line x1="10" y1="250" x2="490" y2="250" stroke="#f1f5f9" strokeDasharray="5,5" strokeWidth="1" />
-
-                  {/* Wire Connections & Arrows showing loop flow */}
-                  <path d="M125,145 L100,145" stroke="#3b82f6" strokeWidth="1.5" fill="none" markerEnd="url(#arrow-blue-bp)" />
-                  <path d="M235,85 Q225,85 205,135" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arrow-amber-bp)" />
-                  <path d="M235,205 Q225,205 205,155" stroke="#f59e0b" strokeWidth="1.5" fill="none" markerEnd="url(#arrow-amber-bp)" />
-                  <path d="M340,135 Q325,85 315,85" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arrow-indigo-bp)" />
-                  <path d="M340,155 Q325,205 315,205" stroke="#6366f1" strokeWidth="1.5" fill="none" markerEnd="url(#arrow-indigo-bp)" />
-                  <line x1="425" y1="145" x2="405" y2="145" stroke="#ec4899" strokeWidth="1.5" markerEnd="url(#arrow-pink-bp)" />
-
-                  {/* Car Outline Representation */}
-                  <rect x="15" y="45" width="410" height="205" rx="15" fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4,4" />
-                  <text x="62" y="40" textAnchor="middle" fill="#2563eb" fontSize="7" fontWeight="black">◀ FRONT (Propulsion Axle)</text>
-                  <text x="360" y="40" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="black">REAR (Regenerative Axle) ▶</text>
-                  <text x="25" y="35" fill="#64748b" fontSize="7" fontWeight="bold" letterSpacing="1">E-LOOP Autonomous Regenerative Circuit Patent Draft</text>
-
-                  {/* Interactively highlights chosen component */}
-                  {/* Motor */}
-                  <g className="cursor-pointer" onClick={() => setSelectedComponent('motor')}>
-                    <rect x="25" y="120" width="75" height="50" rx="5" fill={selectedComponent === 'motor' ? '#eff6ff' : '#ffffff'} stroke="#3b82f6" strokeWidth={selectedComponent === 'motor' ? "2" : "1"} />
-                    <text x="62" y="145" textAnchor="middle" fill="#1e3a8a" fontSize="9" fontWeight="bold">Drive Motor</text>
-                    <text x="62" y="157" textAnchor="middle" fill="#2563eb" fontSize="7">Propulsion Motor</text>
-                  </g>
-
-                  {/* Switch */}
-                  <g className="cursor-pointer" onClick={() => setSelectedComponent('switch')}>
-                    <rect x="120" y="120" width="90" height="50" rx="5" fill={selectedComponent === 'switch' ? '#fffbeb' : '#ffffff'} stroke="#f59e0b" strokeWidth={selectedComponent === 'switch' ? "2" : "1"} />
-                    <text x="165" y="145" textAnchor="middle" fill="#78350f" fontSize="8" fontWeight="bold">Battery Switch</text>
-                    <text x="165" y="157" textAnchor="middle" fill="#d97706" fontSize="7">Auto Swap Switch</text>
-                  </g>
-
-                  {/* Battery A */}
-                  <g className="cursor-pointer" onClick={() => setSelectedComponent('batteryA')}>
-                    <rect x="235" y="60" width="80" height="50" rx="5" fill={selectedComponent === 'batteryA' ? '#ecfdf5' : '#ffffff'} stroke="#10b981" strokeWidth={selectedComponent === 'batteryA' ? "2" : "1"} />
-                    <text x="275" y="85" textAnchor="middle" fill="#047857" fontSize="9" fontWeight="bold">Battery (A)</text>
-                    <text x="275" y="97" textAnchor="middle" fill="#059669" fontSize="7">Pack A</text>
-                  </g>
-
-                  {/* Battery B */}
-                  <g className="cursor-pointer" onClick={() => setSelectedComponent('batteryB')}>
-                    <rect x="235" y="180" width="80" height="50" rx="5" fill={selectedComponent === 'batteryB' ? '#ecfdf5' : '#ffffff'} stroke="#10b981" strokeWidth={selectedComponent === 'batteryB' ? "2" : "1"} />
-                    <text x="275" y="205" textAnchor="middle" fill="#047857" fontSize="9" fontWeight="bold">Battery (B)</text>
-                    <text x="275" y="217" textAnchor="middle" fill="#059669" fontSize="7">Pack B</text>
-                  </g>
-
-                  {/* Controller */}
-                  <g className="cursor-pointer" onClick={() => setSelectedComponent('controller')}>
-                    <rect x="340" y="120" width="65" height="50" rx="5" fill={selectedComponent === 'controller' ? '#eef2ff' : '#ffffff'} stroke="#6366f1" strokeWidth={selectedComponent === 'controller' ? "2" : "1"} />
-                    <text x="372" y="145" textAnchor="middle" fill="#312e81" fontSize="9" fontWeight="bold">Controller</text>
-                    <text x="372" y="157" textAnchor="middle" fill="#4f46e5" fontSize="7">Regulator Module</text>
-                  </g>
-
-                  {/* Generator core (Core Electric Generator) */}
-                  <g className="cursor-pointer" onClick={() => setSelectedComponent('generator')}>
-                    <rect x="425" y="95" width="65" height="100" rx="5" fill={selectedComponent === 'generator' ? '#fdf2f8' : '#ffffff'} stroke="#ec4899" strokeWidth="2" />
-                    <line x1="425" y1="125" x2="490" y2="125" stroke="#fbcfe8" strokeWidth="1" />
-                    <line x1="425" y1="165" x2="490" y2="165" stroke="#fbcfe8" strokeWidth="1" />
-                    <text x="457" y="112" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black">Newly</text>
-                    <text x="457" y="122" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black">Invented</text>
-                    <text x="457" y="132" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black">Electric</text>
-                    <text x="457" y="142" textAnchor="middle" fill="#9d174d" fontSize="7" fontWeight="black">Generator</text>
-                    <text x="457" y="160" textAnchor="middle" fill="#db2777" fontSize="7" fontWeight="bold">Core Patent</text>
-                    <text x="457" y="172" textAnchor="middle" fill="#ec4899" fontSize="6" fontWeight="bold">Dr. Y. Mori</text>
-                    <text x="457" y="182" textAnchor="middle" fill="#ec4899" fontSize="6" fontWeight="bold">Invention</text>
-                  </g>
-                </svg>
-
-              </div>
-
-              {/* Information disclaimer explaining focus */}
-              <div className="mt-4 p-4 bg-white rounded-lg text-xs leading-relaxed text-slate-700 border border-slate-200">
-                <span className="text-slate-900 font-bold block mb-1">■ Core Operational Loop:</span>
-                When the vehicle begins moving, the proprietary mechanism designed by our team generates a continuous, consistent rotational force to drive the on-board "Newly Invented Electric Generator" (Patent Application No. 2026-83613). The regenerated electrical power is then routed back to the power system via the Controller. The core of Dr. Yukinobu Mori's invention lies in the "Battery Drive Switch" (Double-acting relay mechanism, Patent Application No. 2025-160784), which dynamically swaps the driving battery pack and the isolated charging battery pack in under 1 millisecond, establishing a continuous and autonomous loop of power replenishment and delivery.
-              </div>
-
-            </div>
-
-            {/* PATENT SPECIFICATION 2: INDIVIDUAL DETAILED BLOCK (Col span 4) */}
-            <div className="lg:col-span-4 flex flex-col justify-between">
-              
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 h-full flex flex-col justify-between space-y-6 shadow-sm">
-                
-                <div>
-                  <div className="flex items-center gap-2 pb-4 border-b border-slate-200">
-                    <div className="w-8 h-8 rounded bg-pink-100 text-pink-600 flex items-center justify-center font-bold">
-                      P
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        Selected Patent Component
-                      </h4>
-                      <h3 className="text-base font-black text-slate-800 mt-0.5">
-                        System Component Details
-                      </h3>
-                    </div>
-                  </div>
-
-                  {/* Component description detail */}
-                  <div className="space-y-4 pt-6">
-                    <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs">
-                      <span className="text-[10px] bg-blue-50 text-blue-600 font-extrabold px-1.5 py-0.5 rounded">
-                        Circuit Module Metadata
-                      </span>
-                      <h5 className="text-base font-black text-slate-900 mt-2">
-                        {getComponentInfo(selectedComponent).title}
-                      </h5>
-                    </div>
-
-                    <p className="text-xs text-slate-650 leading-relaxed font-semibold">
-                      {getComponentInfo(selectedComponent).desc}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2 text-xs text-slate-700 shadow-xs">
-                  <div className="flex justify-between">
-                    <span className="font-medium text-slate-500">Patent Status:</span>
-                    <span className="font-bold text-emerald-600">Filed & Pending</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-medium text-slate-500">Physical Prototype:</span>
-                    <span className="font-bold text-blue-600">Active Demonstration Kit</span>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-            
-          <div className="mt-12 bg-slate-900 rounded-3xl p-6 sm:p-10 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-            <div className="relative z-10">
-              
-              {/* Heading */}
-              <div className="text-center mb-10 space-y-4">
-                <span className="text-[10px] sm:text-xs font-black tracking-widest text-[#fbbf24] bg-[#fbbf24]/10 px-4 py-1.5 rounded-full uppercase border border-[#fbbf24]/20 inline-block font-mono">
-                  WORLD-FIRST DUAL CORE PATENT INVENTIONS
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-black tracking-tight mt-2 text-white">
-                  Achieving an EV Completely Free from Charging Stations: <span className="text-amber-400 block sm:inline">"The Two Core Patents"</span>
-                </h3>
-                
-                {/* Revolutionary Message Bullet */}
-                <div className="bg-amber-400 text-slate-950 px-6 py-4 rounded-2xl max-w-3xl mx-auto shadow-xl font-extrabold text-sm sm:text-base leading-relaxed border border-amber-300 mt-6 animate-pulse">
-                  "Through these two powerful technological innovations—which no one else in the world has achieved or even imagined—we create the ultimate self-powered EV, completely eliminating the need for external fast charging stations."
-                </div>
-
-                <p className="text-slate-400 text-xs sm:text-sm max-w-3.5xl mx-auto font-medium leading-relaxed pt-2">
-                  The two mutually complementary patents invented by Dr. Yukinobu Mori represent a complete closed-loop (self-sufficient energy circulation). One acts as the core heart that enables **Dynamic Energy Harvesting** during driving, while the other serves as the dynamic switching system that stores this energy without charge-discharge interference.
+                <p className="text-xs font-extrabold text-emerald-600 bg-emerald-50 px-2 py-1 rounded border border-emerald-200 inline-block">
+                  {t.patentPending}
                 </p>
-
-                {/* Patent status indicator */}
-                <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 bg-slate-950/60 rounded-xl border border-slate-800 text-[11px] sm:text-xs">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-                  <span className="text-slate-300 font-extrabold">[Global Intellectual Property]</span>
-                  <span className="text-white font-black">Japanese Patent Filed & PCT International Patent Pending</span>
-                  <span className="text-slate-400">protecting this proprietary breakthrough worldwide.</span>
-                </div>
+                <h3 className="text-xl font-extrabold text-slate-900">
+                  {t.coreOperationalLoop}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-semibold">
+                  {t.coreOperationalDesc}
+                </p>
               </div>
 
-              {/* Three pillars grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                
-                {/* PATENT 1 CARD - Newly Invented Electric Generator */}
-                <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-amber-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-amber-500/30 transition-all duration-300">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0">
-                        <RotateCw className="w-6 h-6 animate-spin" style={{ animationDuration: '8s' }} />
-                      </div>
-                      <div>
-                        <span className="text-[9px] bg-amber-500/10 text-amber-400 font-extrabold px-2 py-0.5 rounded border border-amber-500/20 tracking-wider">
-                          PATENT 01 • HEART OF CHARGING
-                        </span>
-                        <h4 className="text-lg font-black text-white mt-1">
-                          Newly Developed High-Efficiency Self-Generator
-                        </h4>
-                        <p className="text-amber-400 font-mono text-[9px] font-extrabold">
-                          Newly Invented Electric Generator
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Patent Reference */}
-                    <div className="px-3 py-1.5 bg-amber-500/5 rounded border border-amber-500/20 text-[10px] text-amber-400 font-mono font-black flex justify-between items-center">
-                      <span>[Japanese Patent App No.]</span>
-                      <span>Patent App No. 2026-83613</span>
-                    </div>
-
-                    <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                      Converts a continuous, consistent rotational force into high-efficiency electric power without waste, using our proprietary 3-phase AC generator design with an intelligent **recirculating feedback** system. Unlike conventional generators, it constructs a unique self-recirculating circuit that eliminates typical rotational drag.
-                    </p>
-
-                    <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
-                      <div className="flex items-start gap-2">
-                        <span className="text-amber-400 font-bold text-xs mt-0.5">✔</span>
-                        <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
-                          <strong className="text-white block mb-0.5">Self-Recirculating Feedback Generation:</strong> 
-                          By intelligently partitioning and routing the 3-phase AC even at low speeds, friction losses and loading resistance are minimized, continuously supplying stable feedback power to the entire electric drive system.
-                        </p>
-                      </div>
-                    </div>
+              <div className="border-t border-slate-200 pt-6 space-y-4">
+                <div className="flex gap-3">
+                  <div className="w-5 h-5 rounded-full bg-blue-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    1
                   </div>
-
-                  <div className="pt-3 border-t border-slate-800/60 flex flex-col gap-1 text-[10px] font-bold text-amber-400 font-mono">
-                    <div className="flex justify-between">
-                      <span>• Japan</span>
-                      <span>Patent App No. 2026-83613 Filed</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400">
-                      <span>• Global</span>
-                      <span>PCT International Application Pending</span>
-                    </div>
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900">{t.multiPoleStatorTitle}</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed font-medium">{t.multiPoleStatorDesc}</p>
                   </div>
                 </div>
-
-                {/* MIDDLE COLUMN: THE VEHICLE VISUALIZATION CARD */}
-                <div className="lg:col-span-4 bg-slate-950/40 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4 hover:border-slate-700 transition-all duration-300 relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-950/90 pointer-events-none z-10" />
-                  
-                  <div className="space-y-3 z-10">
-                    <span className="text-[9px] bg-blue-500/10 text-blue-400 font-extrabold px-2 py-0.5 rounded border border-blue-500/20 tracking-wider inline-block">
-                      E-LOOP VEHICLE CONCEPT
-                    </span>
-                    <h4 className="text-base font-black text-white">
-                      Dynamic Energy Harvesting Autonomous EV Concept Car
-                    </h4>
-                    
-                    {/* Concept Car Image Display */}
-                    <div className="relative rounded-xl overflow-hidden border-2 border-slate-800 aspect-video bg-slate-900 bg-opacity-40 select-none shadow-inner">
-                      <img 
-                        src={regenerativeEvImage} 
-                        alt="E-LOOP Concept Electric Vehicle" 
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                      <div className="absolute bottom-2 left-2 bg-slate-900/90 text-[8px] text-slate-300 px-1.5 py-0.5 rounded font-mono font-bold font-mono">
-                        PATENT DESIGN NO. 2026-83613 / 2025-160784
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-slate-400 leading-relaxed font-semibold">
-                      A futuristic, fully autonomous energy-loop EV platform demonstrating the powerful combination of Dr. Yukinobu Mori's patents: Patent App. No. 2026-83613 (high-efficiency generator) and Patent App. No. 2025-160784 (dynamic swapping switch).
-                    </p>
+                <div className="flex gap-3">
+                  <div className="w-5 h-5 rounded-full bg-blue-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
+                    2
                   </div>
-
-                  <div className="pt-3 border-t border-slate-800/60 flex justify-center items-center text-[10px] text-amber-400 font-black z-10 bg-slate-950/50 -mx-6 -mb-6 p-4 rounded-b-2xl">
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      Autonomous Electric Energy Recirculation Platform
-                    </span>
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900">{t.stabilizedSwitchTitle}</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed font-medium">{t.stabilizedSwitchDesc}</p>
                   </div>
-                </div>
-
-                {/* PATENT 2 CARD - Dual Swapping Battery System */}
-                <div className="lg:col-span-4 bg-slate-950/70 rounded-2xl p-6 border border-emerald-500/10 shadow-xl flex flex-col justify-between space-y-6 hover:border-emerald-500/30 transition-all duration-300">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
-                        <BatteryCharging className="w-6 h-6 text-emerald-400 animate-pulse" />
-                      </div>
-                      <div>
-                        <span className="text-[9px] bg-emerald-500/10 text-emerald-400 font-extrabold px-2 py-0.5 rounded border border-emerald-500/20 tracking-wider">
-                          PATENT 02 • SYSTEM CONTROLLERS
-                        </span>
-                        <h4 className="text-lg font-black text-white mt-1">
-                          A/B Independent Swapping Charging System
-                        </h4>
-                        <p className="text-emerald-400 font-mono text-[9px] font-extrabold">
-                          Dual Swapping Battery Structure for EV
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Patent Reference */}
-                    <div className="px-3 py-1.5 bg-emerald-500/5 rounded border border-emerald-500/20 text-[10px] text-emerald-400 font-mono font-black flex justify-between items-center">
-                      <span>[Japanese Patent App No.]</span>
-                      <span>Patent App No. 2025-160784</span>
-                    </div>
-
-                    <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                      Rather than using auxiliary storage, the vehicle's main propulsion battery bank itself is divided into two high-capacity, independent groups (A and B). This breakthrough architecture swap-charges the main batteries dynamically inside the vehicle while driving.
-                    </p>
-
-                    <div className="p-4 bg-slate-900 rounded-xl border border-slate-800/80 space-y-2.5">
-                      <div className="flex items-start gap-2">
-                        <span className="text-emerald-400 font-bold text-xs mt-0.5">✔</span>
-                        <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
-                          <strong className="text-white block mb-0.5">Alternating Swap & Continuous Charging Cycle:</strong> 
-                          While Group A is actively powering the motor, output from the generator (Patent Application No. 2026-83613) is routed directly to the isolated Group B. Periodic millisecond swapping eliminates external cable-based charging entirely.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-800/60 flex flex-col gap-1 text-[10px] font-bold text-emerald-400 font-mono">
-                    <div className="flex justify-between">
-                      <span>• Japan</span>
-                      <span>Patent App No. 2025-160784 Filed</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400">
-                      <span>• Global</span>
-                      <span>PCT International Application Pending</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Intuitive visual loop banner */}
-              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 to-emerald-500/10 border border-slate-700/60 flex flex-col md:flex-row gap-5 items-center justify-between">
-                <div className="space-y-1 text-center md:text-left">
-                  <h5 className="text-sm font-black text-white flex items-center justify-center md:justify-start gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                    💡 The Core Concept: Plug-free, Ultimate Self-Propulsion System
-                  </h5>
-                  <p className="text-slate-300 text-[11px] sm:text-xs leading-relaxed max-w-3xl font-medium">
-                    "The continuous, consistent rotational force generated through our proprietary on-board mechanism is captured by (1) a custom-engineered 3-phase AC feedback generator that minimizes friction and drag. This harvested energy is channeled into (2) an independent, dual-compartment (A/B) battery system operating under intelligent swapping control. This forms a perfect closed loop where one pack powers propulsion while the other receives high-rate feedback energy, rendering heavy external charging infrastructure completely redundant and launching the ultimate self-sufficient EV."
-                  </p>
-                </div>
-                <div className="text-sm font-black text-slate-950 bg-amber-400 border border-amber-300 px-5 py-3 rounded-2xl shadow-lg tracking-tight whitespace-nowrap">
-                  🔌 0% Dependency on External Charging Grid
                 </div>
               </div>
 
             </div>
+
+            {/* Patent Dynamo Schematic Visualization Blueprint */}
+            <div className="lg:col-span-7">
+              <div className="p-6 rounded-2xl bg-white border border-slate-250 shadow-xl space-y-6">
+                
+                <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-blue-600 tracking-wider">{t.corePatentDesignLabel}</span>
+                    <h4 className="text-base font-black text-slate-900 mt-0.5">{t.dynamoModelLabel}</h4>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-400 bg-slate-50 px-2.5 py-1 rounded border border-slate-200 font-bold">{t.technicalDraftSheet}</span>
+                </div>
+
+                {/* SVG Patent Dynamo Rig Schematic */}
+                <div className="bg-slate-950 rounded-xl p-5 border border-slate-800 flex items-center justify-center">
+                  <svg viewBox="0 0 320 200" className="w-full h-auto text-slate-400">
+                    
+                    {/* Outer magnetic ring stator representation */}
+                    <circle cx="160" cy="100" r="75" fill="none" stroke="#374151" strokeWidth="5" />
+                    <circle cx="160" cy="100" r="75" fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeDasharray="5,10" className="animate-spin" style={{ animationDuration: isRunning ? '20s' : '0s' }} />
+
+                    {/* Stator poles markers representing Mori's Patent Stator Core */}
+                    <rect x="154" y="15" width="12" height="20" rx="1" fill="#1f2937" stroke="#4b5563" />
+                    <text x="160" y="27" textAnchor="middle" fill="#9ca3af" fontSize="5" fontWeight="bold">N1</text>
+                    
+                    <rect x="154" y="165" width="12" height="20" rx="1" fill="#1f2937" stroke="#4b5563" />
+                    <text x="160" y="177" textAnchor="middle" fill="#9ca3af" fontSize="5" fontWeight="bold">S1</text>
+
+                    <rect x="75" y="94" width="20" height="12" rx="1" fill="#1f2937" stroke="#4b5563" />
+                    <text x="85" y="101" textAnchor="middle" fill="#9ca3af" fontSize="5" fontWeight="bold">N2</text>
+
+                    <rect x="225" y="94" width="20" height="12" rx="1" fill="#1f2937" stroke="#4b5563" />
+                    <text x="235" y="101" textAnchor="middle" fill="#9ca3af" fontSize="5" fontWeight="bold">S2</text>
+
+                    {/* Rotor Center */}
+                    <circle cx="160" cy="100" r="42" fill="#111827" stroke="#4b5563" strokeWidth="1.5" />
+                    <circle cx="160" cy="100" r="14" fill="#374151" stroke="#10b981" strokeWidth="2" />
+                    
+                    {/* Spin direction arrows */}
+                    <path d="M 160,35 A 65,65 0 0,1 225,100" fill="none" stroke="#ef4444" strokeWidth="2" markerEnd="url(#arr-pink)" strokeDasharray="3,3" />
+                    <path d="M 160,165 A 65,65 0 0,1 95,100" fill="none" stroke="#ef4444" strokeWidth="2" markerEnd="url(#arr-pink)" strokeDasharray="3,3" />
+
+                    {/* Rotational spindle center shaft core */}
+                    <circle cx="160" cy="100" r="5" fill="#f3f4f6" />
+                    
+                    {/* Stator Winding Coils indicator */}
+                    <path d="M140,82 C145,80 150,78 160,78 C170,78 175,80 180,82" fill="none" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" />
+                    <path d="M140,118 C145,120 150,122 160,122 C170,122 175,120 180,118" fill="none" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" />
+
+                    {/* Technical text label overlays within blueprint representation */}
+                    <text x="160" y="94" textAnchor="middle" fill="#3b82f6" fontSize="5" fontWeight="black">{t.coreRotorLabel}</text>
+                    <text x="160" y="112" textAnchor="middle" fill="#f59e0b" fontSize="5.5" fontWeight="black">{t.thinWindingLabel}</text>
+
+                    <text x="50" y="50" textAnchor="middle" fill="#10b981" fontSize="5.5" fontWeight="black">{t.polarPositiveLabel}</text>
+                    <text x="270" y="150" textAnchor="middle" fill="#6366f1" fontSize="5.5" fontWeight="black">{t.polarNegativeLabel}</text>
+
+                    <line x1="50" y1="55" x2="115" y2="82" stroke="#10b981" strokeWidth="1" strokeDasharray="2,2" />
+                    <line x1="270" y1="142" x2="205" y2="118" stroke="#6366f1" strokeWidth="1" strokeDasharray="2,2" />
+                  </svg>
+                </div>
+
+                <div className="text-center text-[10px] text-slate-400 font-mono font-bold leading-normal">
+                  📌 {t.generatorMinimalFriction}
+                </div>
+
+              </div>
+            </div>
+
           </div>
+
         </div>
       </section>
 
-      {/* 💼 DEMO KIT & ACTUAL GENERATOR PICTURE SECTION */}
-      <section id="demokit" className="py-20 bg-[#f7f5ef] border-b border-amber-100/50">
+      {/* 🚀 THE DUAL PATENT PORTFOLIO CORE REGENERATION */}
+      <section className="py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center space-y-4 max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 font-black px-3.5 py-1 rounded-full text-[10px] border border-blue-250 tracking-wider">
+              {t.globalIP}
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-none">
+              {t.dualCorePatentTitle}
+            </h2>
+            <p className="text-slate-500 text-sm sm:text-base font-medium">
+              {t.dualCorePatentHeading} <span className="font-black text-blue-600">{t.theTwoCorePatents}</span>
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Patent 01 Card */}
+            <div className="p-8 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl border border-slate-800 relative overflow-hidden shadow-2xl flex flex-col justify-between">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="space-y-6">
+                <div className="flex justify-between items-start">
+                  <span className="text-[10px] font-mono bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 font-bold uppercase">
+                    {t.patent01Title}
+                  </span>
+                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 font-bold">
+                    {t.portfolioFiled}
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-black tracking-tight">{t.patent01Heading}</h3>
+                  <p className="text-xs text-slate-400 font-bold tracking-wide">{t.patent01Sub}</p>
+                  <p className="text-xs text-blue-400 font-mono font-semibold">{t.patentAppNo} {t.portfolioPatent01No}</p>
+                </div>
+
+                <p className="text-xs text-slate-300 leading-relaxed font-bold">
+                  {t.patent01Desc}
+                </p>
+
+                <div className="p-4 bg-white/5 rounded-xl border border-white/5 space-y-1.5">
+                  <h4 className="text-xs font-black text-amber-400 uppercase tracking-wider">{t.recirculatingFeedbackTitle}</h4>
+                  <p className="text-[11px] text-slate-300 leading-relaxed font-medium">
+                    {t.recirculatingFeedbackDesc}
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-t border-white/5 pt-6 mt-6 flex items-center justify-between text-[11px] font-mono text-slate-400 font-semibold whitespace-pre-line">
+                {t.patent01Timeline}
+              </div>
+            </div>
+
+            {/* Patent 02 Card */}
+            <div className="p-8 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl border border-slate-800 relative overflow-hidden shadow-2xl flex flex-col justify-between">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="space-y-6">
+                <div className="flex justify-between items-start">
+                  <span className="text-[10px] font-mono bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20 font-bold uppercase">
+                    {t.patent02Title}
+                  </span>
+                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 font-bold">
+                    {t.portfolioFiled}
+                  </span>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-black tracking-tight">{t.patent02Heading}</h3>
+                  <p className="text-xs text-slate-400 font-bold tracking-wide">{t.patent02Sub}</p>
+                  <p className="text-xs text-emerald-400 font-mono font-semibold">{t.patentAppNo} {t.portfolioPatent02No}</p>
+                </div>
+
+                <p className="text-xs text-slate-300 leading-relaxed font-bold">
+                  {t.patent02Desc}
+                </p>
+
+                <div className="p-4 bg-white/5 rounded-xl border border-white/5 space-y-1.5">
+                  <h4 className="text-xs font-black text-amber-400 uppercase tracking-wider">{t.alternatingSwapTitle}</h4>
+                  <p className="text-[11px] text-slate-300 leading-relaxed font-medium">
+                    {t.alternatingSwapDesc}
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-t border-white/5 pt-6 mt-6 flex items-center justify-between text-[11px] font-mono text-slate-400 font-semibold whitespace-pre-line">
+                {t.patent02Timeline}
+              </div>
+            </div>
+
+          </div>
+
+          <div className="mt-8 p-6 bg-blue-50/50 rounded-2xl border border-blue-200/40 text-center max-w-4xl mx-auto">
+            <p className="text-sm font-extrabold text-blue-900 italic tracking-wide leading-relaxed">
+              {t.twoPatentsQuote}
+            </p>
+            <p className="text-xs text-slate-500 font-medium mt-2 leading-relaxed">
+              {t.twoPatentsDesc}
+            </p>
+          </div>
+
+          <p className="text-center text-[10px] text-slate-400 font-mono font-bold mt-4">
+            🔒 {t.dualPatentFooter}
+          </p>
+
+        </div>
+      </section>
+
+      {/* 🔮 TECHNICAL SPECIFICATIONS & PHYSICAL PROOF */}
+      <section id="demokit" className="py-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center space-y-3 max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-black uppercase text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded">
-              PHYSICAL DEMONSTRATION & STATS
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              A physical demo unit verifies the "Numerical Impact" and performance
-            </h2>
-            <p className="text-slate-600 text-sm font-semibold max-w-2xl mx-auto mt-2 leading-relaxed">
-              Moving beyond mere theory, the E-LOOP development team has built and validated a fully working "1kW Class Physical Demo Kit." It accurately replicates continuous rotational torque and generator feedback to demonstrate closed-loop charging and real-time battery switching.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Left side text: The Bento stats cards */}
-            <div className="lg:col-span-6 space-y-6">
-              
-              {/* Bento Card 1: 5.2W vs 1000W Impact */}
-              <div className="p-6 bg-white rounded-2xl border border-amber-100/70 shadow-[0_4px_20px_rgba(217,119,6,0.02)] space-y-4">
-                <div className="flex justify-between items-start">
-                  <div className="p-2.5 bg-amber-50 text-amber-700 rounded-xl border border-amber-200">
-                    <Zap className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs bg-red-50 text-red-700 border border-red-200 px-2.5 py-1 rounded-full font-black animate-pulse">
-                    Numerical Impact: ~192x
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-black text-slate-900">Boot with 5.2W ➔ Regenerated Output of 1,000W</h3>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed font-bold">
-                    While a standard household refrigerator consumes around 150W, our patented generator system can be excited with a microscopic starter draw of just 5.2W to produce up to 1,000W of output, representing an exceptionally high-efficiency design verified in physical laboratory testing.
-                  </p>
-                </div>
-              </div>
-
-              {/* Bento Card 2: 3-Phase generator wire modification */}
-              <div className="p-6 bg-white rounded-2xl border border-amber-100/70 shadow-[0_4px_20px_rgba(217,119,6,0.02)] space-y-4">
-                <div className="flex justify-between items-start">
-                  <div className="p-2.5 bg-blue-50 text-blue-700 rounded-xl border border-blue-200">
-                    <RotateCw className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1 rounded-full font-black">
-                    Patented Core Method
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-black text-slate-900">Partioning and Feedback Routing of the 3-Phase Alternator</h3>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed font-bold">
-                    Our proprietary 3-phase AC generator minimizes conventional electromagnetic drag and avoids counter-torque on the propulsion motor at startup, ensuring seamless energy generation.
-                  </p>
-                </div>
-              </div>
-
-              {/* Bento Card 3: Dual Battery model */}
-              <div className="p-6 bg-white rounded-2xl border border-amber-100/70 shadow-[0_4px_20px_rgba(217,119,6,0.02)] space-y-4">
-                <div className="flex justify-between items-start">
-                  <div className="p-2.5 bg-emerald-50 text-emerald-700 rounded-xl border border-emerald-200">
-                    <BatteryCharging className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full font-black">
-                    Dual Battery Swapping (Patent Pending)
-                  </span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-black text-slate-900">An Autonomous "Mini Power Plant" inside the EV</h3>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed font-bold">
-                    Integrating this generator converts your EV into an autonomous mobile micro-grid. Instead of relying on auxiliary storage, the vehicle's actual high-capacity main propulsion battery bank is divided into Group A and Group B. While Group A powers the drive motor, the isolated Group B is directly charged by the on-board high-efficiency generator. The system dynamically swaps their roles, establishing an infinite internal dynamic energy replenishment loop and eliminating the need for external charging stations entirely.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right side representation box */}
-            <div className="lg:col-span-6 sticky top-28">
-              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-6">
-                
-                <div className="flex justify-between items-center pb-3 border-b border-slate-150">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-pink-500 animate-ping" />
-                    <h3 className="text-xs font-black uppercase text-slate-700 tracking-wide">
-                      [Core Patent Design] Newly Invented Electric Generator
-                    </h3>
-                  </div>
-                  <span className="text-[9px] bg-pink-50 text-pink-600 px-2.5 py-0.5 rounded border border-pink-200 font-mono font-bold">
-                    Dr. Mori's Dynamo Model
-                  </span>
-                </div>
-
-                {/* Real interactive visual box of the physical generator as seen in User PDF */}
-                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-center shadow-xs">
-                  
-                  <div className="relative h-44 bg-white rounded border border-slate-150 p-4 flex flex-col justify-between overflow-hidden">
-                    
-                    {/* Retro Grid Background */}
-                    <div className="absolute inset-0 bg-white" style={{ backgroundImage: 'radial-gradient(#e2e8f0 1.2px, transparent 1.2px)', backgroundSize: '16px 16px' }} />
-
-                    {/* Highly polished visual layout representation of the circular newly invented generator */}
-                    <div className="relative z-10 flex items-center justify-center h-full gap-6">
-                      
-                      {/* Generator circle and stator coil */}
-                      <div className="w-24 h-24 rounded-full bg-slate-100 border-4 stroke-4 border-slate-300 flex items-center justify-center relative shadow-inner">
-                        <div className="absolute inset-2 rounded-full border border-pink-400 opacity-50 animate-spin" style={{ animationDuration: '8s' }} />
-                        <div className="w-16 h-16 rounded-full bg-white border border-slate-200 flex flex-col items-center justify-center text-center">
-                          <span className="text-[8px] text-pink-600 font-black tracking-tight block">CORE ROTOR</span>
-                          <span className="text-[7px] text-slate-500 font-bold block">Ultra-thin winding</span>
-                        </div>
-                        
-                        {/* Red coil windings indicators on the stator circle */}
-                        <div className="absolute top-0 w-3 h-2 bg-pink-500 rounded-sm" />
-                        <div className="absolute bottom-0 w-3 h-2 bg-pink-500 rounded-sm" />
-                        <div className="absolute left-0 w-2 h-3 bg-pink-500 rounded-sm" />
-                        <div className="absolute right-0 w-2 h-3 bg-pink-500 rounded-sm" />
-                      </div>
-
-                      {/* Cable connection simulation leading to controller and batteries */}
-                      <div className="flex flex-col gap-2 bg-white/95 p-3 rounded-lg border border-slate-200 text-left shadow-xs">
-                        <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-700">
-                          <span className="w-2 h-1 bg-red-500 rounded-xs" />
-                          <span className="font-mono">(+) Polar Back-EMF Suppression</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-[9px] font-bold text-slate-700">
-                          <span className="w-2 h-1 bg-slate-400 rounded-xs" />
-                          <span className="font-mono">(-) Polar Autonomous Ground</span>
-                        </div>
-                        <div className="text-[8px] bg-slate-50 text-slate-500 p-1.5 rounded font-mono border border-slate-200 font-bold mt-0.5">
-                          Dr. Mori's Generator: Minimal friction drag design
-                        </div>
-                      </div>
-
-                    </div>
-
-                    {/* Watermark Label */}
-                    <p className="absolute bottom-2 left-2 text-[8px] text-slate-500 font-mono tracking-widest bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 font-bold">
-                      TECHNICAL DRAFT SHEET - S-160784
-                    </p>
-
-                  </div>
-
-                  {/* Descriptions bottom */}
-                  <div className="grid grid-cols-2 gap-3 mt-4 text-left">
-                    <div className="p-3 bg-white rounded border border-slate-200 shadow-xs">
-                      <span className="text-[9px] text-slate-400 font-bold block">Multi-pole Stator Core</span>
-                      <p className="text-xs text-slate-800 mt-1 font-extrabold pb-0.5">Zero counter-torque on propulsion motor at startup</p>
-                    </div>
-                    <div className="p-3 bg-white rounded border border-slate-200 shadow-xs">
-                      <span className="text-[9px] text-slate-400 font-bold block">Stabilized Swap Switching Board</span>
-                      <p className="text-xs text-slate-800 mt-1 font-extrabold pb-0.5">Zero-loss high-precision dual swapping</p>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 🎬 VIDEO SECTION */}
-      <section id="video-section" className="py-20 bg-white border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          
-          <div className="space-y-3">
             <span className="text-xs font-black uppercase text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded">
-              VERIFICATION DEMO MOVIE
+              {t.demokitBadge}
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Verification Demonstration & Simulator
+              {t.demokitHeading}
             </h2>
-            <p className="text-slate-500 text-sm max-w-2xl mx-auto font-medium">
-              This interactive panel visualizes how our prototype vehicle operates on a testing platform, demonstrating the real-time balance of rotational power generation and charging transfer between the dual battery packs.
+            <p className="text-slate-500 text-sm font-medium">
+              {t.demokitDesc}
             </p>
           </div>
 
-          {/* Interactive Interactive Video/Oscilloscope Board */}
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-6 text-left items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Monitor Column (We retain the aesthetic dark oscilloscope frame here as requested for scientific looking contrast) */}
-            <div className="lg:col-span-7 bg-slate-950 rounded-xl p-4 border border-slate-800 relative flex flex-col justify-between shadow-inner">
-              
-              <div className="flex justify-between items-center border-b border-slate-800 pb-2 mb-4">
-                <div className="flex items-center gap-2">
-                  <Video className="w-4 h-4 text-pink-500" />
-                  <span className="text-[11px] font-black uppercase text-slate-200">Real-Time Power & Diagnostics Oscilloscope</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className={`w-2 h-2 rounded-full ${videoPlaying ? 'bg-red-500 animate-ping' : 'bg-slate-500'}`} />
-                  <span className="font-mono text-[9px] text-slate-400 tracking-wider">
-                    {videoPlaying ? "LIVE STREAM" : "PAUSED"}
-                  </span>
-                </div>
-              </div>
-
-              {/* Simulation Screen container with beautiful SVG waves */}
-              <div className="h-44 bg-slate-900/90 rounded border border-slate-800/90 relative flex flex-col items-center justify-center overflow-hidden">
+            {/* Interactive Demonstration panel */}
+            <div className="lg:col-span-5">
+              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl relative">
                 
-                {videoPlaying ? (
-                  /* Oscilloscope wave representation */
-                  <div className="w-full h-full px-4 flex flex-col justify-between py-6">
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-blue-50 text-blue-600 px-2.5 py-0.5 rounded text-[10px] font-bold border border-blue-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span>CONNECTED</span>
+                </div>
+
+                <div className="border-b border-slate-150 pb-3 mb-5 flex items-center justify-between">
+                  <h3 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                    <Gauge className="w-4.5 h-4.5 text-blue-600" />
+                    {lang === 'jp' ? "インタラクティブ動作実証モジュール" : "Interactive Demonstration Module"}
+                  </h3>
+                </div>
+
+                {/* Oscilloscope Graphic Panel */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center text-xs text-slate-500 font-bold">
+                    <span>{lang === 'jp' ? "新世代車載発電機AC出力波形" : "New Generator AC Output Waveform"}</span>
+                    <span className="font-mono text-emerald-600 flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                      50.4 Hz - Stabilized
+                    </span>
+                  </div>
+                  
+                  {/* Neon Green Oscilloscope Frame */}
+                  <div className="h-44 bg-slate-950 rounded-xl p-3 border-2 border-slate-800 flex flex-col justify-between relative overflow-hidden">
                     
-                    {/* Screen wave header info */}
-                    <div className="flex justify-between items-center text-[9px] font-mono text-emerald-400">
-                      <span>CH1: Dr. Mori's Dynamo AC [STABLE]</span>
-                      <span>TIME SCALE: 100ms/div</span>
+                    {/* Background Grid Lines */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_16px] opacity-40" />
+
+                    <div className="flex justify-between items-center text-[9px] font-mono text-slate-500 relative z-10">
+                      <span>CH1: AC FEEDBACK</span>
+                      <span>TIME: 10ms/div</span>
                     </div>
 
-                    {/* Generator dynamic wave drawing */}
-                    <div className="relative w-full h-20 flex items-center">
-                      {/* Grid overlay */}
-                      <div className="absolute inset-0 bg-grid-pattern opacity-15" />
-                      
-                      {/* SVG line */}
-                      <svg className="w-full h-full text-emerald-400" viewBox="0 0 250 100" preserveAspectRatio="none">
+                    {/* Animated Oscilloscope Waveform */}
+                    <div className="relative w-full h-24 flex items-center justify-center">
+                      <svg viewBox="0 0 300 100" className="w-full h-full">
                         <polyline
                           fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          points={wavePoints.map((val, idx) => `${(idx / wavePoints.length) * 250}, ${val}`).join(' ')}
+                          stroke="#10b981"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          points={wavePoints.map((val, idx) => `${(idx / (wavePoints.length - 1)) * 300},${val}`).join(' ')}
+                          className="drop-shadow-[0_0_8px_#10b981]"
                         />
                       </svg>
                     </div>
 
-                    <div className="flex justify-between items-center text-[8px] font-mono text-slate-500">
-                      <span>AUTO LOCK SENSITIVITY</span>
-                      <span>FREQ: MOTOR SYNCHRONIZED</span>
+                    <div className="flex justify-between items-center text-[9px] font-mono text-emerald-500 relative z-10 font-bold">
+                      <span>Vpp: 324.5V</span>
+                      <span>I_avg: 14.8A</span>
+                      <span>Eff: 96.4%</span>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Simulated live battery percentage widgets */}
+                <div className="grid grid-cols-2 gap-4 mt-5">
+                  
+                  <div className={`p-4 rounded-xl border transition-all ${activeBattery === 'A' ? 'bg-emerald-50/55 border-emerald-300 shadow-sm' : 'bg-slate-50 border-slate-200'}`}>
+                    <div className="flex justify-between items-center mb-1 text-[10px] font-bold text-slate-500">
+                      <span>{t.batteryA}</span>
+                      {activeBattery === 'A' ? (
+                        <span className="text-[9px] text-amber-600 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200 animate-pulse font-extrabold uppercase">
+                          {lang === 'jp' ? "放電中" : "DRIVING"}
+                        </span>
+                      ) : (
+                        <span className="text-[9px] text-emerald-600 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200 font-extrabold uppercase">
+                          {lang === 'jp' ? "充電中" : "CHARGING"}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-3xl font-black text-slate-950 tracking-tight">
+                      {batteryACharge}%
+                    </p>
+                    <div className="w-full bg-slate-200 h-2 rounded-full mt-2 overflow-hidden">
+                      <div 
+                        className={`h-full rounded-full transition-all duration-300 ${activeBattery === 'A' ? 'bg-amber-500' : 'bg-emerald-500'}`}
+                        style={{ width: `${batteryACharge}%` }}
+                      />
                     </div>
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center gap-2 text-slate-400 relative z-10">
-                    <Video className="w-8 h-8 text-slate-500 animate-bounce" />
-                    <span className="text-xs font-bold text-slate-400">Diagnostics Video Simulator Paused</span>
-                  </div>
-                )}
 
-              </div>
-
-              {/* Controller buttons below */}
-              <div className="flex justify-between items-center mt-4 pt-2 border-t border-slate-850">
-                <button 
-                  onClick={() => setVideoPlaying(!videoPlaying)}
-                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded flex items-center gap-1.5 transition border border-slate-700"
-                >
-                  {videoPlaying ? <><Pause className="w-3.5 h-3.5" />Pause Monitor</> : <><Play className="w-3.5 h-3.5 text-emerald-450" />Play Verification</>}
-                </button>
-                <div className="flex items-center gap-1.5 text-xs text-slate-400">
-                  <span className="text-[10px] text-slate-500 font-bold">Verification Phase:</span>
-                  <div className="flex gap-1">
-                    <button 
-                      onClick={() => setCurrentVideoPhase('start')}
-                      className={`px-2 py-0.5 rounded text-[9px] transition-colors ${currentVideoPhase === 'start' ? 'bg-blue-600 font-extrabold text-white' : 'bg-slate-800 hover:bg-slate-755 text-slate-350'}`}
-                    >
-                      Start Inertia
-                    </button>
-                    <button 
-                      onClick={() => setCurrentVideoPhase('switching')}
-                      className={`px-2 py-0.5 rounded text-[9px] transition-colors ${currentVideoPhase === 'switching' ? 'bg-blue-600 font-extrabold text-white' : 'bg-slate-800 hover:bg-slate-755 text-slate-350'}`}
-                    >
-                      Swapping Test
-                    </button>
+                  <div className={`p-4 rounded-xl border transition-all ${activeBattery === 'B' ? 'bg-emerald-50/55 border-emerald-300 shadow-sm' : 'bg-slate-50 border-slate-200'}`}>
+                    <div className="flex justify-between items-center mb-1 text-[10px] font-bold text-slate-500">
+                      <span>{t.batteryB}</span>
+                      {activeBattery === 'B' ? (
+                        <span className="text-[9px] text-amber-600 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200 animate-pulse font-extrabold uppercase">
+                          {lang === 'jp' ? "放電中" : "DRIVING"}
+                        </span>
+                      ) : (
+                        <span className="text-[9px] text-emerald-600 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200 font-extrabold uppercase">
+                          {lang === 'jp' ? "充電中" : "CHARGING"}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-3xl font-black text-slate-950 tracking-tight">
+                      {batteryBCharge}%
+                    </p>
+                    <div className="w-full bg-slate-200 h-2 rounded-full mt-2 overflow-hidden">
+                      <div 
+                        className={`h-full rounded-full transition-all duration-300 ${activeBattery === 'B' ? 'bg-amber-500' : 'bg-emerald-500'}`}
+                        style={{ width: `${batteryBCharge}%` }}
+                      />
+                    </div>
                   </div>
+
                 </div>
-              </div>
 
+              </div>
             </div>
 
-            {/* Analysis phase description Panel */}
-            <div className="lg:col-span-5 bg-white rounded-xl p-5 border border-slate-200 flex flex-col justify-between shadow-xs">
+            {/* Numerical metrics description column */}
+            <div className="lg:col-span-7 space-y-6">
               
-              <div className="space-y-4">
-                <span className="text-[10px] bg-slate-100 text-slate-600 font-mono px-2 py-0.5 rounded tracking-wider font-bold">
-                  MONITOR ANALYSIS REPORT
+              {/* Proof Metric 1 */}
+              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
+                <span className="inline-flex items-center justify-center bg-red-100 text-red-800 border border-red-200 px-3.5 py-1.5 rounded-full font-black text-xs uppercase tracking-wider flex-shrink-0">
+                  {t.demokitImpactBadge}
                 </span>
-
-                {currentVideoPhase === 'start' && (
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-black text-slate-850">Start-up & Initial Load Cycle</h4>
-                    <p className="text-xs text-slate-600 leading-relaxed font-semibold">
-                      At startup, the newly developed generator imposes zero counter-torque on the propulsion motor.
-                    </p>
-                  </div>
-                )}
-
-                {currentVideoPhase === 'switching' && (
-                  <div className="space-y-2">
-                    <h4 className="text-sm font-black text-slate-850">Reciprocal Swapping (No-Interruption Switching)</h4>
-                    <p className="text-xs text-slate-600 leading-relaxed font-semibold">
-                      When Battery Pack A nears discharge, or upon a preset time interval, the dual battery switch dynamically swaps their roles in less than 1 millisecond. The active load transfers to Battery Pack B while Pack A begins charging, exhibiting zero voltage spikes or loss.
-                    </p>
-                  </div>
-                )}
-
-                <div className="p-3 bg-slate-50 rounded-lg text-xs border border-slate-200 text-slate-600">
-                  <span className="text-slate-800 block font-bold mb-1">■ Joint Verification & Diagnostics Data</span>
-                  Upon request, our engineering team can provide comprehensive measurement spreadsheets, full system block diagrams, or arrange a physical demonstration.
+                <div className="space-y-1">
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">
+                    {t.demokitImpactTitle}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-bold">
+                    {t.demokitImpactDesc}
+                  </p>
                 </div>
               </div>
 
-              <a 
-                href="#contact"
-                className="mt-4 px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 text-center rounded text-xs font-bold transition block shadow-xs"
-              >
-                Request Technical Report & Demo Video ✉
-              </a>
+              {/* Proof Metric 2 */}
+              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
+                <span className="inline-flex items-center justify-center bg-blue-100 text-blue-800 border border-blue-200 px-3.5 py-1.5 rounded-full font-black text-xs uppercase tracking-wider flex-shrink-0">
+                  {t.demokitMethodBadge}
+                </span>
+                <div className="space-y-1">
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">
+                    {t.demokitMethodTitle}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-bold">
+                    {t.demokitMethodDesc}
+                  </p>
+                </div>
+              </div>
+
+              {/* Proof Metric 3 */}
+              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row gap-5 items-start">
+                <span className="inline-flex items-center justify-center bg-emerald-100 text-emerald-800 border border-emerald-200 px-3.5 py-1.5 rounded-full font-black text-xs uppercase tracking-wider flex-shrink-0">
+                  {t.demokitBatteryBadge}
+                </span>
+                <div className="space-y-1">
+                  <h3 className="text-lg font-black text-slate-900 leading-tight">
+                    {t.demokitBatteryTitle}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-bold">
+                    {t.demokitBatteryDesc}
+                  </p>
+                </div>
+              </div>
 
             </div>
 
@@ -1362,247 +1256,421 @@ export default function App() {
         </div>
       </section>
 
-      {/* 👤 INVENTOR PROFILE PANEL */}
-      <section id="patent-facts" className="py-20 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 rounded-2xl bg-white border border-slate-200 text-slate-800 shadow-lg space-y-8 relative overflow-hidden">
-            
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+      {/* 🔮 NEW EXTRA SECTION: VIDEO DEMONSTRATION & PROOF */}
+      <section id="video-section" className="py-20 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center space-y-3 max-w-3xl mx-auto mb-16">
+            <span className="text-xs font-black uppercase text-pink-600 bg-pink-50 border border-pink-200 px-3 py-1 rounded">
+              {t.videoBadge}
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              {t.videoTitle}
+            </h2>
+            <p className="text-slate-500 text-sm font-medium">
+              {t.videoDesc}
+            </p>
+          </div>
 
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-150">
-              <div>
-                <span className="text-xs font-black uppercase text-blue-600 tracking-wider">
-                  ORIGINAL INVENTOR BIOGRAPHY
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
-                  Inventor & Patent Applicant: Dr. Yukinobu Mori
-                </h2>
-              </div>
-              <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-4 py-2 rounded-lg shadow-xs">
-                <User className="w-5 h-5 text-blue-600" />
-                <span className="text-sm font-bold text-slate-800">Dr. Yukinobu Mori</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div className="lg:col-span-6 space-y-6">
+              <h3 className="text-2xl font-black text-slate-900 leading-tight">
+                {lang === 'jp' ? "森幸信 博士による技術実証" : "Empirical Demonstration Rig (Dr. Yukinobu Mori)"}
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed font-semibold">
+                {lang === 'jp' ? (
+                  "この動作検証ビデオは、実験用テストベンチに構築された完全な実物デモ装置を捉えたものです。駆動力と自己充電モードのインテリジェントな切り替え（バッテリー切替スイッチによる自動的なスイッチング）のシームレスな実稼働を可視化。クローズドループかつ最も知的で効率的な方法でエネルギーを使用する『新たに発明された発電機』が、連続的に Energy Regenerative & Management System フィードバックを行う様子を示しています。"
+                ) : (
+                  "This verification video captures the complete tabletop rig. It demonstrates the seamless execution of the dynamic battery swapping mechanism—switching between driving and charging modes—and highlights the newly invented electric generator's ability to maintain a continuous Energy Regenerative & Management System feedback loop."
+                )}
+              </p>
+
+              <div className="p-5 bg-blue-50/50 rounded-2xl border border-blue-200 flex items-start gap-3.5">
+                <Video className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5 animate-pulse" />
+                <div>
+                  <h4 className="text-xs font-black text-blue-900 uppercase tracking-wider">{lang === 'jp' ? "実証検証データ要約：" : "What the Video Proves:"}</h4>
+                  <ul className="space-y-1.5 mt-2 text-xs text-blue-800 list-disc list-inside font-bold">
+                    {lang === 'jp' ? (
+                      <>
+                        <li>3相AC発電機をフィードバックシステムとして使用し、独立した発電機（車内のミニ充電スタンド）を構築。</li>
+                        <li>自動切替リレーは駆動を一切途切れさせず、超高速にA/Bバッテリーを瞬断スワップします。</li>
+                        <li>昇圧・同期制御された回生電力が, 休止中のバッテリーパックへ直接フィードバック充電されます。</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>Utilizing a 3-phase AC generator as a feedback system to form an independent generator (a mini charging station inside the vehicle).</li>
+                        <li>The relay executes the swap smoothly without any drop in motor output.</li>
+                        <li>The stepped-up feedback voltage successfully charges the secondary battery pack.</li>
+                      </>
+                    )}
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-              
-              {/* Profile Card left */}
-              <div className="space-y-4">
-                <h3 className="text-base font-black text-slate-900 flex items-center gap-1.5 border-b border-slate-100 pb-2">
-                  <FileText className="w-4 h-4 text-blue-500" />
-                  Dual Core Patent Application Portfolio
-                </h3>
-                
-                {/* PATENT 01 CARD IN PROFILE */}
-                <div className="p-4 rounded-xl bg-amber-50/50 border border-amber-200/80 space-y-3 font-mono text-xs text-slate-705 shadow-sm">
-                  <div className="flex justify-between items-center bg-amber-100/50 px-2 py-1 rounded">
-                    <span className="font-extrabold text-amber-850">[Core Patent 01] Newly Developed High-Efficiency Self-Generator</span>
-                    <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">Filed</span>
-                  </div>
-                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
-                    <span className="text-slate-500 font-bold">Patent Application No:</span>
-                    <span className="font-extrabold text-slate-900">Patent App No. 2026-83613</span>
-                  </div>
-                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
-                    <span className="text-slate-500 font-bold">Core Technology:</span>
-                    <span className="font-semibold text-slate-800 text-right">3-Phase AC Self-Circulating Feedback Structure</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600 font-sans leading-relaxed px-1 font-semibold">
-                    An intelligent closed-loop self-recirculating system distributing 3-phase AC power from our proprietary generator design.
-                  </p>
-                </div>
+            {/* YouTube Embed Player & Link Setup */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="bg-slate-950 rounded-2xl overflow-hidden border-4 border-slate-800 shadow-2xl relative aspect-video">
+                {youtubeVideoId ? (
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=0&rel=0`}
+                    title="E-LOOP YouTube Verification Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full absolute inset-0"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center p-6 text-center text-white">
+                    <div className="absolute top-3 left-3 bg-red-600 text-white font-black text-[9px] tracking-widest px-2.5 py-0.5 rounded uppercase">
+                      OFFICIAL CHANNEL
+                    </div>
+                    
+                    <div className="w-16 h-16 rounded-full bg-red-600/15 flex items-center justify-center border-2 border-red-500/35 mb-4 animate-pulse">
+                      <Youtube className="w-8 h-8 text-red-500" />
+                    </div>
 
-                {/* PATENT 02 CARD IN PROFILE */}
-                <div className="p-4 rounded-xl bg-emerald-50/40 border border-emerald-200/80 space-y-3 font-mono text-xs text-slate-705 shadow-sm">
-                  <div className="flex justify-between items-center bg-emerald-100/50 px-2 py-1 rounded">
-                    <span className="font-extrabold text-emerald-850">[Core Patent 02] Battery Swapping Control System</span>
-                    <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">Filed</span>
-                  </div>
-                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
-                    <span className="text-slate-500 font-bold">Patent Application No:</span>
-                    <span className="font-extrabold text-slate-900">Patent App No. 2025-160784</span>
-                  </div>
-                  <div className="flex justify-between border-b border-slate-100 pb-1.5 px-1">
-                    <span className="text-slate-500 font-bold">Core Technology:</span>
-                    <span className="font-semibold text-slate-800 text-right">A/B Dual Battery Swapping Charging System</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600 font-sans leading-relaxed px-1 font-semibold">
-                    An automated power routing system that swap-charges the high-capacity main propulsion battery banks (Groups A/B) continuously on-board, entirely eliminating external charging requirements.
-                  </p>
-                </div>
+                    <h4 className="text-base font-extrabold text-white tracking-tight">
+                      Dr. Yukinobu Mori Official YouTube
+                    </h4>
+                    <p className="text-xs text-slate-400 font-mono mt-1 font-bold">
+                      {youtubeChannelUrl.includes('@yukimori2207') ? '@yukimori2207' : youtubeChannelUrl}
+                    </p>
 
-                <div className="p-3 bg-blue-50/70 text-blue-900 rounded-xl border border-blue-200 text-xs leading-relaxed font-semibold">
-                  <strong>■ Scope of Patent Portfolio Protection:</strong>
-                  <p className="text-[11px] text-blue-950 font-medium mt-1">
-                    Priority rights have been fully secured with the completion of two primary patent filings in Japan. In parallel, unified global application procedures via the PCT international route are actively moving forward to cover major territories (including North America, Europe, and Asia).
-                  </p>
-                </div>
+                    <p className="text-[11px] text-slate-400 mt-2.5 max-w-sm leading-relaxed font-semibold">
+                      {lang === 'jp' 
+                        ? 'このチャンネルは、E-LOOP自己回生システムの検証動画を専門に配信する公式YouTubeチャンネルです。下のボタンをクリックして、すべての実証映像をご覧ください！'
+                        : 'This channel features full-length verification videos of the E-LOOP system. Click the button below to browse all demonstration videos!'}
+                    </p>
+
+                    <a
+                      href={youtubeChannelUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 active:scale-95 transition text-white font-black text-xs rounded-xl shadow-lg shadow-red-600/30 border border-red-500/50"
+                    >
+                      <Youtube className="w-4 h-4" />
+                      <span>{lang === 'jp' ? '公式YouTubeチャンネルを訪問する' : 'Visit Official YouTube Channel'}</span>
+                    </a>
+                  </div>
+                )}
               </div>
 
-              {/* Founder Statement right */}
-              <div className="flex flex-col justify-between">
-                <div className="space-y-4">
-                  <h3 className="text-base font-black text-slate-900 flex items-center gap-1.5 border-b border-slate-100 pb-2">
-                    <Globe className="w-4 h-4 text-blue-500" />
-                    Inventor's Message
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed italic text-xs font-semibold">
-                    "Modern electric vehicles are burdened with excessively large batteries simply to secure driving range, resulting in increased weight and severe energy inefficiency. By establishing a fully autonomous, self-generating on-board model, we can build a clean, sustainable vehicle that operates completely free of heavy grid reliance. This technology was born from a desire to bring zero-boundary mobility to remote regions and areas lacking grid infrastructure. I look forward to working with industry leaders to turn this vision into reality."
-                  </p>
+              {/* Live Link Panel */}
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-lg space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center border border-red-100 flex-shrink-0">
+                    <Youtube className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900">
+                      {lang === 'jp' ? 'リアルタイムYouTubeチャンネル＆動画連携' : 'Live YouTube Channel & Video Integration'}
+                    </h4>
+                    <p className="text-[11px] text-slate-500 font-bold">
+                      {lang === 'jp' 
+                        ? '現在運営されているYouTubeチャンネルURLや動画URLを入力すると、ページに即時反映されます。' 
+                        : 'Enter your YouTube channel or video URL to immediately sync it with the page.'}
+                    </p>
+                  </div>
                 </div>
 
-                <p className="text-xs text-blue-600 pt-4 border-t border-slate-150 mt-4 font-bold">
-                  We are currently in the phase of building the actual vehicle prototype. At this stage, joint developments are not required; however, we warmly welcome visionary investors who wish to participate and invest in our project at this phase.
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={youtubeInput}
+                    onChange={(e) => setYoutubeInput(e.target.value)}
+                    placeholder={lang === 'jp' ? "例: https://youtube.com/@yukimori2207" : "e.g., https://youtube.com/@yukimori2207"}
+                    className="flex-1 px-3.5 py-2.5 text-xs rounded-lg border border-slate-250 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition font-bold text-slate-800 shadow-inner"
+                  />
+                  <button
+                    onClick={handleConnectYouTube}
+                    className="px-5 py-2.5 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold text-xs rounded-lg transition shadow-md shadow-red-600/15 flex items-center gap-1.5 flex-shrink-0"
+                  >
+                    <Link className="w-3.5 h-3.5" />
+                    <span>{lang === 'jp' ? '連携を適用' : 'Apply Sync'}</span>
+                  </button>
+                </div>
+
+                {youtubeInputError && (
+                  <p className="text-[11px] text-red-600 font-extrabold flex items-center gap-1 bg-red-50 px-2 py-1 rounded border border-red-200">
+                    ⚠️ {youtubeInputError}
+                  </p>
+                )}
+
+                <div className="p-3 bg-slate-50 rounded-xl text-[10px] text-slate-500 font-bold space-y-1 border border-slate-200">
+                  <p className="text-slate-800 flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-yellow-500" />
+                    <span>{lang === 'jp' ? '入力・連携ガイド:' : 'Input & Integration Guide:'}</span>
+                  </p>
+                  <p className="pl-4.5">• {lang === 'jp' ? '公式チャンネルのURL（youtube.com/@...）または特定の動画URLを直接入力できます。' : 'You can enter a channel URL (youtube.com/@...) or a specific video URL directly.'}</p>
+                  <p className="pl-4.5">• {lang === 'jp' ? 'チャンネルURLを入力した場合、YouTubeのポリシーによりiframe埋め込みがブロックされるため、訪問者がスムーズにチャンネルに移動できる「公式チャンネル専用ゲートウェイ」が安全かつ美しく表示されます。' : 'When entering a channel link, since YouTube blocks embedding channel pages in iframes, a dedicated gateway to navigate to your channel is beautifully shown.'}</p>
+                  <p className="pl-4.5">• {lang === 'jp' ? '連携された情報はブラウザのローカルストレージ（localStorage）に安全に保存され、ページを更新しても維持されます。' : 'Linked information is saved securely in your browser\'s localStorage and persists even after refreshing.'}</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* 🔮 THE INVENTOR / PATENT FACTS SECTION */}
+      <section id="patent-facts" className="py-20 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Inventor Avatar Card */}
+            <div className="lg:col-span-5">
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden p-6 text-center space-y-4">
+                <div className="w-28 h-28 rounded-full bg-blue-100 border-4 border-white shadow-lg mx-auto flex items-center justify-center text-blue-600 text-3xl font-black">
+                  {lang === 'jp' ? "森" : "Mori"}
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-slate-900">{t.biographyDrMori}</h3>
+                  <p className="text-xs text-blue-600 font-bold tracking-widest mt-0.5">INVENTOR & SYSTEM PATENT OWNER</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-lg text-xs text-slate-500 leading-relaxed font-semibold">
+                  {lang === 'jp' 
+                    ? "「この技術は電気自動車の中核エネルギーサイクルを根本的に再定義し、外部インフラへの依存から車載自律再生ループへとシフトさせます。」"
+                    : "\"This technology completely redefines the core energy cycle of electric vehicles, moving away from grid dependency to clean, on-board energy regeneration.\""
+                  }
+                </div>
+              </div>
+            </div>
+
+            {/* Inventor Info & Timeline */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-4">
+                <span className="text-xs font-black uppercase text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded">
+                  {t.biographyLabel}
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                  {t.biographyHeading}
+                </h2>
+                <p className="text-base text-slate-600 leading-relaxed font-medium">
+                  {lang === 'jp' ? (
+                    "森幸信 博士は、クリーンエネルギー回生と効率的な発電制御技術の研究に長年を捧げてきた著名な日本人技術者・研究者です。外部インフラに縛られないモビリティの絶対的自由を実現するため、独自の車載型高効率自己充電・発電システム「E-LOOP」を構想、実用プロトタイプを完成させました。"
+                  ) : (
+                    "A distinguished Japanese engineer and researcher dedicated to clean energy harvesting, Dr. Yukinobu Mori designed the E-LOOP system to liberate transport from grid dependency. His work represents a major milestone in electric vehicle energy regeneration."
+                  )}
                 </p>
               </div>
 
+              {/* Research Milestones */}
+              <div className="space-y-4">
+                <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex gap-4">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 border border-blue-100 font-bold text-xs">
+                    2025
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900">
+                      {lang === 'jp' 
+                        ? "日本国内特許出願完了 (特許出願番号 2025-160784)"
+                        : "Japanese Patent Filed (Patent Application No. 2025-160784)"
+                      }
+                    </h4>
+                    <p className="text-xs text-slate-500 leading-relaxed mt-1 font-semibold">
+                      {lang === 'jp'
+                        ? "二系統バッテリーを交互にスワップさせ、一方の推進中にもう一方を同期充電可能にする高速切替リレーシステム特許を正式に出願。"
+                        : "The core battery drive swap relay mechanism was finalized and filed, paving the way for the continuous dual-battery drive-and-charge cycle."
+                      }
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex gap-4">
+                  <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 border border-emerald-100 font-bold text-xs">
+                    2026
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900">
+                      {lang === 'jp'
+                        ? "日本国内特許出願完了 (特許出願番号 2026-83613)"
+                        : "Japanese Patent Filed (Patent Application No. 2026-83613)"
+                      }
+                    </h4>
+                    <p className="text-xs text-slate-500 leading-relaxed mt-1 font-semibold">
+                      {lang === 'jp'
+                        ? "独自の革新的な Energy Regenerative & Management System により、クローズドループでエネルギー使用を高度に最適化した新たに発明された発電機として特許出願。"
+                        : "Dr. Mori finalized and filed the patent for the Newly Invented Electric Generator, featuring an intelligent Energy Regenerative & Management System that maximizes energy feedback."
+                      }
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
           </div>
+
         </div>
       </section>
 
-      {/* ✉ COMPLETE FORM WITH WORKING EMAIL INTEGRATION */}
-      <section id="contact" className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 shadow-xl space-y-8">
-            
-            <div className="text-center space-y-3">
-              <span className="text-xs font-black uppercase text-blue-600 bg-blue-50 border border-blue-200 px-3.5 py-1.5 rounded">
-                OFFICIAL INVESTMENT WINDOW
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                E-LOOP Project Investment Inquiry Form
-              </h3>
-              <p className="text-slate-500 text-sm max-w-xl mx-auto font-medium">
-                Request patent application summaries, verified operation telemetry logs, or schedule a physical demonstration of the running prototype. Please submit your inquiry through our secure contact portal below.
-              </p>
-            </div>
+      {/* 🔮 CONTACT / INVESTMENT PARTNERSHIP FORM SECTION */}
+      <section id="contact" className="py-24 bg-gradient-to-b from-white to-slate-50 border-t border-b border-slate-200 text-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Response notifications */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          
+          <div className="text-center space-y-4 mb-16">
+            <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold border border-blue-200">
+              <Mail className="w-4 h-4 text-blue-600 animate-pulse" />
+              {t.officialInvestmentBadge}
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              {t.formHeading}
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto font-medium leading-relaxed">
+              {t.formSub}
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-xl">
+            
             {submissionSuccess ? (
-              <div className="p-8 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200">
-                  <Check className="w-6 h-6" />
+              <div className="text-center py-12 space-y-6">
+                <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl shadow-lg">
+                  ✓
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-lg font-black text-emerald-700">Inquiry Securely Transmitted</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed font-semibold">
-                    Thank you. Your message has been safely routed via Formspree to patent inventor Dr. Yukinobu Mori. We will review your submission and contact you via your provided email address shortly.
+                  <h3 className="text-2xl font-black text-slate-900">{t.submittedSuccessTitle}</h3>
+                  <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed font-semibold">
+                    {t.submittedSuccessDesc}
                   </p>
-                  <div className="p-2 bg-slate-100 rounded border border-slate-200 inline-block font-mono text-xs text-blue-600 mt-2 font-bold shadow-xs">
-                    Inquiry Reference Token: {submissionToken}
-                  </div>
                 </div>
-                <button 
-                  onClick={handleResetForm}
-                  className="mt-4 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold transition shadow-xs"
-                >
-                  Create a New Inquiry
-                </button>
+                
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 max-w-sm mx-auto">
+                  <p className="text-[10px] font-mono text-slate-400 tracking-wider font-bold">{t.submittedSuccessToken}</p>
+                  <p className="text-sm font-mono font-black text-blue-600 mt-1">{submissionToken}</p>
+                </div>
+
+                <div className="pt-2">
+                  <button 
+                    onClick={handleResetForm}
+                    className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-250 font-bold rounded-lg text-xs transition shadow-sm"
+                  >
+                    {t.createNewInquiry}
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 
-                {/* Field A: Name */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-slate-400" />
-                    Full Name / Contact Person <span className="text-red-500 font-extrabold">*</span>
-                  </label>
-                  <input 
-                    type="text" 
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="e.g., John Doe"
-                    className="w-full px-4 py-3 bg-white border border-slate-250 rounded-lg text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs font-medium"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase text-slate-700 tracking-wider block">
+                      {t.fieldNameLabel} <span className="text-red-500 font-extrabold">{t.requiredAsterisk}</span>
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+                      <input 
+                        type="text"
+                        required
+                        placeholder={t.placeholderName}
+                        value={formData.name}
+                        onChange={e => setFormData(p => ({ ...p, name: e.target.value }))}
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition font-bold"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase text-slate-700 tracking-wider block">
+                      {t.fieldCompanyLabel} <span className="text-red-500 font-extrabold">{t.requiredAsterisk}</span>
+                    </label>
+                    <div className="relative">
+                      <Building className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+                      <input 
+                        type="text"
+                        required
+                        placeholder={t.placeholderCompany}
+                        value={formData.company}
+                        onChange={e => setFormData(p => ({ ...p, company: e.target.value }))}
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition font-bold"
+                      />
+                    </div>
+                  </div>
+
                 </div>
 
-                {/* Field B: Company Information / Name of Firm */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                    <Building className="w-3.5 h-3.5 text-slate-400" />
-                    Company / Organization <span className="text-red-500 font-extrabold">*</span>
-                  </label>
-                  <input 
-                    type="text" 
-                    required
-                    value={formData.company}
-                    onChange={(e) => setFormData({...formData, company: e.target.value})}
-                    placeholder="e.g., Next Generation Mobility Inc."
-                    className="w-full px-4 py-3 bg-white border border-slate-250 rounded-lg text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs font-medium"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase text-slate-700 tracking-wider block">
+                      {t.fieldEmailLabel} <span className="text-red-500 font-extrabold">{t.requiredAsterisk}</span>
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+                      <input 
+                        type="email"
+                        required
+                        placeholder={t.placeholderEmail}
+                        value={formData.email}
+                        onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition font-bold"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase text-slate-700 tracking-wider block">
+                      {t.fieldCategoryLabel} <span className="text-red-500 font-extrabold">{t.requiredAsterisk}</span>
+                    </label>
+                    <div className="relative">
+                      <Sliders className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+                      <select 
+                        value={formData.inquiryType}
+                        onChange={e => setFormData(p => ({ ...p, inquiryType: e.target.value }))}
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition appearance-none cursor-pointer font-bold text-slate-900"
+                      >
+                        {categories.map((c, i) => (
+                          <option key={i} value={c.value} className="text-slate-900">{c.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
                 </div>
 
-                {/* Field C: Email Address */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-slate-400" />
-                    Email Address <span className="text-red-500 font-extrabold">*</span>
-                  </label>
-                  <input 
-                    type="email" 
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="e.g., info@example.com"
-                    className="w-full px-4 py-3 bg-white border border-slate-250 rounded-lg text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs font-medium"
-                  />
-                </div>
-
-                {/* Field D: Inquiry type */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">
-                    Inquiry Category <span className="text-red-500 font-extrabold">*</span>
-                  </label>
-                  <select 
-                    value={formData.inquiryType}
-                    onChange={(e) => setFormData({...formData, inquiryType: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-slate-250 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs font-bold"
-                  >
-                    <option>Investment / Capital Partnership (IR)</option>
-                    <option>Patent Licensing / Technical Inquiries</option>
-                    <option>Schedule a Demonstration Tour</option>
-                    <option>General Inquiry</option>
-                  </select>
-                </div>
-
-                {/* Field E: Message content */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                    <FileCode className="w-3.5 h-3.5 text-slate-400" />
-                    Inquiry Details <span className="text-red-500 font-extrabold">*</span>
+                <div className="space-y-2">
+                  <label className="text-xs font-black uppercase text-slate-700 tracking-wider block">
+                    {t.fieldDetailsLabel} <span className="text-red-500 font-extrabold">{t.requiredAsterisk}</span>
                   </label>
                   <textarea 
+                    rows={4}
                     required
-                    rows={5}
+                    placeholder={t.placeholderDetails}
                     value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    placeholder="Please specify your investment interest, suggestions, or questions."
-                    className="w-full px-4 py-3 bg-white border border-slate-250 rounded-lg text-sm text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs font-medium"
+                    onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
+                    className="w-full p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-hidden focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none font-bold"
                   />
                 </div>
 
-                {/* Privacy check agreement */}
-                <div className="flex items-start gap-2.5">
+                {/* Secure Privacy policy agreement strip */}
+                <div className="flex items-start gap-2.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
                   <input 
-                    type="checkbox" 
+                    type="checkbox"
                     id="privacyAccepted"
+                    required
                     checked={formData.privacyAccepted}
-                    onChange={(e) => setFormData({...formData, privacyAccepted: e.target.checked})}
+                    onChange={e => setFormData(p => ({ ...p, privacyAccepted: e.target.checked }))}
                     className="mt-1 rounded bg-white border-slate-350 text-blue-600 focus:ring-2 focus:ring-blue-500/30"
                   />
-                  <label htmlFor="privacyAccepted" className="text-xs text-slate-500 leading-relaxed cursor-pointer select-none font-bold">
-                    I agree that my submitted personal information and inquiry details will be protected by Dr. Yukinobu Mori and the team, and will only be used to contact me regarding this investment opportunity. <span className="text-red-500 font-extrabold">*</span>
+                  <label htmlFor="privacyAccepted" className="text-xs text-slate-600 leading-relaxed cursor-pointer select-none font-bold">
+                    {t.privacyAgreement}
                   </label>
                 </div>
 
                 {/* Submit Feedback Error */}
                 {submitError && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-lg flex items-center gap-2 font-bold">
-                    <span className="font-extrabold">🚨 Error:</span> {submitError}
+                  <div className="p-4 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-lg flex items-center gap-2 font-bold animate-shake">
+                    <span className="font-extrabold">{t.errorLabel}</span> {submitError}
                   </div>
                 )}
 
@@ -1613,7 +1681,7 @@ export default function App() {
                     disabled={isSubmitting || !formData.privacyAccepted}
                     className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-sm hover:bg-blue-700 transition active:scale-[0.98] disabled:opacity-55 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20"
                   >
-                    {isSubmitting ? "Submitting..." : "Submit Partnership Inquiry 🚀"}
+                    {isSubmitting ? t.submitting : t.btnSubmit}
                   </button>
                 </div>
 
@@ -1629,19 +1697,28 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <div className="flex items-center justify-center gap-2">
             <span className="font-black text-white text-base">E-LOOP</span>
-            <span className="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 text-slate-300 font-bold">PROJECT S-160784</span>
+            <span className="text-[10px] bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 text-slate-300 font-bold">{t.footerProject}</span>
           </div>
           <p className="max-w-md mx-auto text-[11px] text-slate-300 font-medium">
-            World-First EV-Mounted Patented Generator Portfolio / Applicant: Dr. Yukinobu Mori
+            {t.footerApplicant}
           </p>
           <div className="text-[10px] text-slate-500 space-y-1 font-medium">
-            <p>© 2026 E-LOOP Self-Regenerative Auto EV System. All Rights Reserved.</p>
-            <p>* Unauthorized reproduction or publication of the prototype rig, oscilloscope records, or patent blueprints is strictly prohibited.</p>
+            <p>{t.footerCopyright}</p>
+            <p>{t.footerDisclaimer}</p>
           </div>
         </div>
       </footer>
 
-
+      {/* FLOATING LANGUAGE SWITCH SWITCHER FOR EASY TOGGLING ON ALL DEVICES */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={handleSwitchLanguage}
+          className="flex items-center gap-2 px-4 py-3 bg-slate-900 hover:bg-slate-850 text-white rounded-full shadow-2xl transition active:scale-[0.95] border border-slate-700 font-bold text-xs"
+        >
+          <Globe className="w-4 h-4 text-blue-400 animate-spin" style={{ animationDuration: '10s' }} />
+          <span>{lang === 'en' ? "日本語" : "English"}</span>
+        </button>
+      </div>
 
     </div>
   );
