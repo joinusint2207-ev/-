@@ -1469,14 +1469,14 @@ export default function App() {
                   <div>
                     <h4 className="text-sm font-black text-slate-900">
                       {lang === 'jp' 
-                        ? "日本国内特許出願完了 (特許出願番号 2025-160784)"
-                        : "Japanese Patent Filed (Patent Application No. 2025-160784)"
+                        ? "日本国内特許出願完了 (特許出願番号 2025-160784) ／ PCT国際特許出願中"
+                        : "Japanese Patent Filed (Patent Application No. 2025-160784) & PCT International Patent Pending"
                       }
                     </h4>
                     <p className="text-xs text-slate-500 leading-relaxed mt-1 font-semibold">
                       {lang === 'jp'
                         ? "二系統バッテリーを交互にスワップさせ、一方の推進中にもう一方を同期充電可能にする高速切替リレーシステム特許を正式に出願。"
-                        : "The core battery drive swap relay mechanism was finalized and filed, paving the way for the continuous dual-battery drive-and-charge cycle."
+                        : "The core battery drive swap relay mechanism was finalized and filed, paving the way for the continuous dual-battery drive-and-charge cycle (PCT International Patent Pending)."
                       }
                     </p>
                   </div>
@@ -1489,14 +1489,14 @@ export default function App() {
                   <div>
                     <h4 className="text-sm font-black text-slate-900">
                       {lang === 'jp'
-                        ? "日本国内特許出願完了 (特許出願番号 2026-83613)"
-                        : "Japanese Patent Filed (Patent Application No. 2026-83613)"
+                        ? "日本国内特許出願完了 (特許出願番号 2026-83613) ／ PCT国際特許出願中"
+                        : "Japanese Patent Filed (Patent Application No. 2026-83613) & PCT International Patent Pending"
                       }
                     </h4>
                     <p className="text-xs text-slate-500 leading-relaxed mt-1 font-semibold">
                       {lang === 'jp'
                         ? "独自の革新的な Energy Regenerative & Management System により、クローズドループでエネルギー使用を高度に最適化した新たに発明された発電機として特許出願。"
-                        : "Dr. Mori finalized and filed the patent for the Newly Invented Electric Generator, featuring an intelligent Energy Regenerative & Management System that maximizes energy feedback."
+                        : "Dr. Mori finalized and filed the patent for the Newly Invented Electric Generator, featuring an intelligent Energy Regenerative & Management System that maximizes energy feedback (PCT International Patent Pending)."
                       }
                     </p>
                   </div>
