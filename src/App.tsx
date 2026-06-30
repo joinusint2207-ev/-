@@ -479,9 +479,7 @@ export default function App() {
               <div className="space-y-4">
                 <p className="text-sm text-blue-600 font-extrabold tracking-widest uppercase">{t.heroSystemTitle}</p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight">
-                  {lang === 'jp' ? "充電スタンドは不要。" : "No Charging Stations."}
-                  <br />
-                  {lang === 'jp' ? "排出ガスはゼロ。" : "Zero Emissions."}
+                  {lang === 'jp' ? "充電スタンド不要のEV。" : "No Charging Stations Required EV."}
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600">
                     {lang === 'jp' ? "ただ、走るだけ。" : "Just Drive."}
