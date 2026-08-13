@@ -1,6 +1,6 @@
 {
-  "name": "E-LOOP",
-  "description": "An advanced promotional website for E-LOOP, the self-regenerative, plug-free EV concept.",
+  "name": "Dr. Yukinobu Mori - Scientific Portfolio",
+  "description": "Official executive portal for Hon. Dr. Yukinobu Mori featuring 40 years of Quantum Physics, 30+ patents, AMR eradication, magnesium oxide solution, and autonomous EV power systems.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
