@@ -74,6 +74,9 @@ export default function App() {
   const [activeYtUrl, setActiveYtUrl] = useState<string>('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
 
+  // JFRL Official Laboratory Certificates Modal State
+  const [showJfrlModal, setShowJfrlModal] = useState<boolean>(false);
+
   const handleUpdateYtVideo = (e: React.FormEvent) => {
     e.preventDefault();
     if (ytUrlInput.trim()) {
@@ -641,19 +644,26 @@ export default function App() {
                 </div>
 
                 {/* 🌟 Highlighted 2004 & 2023 Official Study Data Feature */}
-                <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300/80 rounded-xl space-y-1.5 shadow-xs">
+                <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300/80 rounded-xl space-y-2.5 shadow-xs">
                   <div className="flex items-center justify-between">
                     <p className="font-black text-blue-950 text-xs flex items-center gap-1.5">
                       <Calendar className="w-4 h-4 text-blue-600" />
                       <span>{t.amrDataYearsTitle}</span>
                     </p>
                     <span className="px-2 py-0.5 bg-blue-600 text-white font-mono font-black text-[10px] rounded-full shadow-xs">
-                      2004 & 2023 Data
+                      2004 & 2023 JFRL
                     </span>
                   </div>
                   <p className="text-slate-700 leading-relaxed font-semibold">
                     {t.amrDataYearsDesc}
                   </p>
+                  <button
+                    onClick={() => setShowJfrlModal(true)}
+                    className="w-full py-2.5 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-xs rounded-lg transition flex items-center justify-center gap-2 shadow-xs"
+                  >
+                    <FileText className="w-4 h-4 text-blue-300" />
+                    <span>{t.jfrlBtnText}</span>
+                  </button>
                 </div>
 
               </div>
@@ -690,13 +700,20 @@ export default function App() {
                 </div>
 
                 {/* Data Years Callout in Card */}
-                <div className="p-3 bg-slate-950/90 border border-slate-800 rounded-xl text-center space-y-1">
+                <div className="p-3.5 bg-slate-950/90 border border-slate-800 rounded-xl text-center space-y-2">
                   <p className="text-[11px] font-mono font-bold text-slate-300">
                     Official Certified Laboratory Reports: <span className="text-blue-400">2004</span> & <span className="text-blue-400">2023</span>
                   </p>
                   <p className="text-[10px] text-slate-400 font-medium">
-                    Verified under MHLW testing protocols
+                    Verified under MHLW testing protocols by Japan Food Research Laboratories
                   </p>
+                  <button
+                    onClick={() => setShowJfrlModal(true)}
+                    className="w-full py-2 bg-blue-600/30 hover:bg-blue-600/50 border border-blue-500/50 text-blue-200 font-mono font-bold text-[11px] rounded-lg transition flex items-center justify-center gap-1.5"
+                  >
+                    <Award className="w-3.5 h-3.5 text-blue-400" />
+                    <span>Inspect JFRL Reports (Certificate No. 23056849001)</span>
+                  </button>
                 </div>
 
               </div>
@@ -1026,6 +1043,169 @@ export default function App() {
                 className="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs rounded-xl transition"
               >
                 Close Window
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* JFRL Official Certificates & Test Data Modal */}
+      {showJfrlModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto">
+            
+            {/* Header */}
+            <div className="flex justify-between items-start border-b border-slate-200 pb-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="px-3 py-1 bg-blue-100 border border-blue-300 text-blue-900 font-mono font-black text-xs rounded-lg">
+                    JFRL Official Analysis
+                  </span>
+                  <span className="px-2.5 py-0.5 bg-emerald-100 border border-emerald-300 text-emerald-900 font-mono font-black text-[10px] rounded-full">
+                    Accredited by Japanese Government
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  {t.jfrlSectionTitle}
+                </h3>
+                <p className="text-xs text-slate-600 font-medium">
+                  Client: <strong className="text-slate-900">Oxford High-Tech Research Institute Co., Ltd.</strong> (Setagaya-ku, Tokyo) • Issued: <strong className="text-blue-700">July 2023</strong>
+                </p>
+              </div>
+              <button
+                onClick={() => setShowJfrlModal(false)}
+                className="p-2 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Document 1 & 2 Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              {/* Document 1: Soft Drink Beverage Safety Certificate */}
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+                <div className="flex justify-between items-start border-b border-slate-200 pb-3">
+                  <div>
+                    <span className="text-[10px] font-mono font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded">
+                      CERTIFICATE OF ANALYSIS
+                    </span>
+                    <h4 className="font-extrabold text-slate-900 text-sm mt-1">
+                      No. 23056849001-0301
+                    </h4>
+                    <p className="text-[11px] font-mono text-slate-500">Issued: July 11, 2023</p>
+                  </div>
+                  <ShieldCheck className="w-6 h-6 text-emerald-600" />
+                </div>
+
+                <div className="space-y-2 text-xs">
+                  <p className="font-bold text-slate-800">
+                    MHLW Soft Drink Beverage Safety Standards
+                  </p>
+                  <p className="text-slate-600 text-[11px]">
+                    Notification No. 370 (1959) &quot;Specifications and Standards for Foods, Food Additives, etc.&quot;
+                  </p>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-xs">
+                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                    <span className="text-slate-700">Turbidity</span>
+                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                    <span className="text-slate-700">Sediment & Foreign Matter</span>
+                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                    <span className="text-slate-700">Coliform Group</span>
+                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                    <span className="text-slate-700">Arsenic (as As₂O₃)</span>
+                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 font-medium">
+                    <span className="text-slate-700">Lead</span>
+                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
+                  </div>
+                </div>
+
+                <p className="text-[10px] text-slate-500 font-medium italic text-right">
+                  Signed: Kumiko Yoshioka (Documentation Section, JFRL)
+                </p>
+              </div>
+
+              {/* Document 2: Bactericidal Efficiency Test (MRSA) */}
+              <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl text-white space-y-4 shadow-md">
+                <div className="flex justify-between items-start border-b border-slate-800 pb-3">
+                  <div>
+                    <span className="text-[10px] font-mono font-bold text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">
+                      BACTERICIDAL TEST REPORT
+                    </span>
+                    <h4 className="font-extrabold text-white text-sm mt-1">
+                      No. 23056849001-0401
+                    </h4>
+                    <p className="text-[11px] font-mono text-slate-400">Issued: June 30, 2023 (English: July 17, 2023)</p>
+                  </div>
+                  <Activity className="w-6 h-6 text-rose-400" />
+                </div>
+
+                <div className="space-y-1 text-xs">
+                  <p className="font-extrabold text-rose-300">
+                    Test Organism: MRSA (Staphylococcus aureus IID 1677)
+                  </p>
+                  <p className="text-slate-400 text-[11px]">
+                    Bactericidal efficiency measured at 15s, 30s, 60s, and 120s exposure.
+                  </p>
+                </div>
+
+                {/* Test Table */}
+                <div className="bg-slate-950 border border-slate-800 rounded-xl p-3 space-y-2 text-xs font-mono">
+                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                    <span className="text-slate-400">Initial Control</span>
+                    <span className="text-slate-200 font-bold">9.0 × 10⁵ / mL</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                    <span className="text-slate-400">After 15 Seconds</span>
+                    <span className="text-amber-300 font-bold">7.0 × 10⁵ / mL</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                    <span className="text-slate-400">After 30 Seconds</span>
+                    <span className="text-amber-300 font-bold">5.9 × 10⁵ / mL</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                    <span className="text-slate-400">After 60 Seconds</span>
+                    <span className="text-amber-300 font-bold">6.3 × 10⁴ / mL</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1 bg-emerald-950/60 p-1.5 rounded border border-emerald-500/40 text-[11px]">
+                    <span className="text-emerald-300 font-bold">After 120 Seconds</span>
+                    <span className="text-emerald-400 font-black px-2 py-0.5 bg-emerald-500/20 rounded">
+                      &lt;1000 / mL (UNDETECTED)
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-[10px] text-slate-400 font-medium italic text-right">
+                  Signed: Kumiko Yoshioka (Section of Analysis Documentation, JFRL)
+                </p>
+              </div>
+
+            </div>
+
+            {/* Footer Notice */}
+            <div className="p-4 bg-slate-100 border border-slate-200 rounded-2xl flex flex-wrap justify-between items-center text-xs text-slate-700 font-medium gap-3">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>
+                  Official analysis datasets and clinical verification reports from both <strong>2004 and 2023 studies</strong> are fully archived.
+                </span>
+              </div>
+              <button
+                onClick={() => setShowJfrlModal(false)}
+                className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs rounded-xl transition shadow-xs"
+              >
+                Close Certificate Inspector
               </button>
             </div>
 
