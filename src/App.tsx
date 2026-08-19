@@ -24,8 +24,8 @@ import {
 import { translations } from './translations';
 
 export default function App() {
-  // Language State (Default to Korean 'kr')
-  const [lang, setLang] = useState<'kr' | 'jp' | 'en'>('kr');
+  // Language State (Default to Japanese 'jp')
+  const [lang, setLang] = useState<'jp' | 'en' | 'kr'>('jp');
   const t = translations[lang];
 
   // JFRL Official Laboratory Certificates Modal State
@@ -83,14 +83,6 @@ export default function App() {
             <div className="flex items-center gap-3">
               <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs font-black">
                 <button
-                  onClick={() => setLang('kr')}
-                  className={`px-2.5 py-1 rounded-md transition-all ${
-                    lang === 'kr' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  한국어
-                </button>
-                <button
                   onClick={() => setLang('jp')}
                   className={`px-2.5 py-1 rounded-md transition-all ${
                     lang === 'jp' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
@@ -104,7 +96,15 @@ export default function App() {
                     lang === 'en' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  EN
+                  English
+                </button>
+                <button
+                  onClick={() => setLang('kr')}
+                  className={`px-2.5 py-1 rounded-md transition-all ${
+                    lang === 'kr' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  한국어
                 </button>
               </div>
 
@@ -429,26 +429,26 @@ export default function App() {
 
 
       {/* 🧠 3. 2ND CORE PATENT: WORLD-FIRST Mg+H2 ION WATER GENERATOR FOR DEMENTIA PREVENTIVE MEDICINE */}
-      <section id="dementia" className="py-16 sm:py-24 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-white relative overflow-hidden">
+      <section id="dementia" className="py-16 sm:py-24 bg-gradient-to-b from-purple-50/80 via-indigo-50/40 to-slate-50 text-slate-900 border-b border-slate-200 relative overflow-hidden">
         {/* Background Decorative Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px] opacity-30" />
-        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] opacity-35" />
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-purple-300/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-300/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           {/* Section Header */}
           <div className="text-center max-w-4xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-400/30 text-purple-300 font-mono font-black text-xs uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-900 font-mono font-black text-xs uppercase tracking-wider shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-purple-700 shrink-0" />
               <span>{t.mgBadge}</span>
             </div>
             
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               {t.mgTitle}
             </h2>
             
-            <p className="text-slate-300 text-sm sm:text-base lg:text-lg font-medium leading-relaxed max-w-3xl mx-auto">
+            <p className="text-slate-700 text-sm sm:text-base lg:text-lg font-semibold leading-relaxed max-w-3xl mx-auto">
               {t.mgLead}
             </p>
           </div>
@@ -456,10 +456,10 @@ export default function App() {
           {/* Key Why Needed Grid: 4 Clinical Evidence Cards */}
           <div className="space-y-6">
             <div className="text-center space-y-2">
-              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                 {t.mgWhyTitle}
               </h3>
-              <p className="text-xs sm:text-sm text-purple-300 font-mono font-semibold">
+              <p className="text-xs sm:text-sm text-purple-800 font-mono font-extrabold">
                 {t.mgWhySub}
               </p>
             </div>
@@ -467,73 +467,73 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Card 1: ANU Dementia Crisis Doubling */}
-              <div className="bg-slate-800/80 border border-amber-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-amber-500/60 transition shadow-lg">
+              <div className="bg-white border border-amber-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-md hover:shadow-xl hover:border-amber-400 transition relative">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                  <span className="px-3 py-1 bg-amber-100 text-amber-900 border border-amber-300 font-mono font-bold text-[10px] rounded-full uppercase">
                     {t.mgWhy1Source}
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-400">
+                  <div className="w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center text-amber-700">
                     <Activity className="w-5 h-5" />
                   </div>
                 </div>
-                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                <h4 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                   {t.mgWhy1Title}
                 </h4>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
                   {t.mgWhy1Desc}
                 </p>
               </div>
 
               {/* Card 2: 30 Years of Drug Failures */}
-              <div className="bg-slate-800/80 border border-red-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-red-500/60 transition shadow-lg">
+              <div className="bg-white border border-rose-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-md hover:shadow-xl hover:border-rose-400 transition relative">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 bg-red-500/20 text-red-300 border border-red-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                  <span className="px-3 py-1 bg-rose-100 text-rose-900 border border-rose-300 font-mono font-bold text-[10px] rounded-full uppercase">
                     {t.mgWhy2Source}
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-red-500/20 flex items-center justify-center text-red-400">
+                  <div className="w-9 h-9 rounded-xl bg-rose-100 flex items-center justify-center text-rose-700">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                 </div>
-                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                <h4 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                   {t.mgWhy2Title}
                 </h4>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
                   {t.mgWhy2Desc}
                 </p>
               </div>
 
               {/* Card 3: ANU Clinical Study (6000+ Subjects) */}
-              <div className="bg-slate-800/80 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-emerald-500/60 transition shadow-lg md:col-span-1">
+              <div className="bg-white border border-emerald-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-md hover:shadow-xl hover:border-emerald-400 transition relative md:col-span-1">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-900 border border-emerald-300 font-mono font-bold text-[10px] rounded-full uppercase">
                     {t.mgWhy3Source}
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700">
                     <Award className="w-5 h-5" />
                   </div>
                 </div>
-                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                <h4 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                   {t.mgWhy3Title}
                 </h4>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
                   {t.mgWhy3Desc}
                 </p>
               </div>
 
               {/* Card 4: Oxford Academic Paper */}
-              <div className="bg-slate-800/80 border border-blue-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-blue-500/60 transition shadow-lg md:col-span-1">
+              <div className="bg-white border border-blue-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-md hover:shadow-xl hover:border-blue-400 transition relative md:col-span-1">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                  <span className="px-3 py-1 bg-blue-100 text-blue-900 border border-blue-300 font-mono font-bold text-[10px] rounded-full uppercase">
                     {t.mgWhy4Source}
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400">
+                  <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700">
                     <FlaskConical className="w-5 h-5" />
                   </div>
                 </div>
-                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                <h4 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                   {t.mgWhy4Title}
                 </h4>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
                   {t.mgWhy4Desc}
                 </p>
               </div>
@@ -542,7 +542,7 @@ export default function App() {
           </div>
 
           {/* Innovation Summary Callout Banner */}
-          <div className="bg-gradient-to-r from-blue-900/60 via-indigo-900/60 to-purple-900/60 border border-purple-400/30 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-950 border border-blue-800 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl text-white">
             <div className="space-y-2 text-center md:text-left">
               <span className="text-xs font-mono font-bold text-purple-300 uppercase tracking-widest">
                 Oxford High-Tech Research Institute Co., Ltd. • Flagship Patent #2
@@ -550,14 +550,14 @@ export default function App() {
               <h4 className="text-lg sm:text-xl font-black text-white">
                 World's First Patented Mg+H2 Ion Water Generator for Dementia Prevention
               </h4>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl font-medium">
+              <p className="text-xs sm:text-sm text-slate-200 max-w-2xl font-medium">
                 Engineered under the leadership of Hon. Dr. Yukinobu Mori (40 years Quantum Physics research). Open for institutional partnerships & technology licensing.
               </p>
             </div>
             
             <a
               href="#contact"
-              className="shrink-0 px-6 py-3.5 bg-purple-500 hover:bg-purple-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2"
+              className="shrink-0 px-6 py-3.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2"
             >
               <span>{t.navContact}</span>
               <ChevronRight className="w-4 h-4" />
@@ -733,32 +733,32 @@ export default function App() {
 
 
       {/* ✉️ 5. CORPORATE INQUIRY & LICENSING FORM */}
-      <section id="contact" className="py-16 sm:py-24 bg-slate-900 text-white relative">
+      <section id="contact" className="py-16 sm:py-24 bg-slate-100/90 text-slate-900 border-b border-slate-200 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
           <div className="text-center space-y-3">
-            <span className="px-3.5 py-1 bg-blue-900 border border-blue-700 text-blue-300 font-mono font-black text-xs rounded-full uppercase">
+            <span className="px-3.5 py-1 bg-blue-100 border border-blue-300 text-blue-900 font-mono font-black text-xs rounded-full uppercase">
               {t.contactTitle}
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               {t.contactSubtitle}
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base font-normal max-w-2xl mx-auto">
+            <p className="text-slate-700 text-sm sm:text-base font-medium max-w-2xl mx-auto leading-relaxed">
               {t.contactDesc}
             </p>
           </div>
 
           {/* Form Card */}
-          <div className="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl space-y-6">
             
             {formSubmitted ? (
-              <div className="p-8 bg-emerald-950/80 border border-emerald-500/40 rounded-2xl text-center space-y-4">
-                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
-                <h3 className="text-xl font-black text-white">Corporate Inquiry Successfully Received</h3>
-                <p className="text-slate-300 text-sm font-medium">{t.submitSuccess}</p>
+              <div className="p-8 bg-emerald-50 border border-emerald-300 rounded-2xl text-center space-y-4">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                <h3 className="text-xl font-black text-slate-900">Corporate Inquiry Successfully Received</h3>
+                <p className="text-slate-700 text-sm font-medium">{t.submitSuccess}</p>
                 <button
                   onClick={() => setFormSubmitted(false)}
-                  className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition"
+                  className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition shadow-xs"
                 >
                   Submit Another Inquiry
                 </button>
@@ -768,58 +768,59 @@ export default function App() {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-300">{t.fieldName}</label>
+                    <label className="text-xs font-extrabold text-slate-800">{t.fieldName}</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g., Dr. John Smith / Oxford Health Corp"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-blue-500 font-medium"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium transition"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-300">{t.fieldEmail}</label>
+                    <label className="text-xs font-extrabold text-slate-800">{t.fieldEmail}</label>
                     <input
                       type="email"
                       required
                       placeholder="e.g., contact@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-blue-500 font-medium"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium transition"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-300">{t.fieldCategory}</label>
+                  <label className="text-xs font-extrabold text-slate-800">{t.fieldCategory}</label>
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:outline-hidden focus:border-blue-500 font-medium"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium transition"
                   >
                     <option value="catLicensing">{t.catLicensing}</option>
                     <option value="catAmrData">{t.catAmrData}</option>
+                    <option value="catDementiaData">{t.catDementiaData}</option>
                     <option value="catAcademic">{t.catAcademic}</option>
                   </select>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-300">{t.fieldMsg}</label>
+                  <label className="text-xs font-extrabold text-slate-800">{t.fieldMsg}</label>
                   <textarea
                     rows={4}
                     required
                     placeholder="Please describe your organization and specific technology transfer or data requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-blue-500 font-medium resize-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium resize-none transition"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm rounded-xl shadow-lg transition flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-sm rounded-xl shadow-lg transition flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Send className="w-4 h-4 text-blue-200" />
                   <span>{t.btnSubmit}</span>
@@ -835,10 +836,10 @@ export default function App() {
 
 
       {/* 🏛️ FOOTER */}
-      <footer className="py-8 bg-slate-950 text-slate-500 text-xs border-t border-slate-900">
+      <footer className="py-8 bg-slate-100 text-slate-600 text-xs border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-4">
-          <p className="font-bold text-slate-400">{t.footerCopy}</p>
-          <p className="text-slate-500 max-w-xl text-right font-normal leading-relaxed">
+          <p className="font-bold text-slate-800">{t.footerCopy}</p>
+          <p className="text-slate-600 max-w-xl text-right font-medium leading-relaxed">
             {t.footerNote}
           </p>
         </div>
