@@ -1,6 +1,6 @@
 {
   "name": "Oxford High-Tech Research Institute Co., Ltd.",
-  "description": "Official corporate website of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories), founded by Hon. Dr. Yukinobu Mori. Pioneer of 15-second MRSA & AMR eradication (SN Water).",
+  "description": "Official corporate portal of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories), founded by Hon. Dr. Yukinobu Mori. Pioneer of 15-second MRSA eradication (SN Water) and world-first patented Mg+H2 ion water for dementia prevention.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

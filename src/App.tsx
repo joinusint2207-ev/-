@@ -70,9 +70,10 @@ export default function App() {
             </a>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-600">
+            <nav className="hidden lg:flex items-center gap-5 text-xs font-bold text-slate-600">
               <a href="#overview" className="hover:text-blue-600 transition-colors">{t.navOverview}</a>
               <a href="#mrsa" className="hover:text-blue-600 transition-colors text-blue-700 font-extrabold">{t.navAmr}</a>
+              <a href="#dementia" className="hover:text-purple-700 transition-colors text-indigo-700 font-extrabold">{t.navMgDementia}</a>
               <a href="#founder" className="hover:text-blue-600 transition-colors">{t.navFounder}</a>
               <a href="#patents" className="hover:text-blue-600 transition-colors">{t.navPatents}</a>
               <a href="#contact" className="hover:text-blue-600 transition-colors">{t.navContact}</a>
@@ -146,17 +147,24 @@ export default function App() {
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-3.5 pt-2">
                 <a
                   href="#mrsa"
-                  className="px-6 py-3.5 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-sm rounded-xl shadow-lg shadow-blue-900/20 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+                  className="px-5 py-3 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-blue-900/20 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
                 >
                   <ShieldCheck className="w-4 h-4 text-blue-300" />
                   <span>{t.btnAmr}</span>
                 </a>
                 <a
+                  href="#dementia"
+                  className="px-5 py-3 bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-950 hover:from-indigo-800 hover:to-purple-900 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-indigo-900/20 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+                >
+                  <Sparkles className="w-4 h-4 text-purple-300" />
+                  <span>{t.btnMgDementia}</span>
+                </a>
+                <a
                   href="#overview"
-                  className="px-6 py-3.5 bg-white hover:bg-slate-100 border-2 border-slate-300 text-slate-800 font-extrabold text-sm rounded-xl shadow-xs transition-all flex items-center gap-2 hover:border-slate-400"
+                  className="px-5 py-3 bg-white hover:bg-slate-100 border-2 border-slate-300 text-slate-800 font-extrabold text-xs sm:text-sm rounded-xl shadow-xs transition-all flex items-center gap-2 hover:border-slate-400"
                 >
                   <Building2 className="w-4 h-4 text-slate-600" />
                   <span>{t.navOverview}</span>
@@ -172,7 +180,7 @@ export default function App() {
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                   <div className="flex items-center gap-2">
                     <Building2 className="w-5 h-5 text-blue-700" />
-                    <span className="font-black text-slate-900 text-xs sm:text-sm font-mono">Oxford High-Tech Research Institute</span>
+                    <span className="font-black text-slate-900 text-xs sm:text-sm font-mono uppercase">oxfordhightech</span>
                   </div>
                   <span className="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded-full">
                     Official Legal Entity
@@ -420,7 +428,144 @@ export default function App() {
       </section>
 
 
-      {/* 🎓 3. FOUNDER PROFILE & ACADEMIC AUTHORITY SECTION */}
+      {/* 🧠 3. 2ND CORE PATENT: WORLD-FIRST Mg+H2 ION WATER GENERATOR FOR DEMENTIA PREVENTIVE MEDICINE */}
+      <section id="dementia" className="py-16 sm:py-24 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-white relative overflow-hidden">
+        {/* Background Decorative Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px] opacity-30" />
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-4xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-400/30 text-purple-300 font-mono font-black text-xs uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <span>{t.mgBadge}</span>
+            </div>
+            
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+              {t.mgTitle}
+            </h2>
+            
+            <p className="text-slate-300 text-sm sm:text-base lg:text-lg font-medium leading-relaxed max-w-3xl mx-auto">
+              {t.mgLead}
+            </p>
+          </div>
+
+          {/* Key Why Needed Grid: 4 Clinical Evidence Cards */}
+          <div className="space-y-6">
+            <div className="text-center space-y-2">
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                {t.mgWhyTitle}
+              </h3>
+              <p className="text-xs sm:text-sm text-purple-300 font-mono font-semibold">
+                {t.mgWhySub}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* Card 1: ANU Dementia Crisis Doubling */}
+              <div className="bg-slate-800/80 border border-amber-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-amber-500/60 transition shadow-lg">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                    {t.mgWhy1Source}
+                  </span>
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-400">
+                    <Activity className="w-5 h-5" />
+                  </div>
+                </div>
+                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                  {t.mgWhy1Title}
+                </h4>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                  {t.mgWhy1Desc}
+                </p>
+              </div>
+
+              {/* Card 2: 30 Years of Drug Failures */}
+              <div className="bg-slate-800/80 border border-red-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-red-500/60 transition shadow-lg">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 bg-red-500/20 text-red-300 border border-red-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                    {t.mgWhy2Source}
+                  </span>
+                  <div className="w-9 h-9 rounded-xl bg-red-500/20 flex items-center justify-center text-red-400">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                </div>
+                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                  {t.mgWhy2Title}
+                </h4>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                  {t.mgWhy2Desc}
+                </p>
+              </div>
+
+              {/* Card 3: ANU Clinical Study (6000+ Subjects) */}
+              <div className="bg-slate-800/80 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-emerald-500/60 transition shadow-lg md:col-span-1">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                    {t.mgWhy3Source}
+                  </span>
+                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <Award className="w-5 h-5" />
+                  </div>
+                </div>
+                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                  {t.mgWhy3Title}
+                </h4>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                  {t.mgWhy3Desc}
+                </p>
+              </div>
+
+              {/* Card 4: Oxford Academic Paper */}
+              <div className="bg-slate-800/80 border border-blue-500/30 rounded-3xl p-6 sm:p-8 space-y-4 backdrop-blur-md relative hover:border-blue-500/60 transition shadow-lg md:col-span-1">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 font-mono font-bold text-[10px] rounded-full uppercase">
+                    {t.mgWhy4Source}
+                  </span>
+                  <div className="w-9 h-9 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400">
+                    <FlaskConical className="w-5 h-5" />
+                  </div>
+                </div>
+                <h4 className="text-base sm:text-lg font-black text-white leading-snug">
+                  {t.mgWhy4Title}
+                </h4>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                  {t.mgWhy4Desc}
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Innovation Summary Callout Banner */}
+          <div className="bg-gradient-to-r from-blue-900/60 via-indigo-900/60 to-purple-900/60 border border-purple-400/30 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <span className="text-xs font-mono font-bold text-purple-300 uppercase tracking-widest">
+                Oxford High-Tech Research Institute Co., Ltd. • Flagship Patent #2
+              </span>
+              <h4 className="text-lg sm:text-xl font-black text-white">
+                World's First Patented Mg+H2 Ion Water Generator for Dementia Prevention
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl font-medium">
+                Engineered under the leadership of Hon. Dr. Yukinobu Mori (40 years Quantum Physics research). Open for institutional partnerships & technology licensing.
+              </p>
+            </div>
+            
+            <a
+              href="#contact"
+              className="shrink-0 px-6 py-3.5 bg-purple-500 hover:bg-purple-400 text-slate-950 font-black text-xs sm:text-sm rounded-xl transition shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2"
+            >
+              <span>{t.navContact}</span>
+              <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+
+        </div>
+      </section>
       <section id="founder" className="py-16 sm:py-24 bg-slate-100/80 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
