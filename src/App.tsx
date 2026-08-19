@@ -16,12 +16,15 @@ import {
   Check,
   Sparkles,
   FlaskConical,
-  GraduationCap
+  GraduationCap,
+  Globe,
+  MapPin,
+  Briefcase
 } from 'lucide-react';
 import { translations } from './translations';
 
 export default function App() {
-  // Language State (Default to Korean 'kr' as requested)
+  // Language State (Default to Korean 'kr')
   const [lang, setLang] = useState<'kr' | 'jp' | 'en'>('kr');
   const t = translations[lang];
 
@@ -46,30 +49,31 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-blue-600 selection:text-white">
       
-      {/* 🏛️ Top Header & Navigation Bar */}
+      {/* 🏛️ Top Corporate Header & Navigation Bar */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             
-            {/* Logo / Official Seal */}
-            <a href="#" className="flex items-center gap-3 group">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform border border-blue-400/30">
-                <Atom className="w-6 h-6 animate-pulse" />
+            {/* Logo / Official Company Name */}
+            <a href="#" className="flex items-center gap-3.5 group">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-950 flex items-center justify-center text-white shadow-md shadow-blue-900/20 group-hover:scale-105 transition-transform border border-blue-400/30">
+                <Atom className="w-6 h-6 animate-pulse text-blue-300" />
               </div>
               <div>
-                <h1 className="text-base font-black tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
-                  {t.title}
+                <h1 className="text-sm sm:text-base font-black tracking-tight text-slate-900 group-hover:text-blue-700 transition-colors uppercase font-mono">
+                  {t.companyEnglishName || "OXFORD HIGH-TECH RESEARCH INSTITUTE CO., LTD."}
                 </h1>
-                <p className="text-[11px] font-semibold text-slate-500 tracking-wider">
-                  {t.subtitle}
+                <p className="text-[11px] font-bold text-blue-800 tracking-wider">
+                  {t.companyBrand} • {t.companyTagline}
                 </p>
               </div>
             </a>
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-600">
+              <a href="#overview" className="hover:text-blue-600 transition-colors">{t.navOverview}</a>
               <a href="#mrsa" className="hover:text-blue-600 transition-colors text-blue-700 font-extrabold">{t.navAmr}</a>
-              <a href="#resume" className="hover:text-blue-600 transition-colors">{t.navResume}</a>
+              <a href="#founder" className="hover:text-blue-600 transition-colors">{t.navFounder}</a>
               <a href="#patents" className="hover:text-blue-600 transition-colors">{t.navPatents}</a>
               <a href="#contact" className="hover:text-blue-600 transition-colors">{t.navContact}</a>
             </nav>
@@ -105,10 +109,10 @@ export default function App() {
 
               <a
                 href="#contact"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-xl shadow-md shadow-blue-600/15 transition-all hover:scale-105 active:scale-95"
+                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-xs rounded-xl shadow-md transition-all hover:scale-105 active:scale-95"
               >
                 <span>{t.navContact}</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-3.5 h-3.5 text-blue-300" />
               </a>
             </div>
 
@@ -116,7 +120,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* 🚀 Hero Section */}
+      {/* 🚀 Corporate Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-24 border-b border-slate-200 bg-gradient-to-b from-blue-50/80 via-slate-50 to-white">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] bg-[size:32px_32px] opacity-30" />
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-300/30 rounded-full blur-3xl pointer-events-none" />
@@ -129,7 +133,7 @@ export default function App() {
             <div className="lg:col-span-7 space-y-6">
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/90 border border-blue-300/80 text-blue-900 text-xs font-black shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                <Building2 className="w-3.5 h-3.5 text-blue-700 shrink-0" />
                 <span>{t.heroBadge}</span>
               </div>
 
@@ -145,33 +149,33 @@ export default function App() {
               <div className="flex flex-wrap gap-4 pt-2">
                 <a
                   href="#mrsa"
-                  className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm rounded-xl shadow-lg shadow-blue-600/20 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+                  className="px-6 py-3.5 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-sm rounded-xl shadow-lg shadow-blue-900/20 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
                 >
-                  <ShieldCheck className="w-4 h-4 text-blue-200" />
+                  <ShieldCheck className="w-4 h-4 text-blue-300" />
                   <span>{t.btnAmr}</span>
                 </a>
                 <a
-                  href="#resume"
+                  href="#overview"
                   className="px-6 py-3.5 bg-white hover:bg-slate-100 border-2 border-slate-300 text-slate-800 font-extrabold text-sm rounded-xl shadow-xs transition-all flex items-center gap-2 hover:border-slate-400"
                 >
-                  <GraduationCap className="w-4 h-4 text-slate-600" />
-                  <span>{t.btnResume}</span>
+                  <Building2 className="w-4 h-4 text-slate-600" />
+                  <span>{t.navOverview}</span>
                 </a>
               </div>
 
             </div>
 
-            {/* Hero Right Metrics Grid (Highlighting 20 Patent Applications & 15s MRSA Eradication) */}
+            {/* Hero Right Metrics Grid */}
             <div className="lg:col-span-5">
               <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xl relative space-y-6">
                 
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                   <div className="flex items-center gap-2">
-                    <Award className="w-5 h-5 text-blue-600" />
-                    <span className="font-extrabold text-slate-900 text-sm">Key Qualifications</span>
+                    <Building2 className="w-5 h-5 text-blue-700" />
+                    <span className="font-black text-slate-900 text-xs sm:text-sm font-mono">Oxford High-Tech Research Institute</span>
                   </div>
                   <span className="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded-full">
-                    Verified Profile
+                    Official Legal Entity
                   </span>
                 </div>
 
@@ -202,7 +206,7 @@ export default function App() {
                 <div className="p-3.5 bg-slate-900 rounded-2xl text-slate-300 text-xs font-medium flex items-center gap-3">
                   <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
                   <span>
-                    Oxford Science Park Research Founder & MHLW Soft Drink Standard Compliant.
+                    Oxford Science Park Research Founder & JFRL Certificate Recipient.
                   </span>
                 </div>
 
@@ -214,7 +218,84 @@ export default function App() {
       </section>
 
 
-      {/* 🦠 1. SPOTLIGHT TOP SECTION: MRSA & AMR ERADICATION (SN Water) */}
+      {/* 🏢 1. COMPANY OVERVIEW SECTION */}
+      <section id="overview" className="py-16 sm:py-20 bg-slate-100/90 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="px-3.5 py-1 bg-blue-200 border border-blue-300 text-blue-900 font-mono font-black text-xs rounded-full uppercase">
+              Corporate Profile
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              {t.companySectionTitle}
+            </h2>
+            <p className="text-slate-700 font-semibold text-sm sm:text-base">
+              {t.companySectionSub}
+            </p>
+          </div>
+
+          {/* Corporate Details Grid */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg space-y-6">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-blue-800 font-mono font-bold text-xs uppercase">
+                  <Building2 className="w-4 h-4 text-blue-600" />
+                  <span>{t.compLegalName}</span>
+                </div>
+                <p className="text-base font-black text-slate-900">{t.compLegalNameVal}</p>
+              </div>
+
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-indigo-800 font-mono font-bold text-xs uppercase">
+                  <FlaskConical className="w-4 h-4 text-indigo-600" />
+                  <span>{t.compBrandName}</span>
+                </div>
+                <p className="text-base font-black text-slate-900">{t.compBrandNameVal}</p>
+              </div>
+
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-emerald-800 font-mono font-bold text-xs uppercase">
+                  <Award className="w-4 h-4 text-emerald-600" />
+                  <span>{t.compFounder}</span>
+                </div>
+                <p className="text-base font-black text-slate-900">{t.compFounderVal}</p>
+              </div>
+
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-amber-800 font-mono font-bold text-xs uppercase">
+                  <MapPin className="w-4 h-4 text-amber-600" />
+                  <span>{t.compHQ}</span>
+                </div>
+                <p className="text-sm font-extrabold text-slate-900">{t.compHQVal}</p>
+              </div>
+
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 md:col-span-2">
+                <div className="flex items-center gap-2 text-blue-900 font-mono font-bold text-xs uppercase">
+                  <Globe className="w-4 h-4 text-blue-700" />
+                  <span>{t.compRnd}</span>
+                </div>
+                <p className="text-sm sm:text-base font-black text-slate-900">{t.compRndVal}</p>
+              </div>
+
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 md:col-span-2">
+                <div className="flex items-center gap-2 text-slate-800 font-mono font-bold text-xs uppercase">
+                  <Briefcase className="w-4 h-4 text-slate-700" />
+                  <span>{t.compDomain}</span>
+                </div>
+                <p className="text-sm font-bold text-slate-800 leading-relaxed">{t.compDomainVal}</p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* 🦠 2. FLAGSHIP TECHNOLOGY: MRSA & AMR ERADICATION (SN Water) */}
       <section id="mrsa" className="py-16 sm:py-24 bg-white border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -339,8 +420,8 @@ export default function App() {
       </section>
 
 
-      {/* 🎓 2. EXECUTIVE RESUME & ACADEMIC AUTHORITY SECTION */}
-      <section id="resume" className="py-16 sm:py-24 bg-slate-100/80 border-b border-slate-200">
+      {/* 🎓 3. FOUNDER PROFILE & ACADEMIC AUTHORITY SECTION */}
+      <section id="founder" className="py-16 sm:py-24 bg-slate-100/80 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           {/* Header */}
@@ -424,7 +505,7 @@ export default function App() {
       </section>
 
 
-      {/* 📜 3. OFFICIAL PATENT PORTFOLIO (20 Patent Applications Filed as Independent Inventor) */}
+      {/* 📜 4. INTELLECTUAL PROPERTY & PATENT PORTFOLIO */}
       <section id="patents" className="py-16 sm:py-24 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -506,7 +587,7 @@ export default function App() {
       </section>
 
 
-      {/* ✉️ 4. DIRECT INQUIRY & RESEARCH PARTNERSHIPS */}
+      {/* ✉️ 5. CORPORATE INQUIRY & LICENSING FORM */}
       <section id="contact" className="py-16 sm:py-24 bg-slate-900 text-white relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -528,7 +609,7 @@ export default function App() {
             {formSubmitted ? (
               <div className="p-8 bg-emerald-950/80 border border-emerald-500/40 rounded-2xl text-center space-y-4">
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
-                <h3 className="text-xl font-black text-white">Inquiry Successfully Received</h3>
+                <h3 className="text-xl font-black text-white">Corporate Inquiry Successfully Received</h3>
                 <p className="text-slate-300 text-sm font-medium">{t.submitSuccess}</p>
                 <button
                   onClick={() => setFormSubmitted(false)}
@@ -546,7 +627,7 @@ export default function App() {
                     <input
                       type="text"
                       required
-                      placeholder="e.g., Dr. John Smith / Oxford Health"
+                      placeholder="e.g., Dr. John Smith / Oxford Health Corp"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-blue-500 font-medium"
@@ -558,7 +639,7 @@ export default function App() {
                     <input
                       type="email"
                       required
-                      placeholder="e.g., contact@institution.org"
+                      placeholder="e.g., contact@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-blue-500 font-medium"
@@ -573,8 +654,8 @@ export default function App() {
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white text-sm focus:outline-hidden focus:border-blue-500 font-medium"
                   >
-                    <option value="catAmrData">{t.catAmrData}</option>
                     <option value="catLicensing">{t.catLicensing}</option>
+                    <option value="catAmrData">{t.catAmrData}</option>
                     <option value="catAcademic">{t.catAcademic}</option>
                   </select>
                 </div>
@@ -584,7 +665,7 @@ export default function App() {
                   <textarea
                     rows={4}
                     required
-                    placeholder="Please describe your organization and specific data or licensing requirements..."
+                    placeholder="Please describe your organization and specific technology transfer or data requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-hidden focus:border-blue-500 font-medium resize-none"
@@ -629,7 +710,7 @@ export default function App() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="px-3 py-1 bg-blue-100 border border-blue-300 text-blue-900 font-mono font-black text-xs rounded-lg">
-                    JFRL Official Analysis
+                    JFRL Official Certificate
                   </span>
                   <span className="px-2.5 py-0.5 bg-emerald-100 border border-emerald-300 text-emerald-900 font-mono font-black text-[10px] rounded-full">
                     Accredited by Japanese Government
@@ -639,7 +720,7 @@ export default function App() {
                   {t.jfrlSectionTitle}
                 </h3>
                 <p className="text-xs text-slate-600 font-medium">
-                  Client: <strong className="text-slate-900">Oxford High-Tech Research Institute Co., Ltd.</strong> (Setagaya-ku, Tokyo) • Issued: <strong className="text-blue-700">July 2023</strong>
+                  Issued to: <strong className="text-slate-900">Oxford High-Tech Research Institute Co., Ltd.</strong> (Setagaya-ku, Tokyo) • Issued: <strong className="text-blue-700">July 2023</strong>
                 </p>
               </div>
               <button
@@ -701,7 +782,7 @@ export default function App() {
                 </div>
 
                 <p className="text-[10px] text-slate-500 font-medium italic text-right">
-                  Signed: Kumiko Yoshioka (Documentation Section, JFRL)
+                  Client: Oxford High-Tech Research Institute Co., Ltd. • Signed: Kumiko Yoshioka (JFRL)
                 </p>
               </div>
 
@@ -756,7 +837,7 @@ export default function App() {
                 </div>
 
                 <p className="text-[10px] text-slate-400 font-medium italic text-right">
-                  Signed: Kumiko Yoshioka (Section of Analysis Documentation, JFRL)
+                  Client: Oxford High-Tech Research Institute Co., Ltd. • Signed: Kumiko Yoshioka (JFRL)
                 </p>
               </div>
 

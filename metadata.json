@@ -1,6 +1,6 @@
 {
-  "name": "Dr. Yukinobu Mori - Scientific Portfolio",
-  "description": "Official executive portal for Hon. Dr. Yukinobu Mori featuring 40 years of Quantum Physics, 30+ patents, AMR eradication, magnesium oxide solution, and autonomous EV power systems.",
+  "name": "Oxford High-Tech Research Institute Co., Ltd.",
+  "description": "Official corporate website of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories), founded by Hon. Dr. Yukinobu Mori. Pioneer of 15-second MRSA & AMR eradication (SN Water).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
