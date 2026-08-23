@@ -19,7 +19,9 @@ import {
   GraduationCap,
   Globe,
   MapPin,
-  Briefcase
+  Briefcase,
+  Zap,
+  Clock
 } from 'lucide-react';
 import { translations } from './translations';
 
@@ -409,6 +411,22 @@ export default function App() {
                   </p>
                 </div>
 
+                {/* Added 2023 BMSA FQREC Report Box */}
+                <div className="p-4 bg-indigo-900 border border-indigo-700 rounded-2xl space-y-2 text-white shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <p className="font-black text-indigo-100 text-xs flex items-center gap-1.5">
+                      <Award className="w-4 h-4 text-amber-400" />
+                      <span>{t.fqrecTitle}</span>
+                    </p>
+                    <span className="px-2 py-0.5 bg-indigo-700 text-amber-300 font-mono font-black text-[10px] rounded-full">
+                      2023 BMSA R5-31
+                    </span>
+                  </div>
+                  <p className="text-indigo-200 text-xs leading-relaxed font-medium">
+                    {t.fqrecDesc}
+                  </p>
+                </div>
+
               </div>
 
               {/* Open Modal Button */}
@@ -422,6 +440,81 @@ export default function App() {
 
             </div>
 
+          </div>
+
+          {/* 🌟 Technological Greatness & Unmatched Differentiation (3 Pillars) */}
+          <div className="pt-12 space-y-8 border-t border-slate-200 mt-12">
+            <div className="text-center space-y-2 max-w-3xl mx-auto">
+              <span className="px-3.5 py-1.5 bg-emerald-100 text-emerald-900 font-mono font-black text-xs rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <span>CORE SUPERIORITY & DIFFERENTIATION</span>
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                {t.superiorityTitle}
+              </h3>
+              <p className="text-slate-600 text-xs sm:text-sm font-medium">
+                {t.superioritySub}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Pillar 1: Official Drinking Safety */}
+              <div className="bg-white border-2 border-emerald-100 hover:border-emerald-300 rounded-3xl p-6 space-y-4 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center font-black">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-extrabold text-slate-900 text-base leading-snug">
+                    {t.sup1Title}
+                  </h4>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                    {t.sup1Desc}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono font-bold text-emerald-700">
+                  <span>MHLW No. 370 Soft Drink</span>
+                  <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 rounded">JFRL CONFORM</span>
+                </div>
+              </div>
+
+              {/* Pillar 2: Selective Bactericidal Power */}
+              <div className="bg-white border-2 border-rose-100 hover:border-rose-300 rounded-3xl p-6 space-y-4 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 bg-rose-100 text-rose-800 rounded-2xl flex items-center justify-center font-black">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-extrabold text-slate-900 text-base leading-snug">
+                    {t.sup2Title}
+                  </h4>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                    {t.sup2Desc}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono font-bold text-rose-700">
+                  <span>120s MRSA Elimination</span>
+                  <span className="px-2 py-0.5 bg-rose-50 text-rose-800 rounded">&lt;1000/mL UNDETECTED</span>
+                </div>
+              </div>
+
+              {/* Pillar 3: 20-Year Reproducibility */}
+              <div className="bg-white border-2 border-indigo-100 hover:border-indigo-300 rounded-3xl p-6 space-y-4 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 bg-indigo-100 text-indigo-800 rounded-2xl flex items-center justify-center font-black">
+                    <Clock className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-extrabold text-slate-900 text-base leading-snug">
+                    {t.sup3Title}
+                  </h4>
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+                    {t.sup3Desc}
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono font-bold text-indigo-700">
+                  <span>2004 & 2023 Studies</span>
+                  <span className="px-2 py-0.5 bg-indigo-50 text-indigo-800 rounded">100% REPRODUCIBLE</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -877,113 +970,169 @@ export default function App() {
               </button>
             </div>
 
-            {/* Document 1 & 2 Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Document Grid: 3 Official Reports */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
               {/* Document 1: Soft Drink Beverage Safety Certificate */}
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                <div className="flex justify-between items-start border-b border-slate-200 pb-3">
-                  <div>
-                    <span className="text-[10px] font-mono font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded">
-                      CERTIFICATE OF ANALYSIS
-                    </span>
-                    <h4 className="font-extrabold text-slate-900 text-sm mt-1">
-                      No. 23056849001-0301
-                    </h4>
-                    <p className="text-[11px] font-mono text-slate-500">Issued: July 11, 2023</p>
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex justify-between items-start border-b border-slate-200 pb-3">
+                    <div>
+                      <span className="text-[10px] font-mono font-bold text-blue-800 bg-blue-100 px-2 py-0.5 rounded">
+                        CERTIFICATE OF ANALYSIS
+                      </span>
+                      <h4 className="font-extrabold text-slate-900 text-sm mt-1">
+                        No. 23056849001-0301
+                      </h4>
+                      <p className="text-[11px] font-mono text-slate-500">Issued: July 11, 2023 (JFRL)</p>
+                    </div>
+                    <ShieldCheck className="w-6 h-6 text-emerald-600 shrink-0" />
                   </div>
-                  <ShieldCheck className="w-6 h-6 text-emerald-600" />
+
+                  <div className="space-y-1 text-xs">
+                    <p className="font-bold text-slate-800">
+                      MHLW Soft Drink Beverage Safety Standards
+                    </p>
+                    <p className="text-slate-600 text-[11px]">
+                      Notification No. 370 &quot;Specifications and Standards for Foods, Additives, etc.&quot;
+                    </p>
+                  </div>
+
+                  <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-xs">
+                    <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                      <span className="text-slate-700">Turbidity</span>
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded">CONFORM</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                      <span className="text-slate-700">Sediment & Foreign Matter</span>
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded">CONFORM</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                      <span className="text-slate-700">Coliform Group</span>
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded">CONFORM</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
+                      <span className="text-slate-700">Arsenic (as As₂O₃)</span>
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded">CONFORM</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 font-medium">
+                      <span className="text-slate-700">Lead</span>
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] rounded">CONFORM</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-2 text-xs">
-                  <p className="font-bold text-slate-800">
-                    MHLW Soft Drink Beverage Safety Standards
-                  </p>
-                  <p className="text-slate-600 text-[11px]">
-                    Notification No. 370 (1959) &quot;Specifications and Standards for Foods, Food Additives, etc.&quot;
-                  </p>
-                </div>
-
-                <div className="bg-white border border-slate-200 rounded-xl p-3 space-y-2 text-xs">
-                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
-                    <span className="text-slate-700">Turbidity</span>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
-                    <span className="text-slate-700">Sediment & Foreign Matter</span>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
-                    <span className="text-slate-700">Coliform Group</span>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-100 font-medium">
-                    <span className="text-slate-700">Arsenic (as As₂O₃)</span>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 font-medium">
-                    <span className="text-slate-700">Lead</span>
-                    <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-mono font-bold text-[11px] rounded">CONFORM</span>
-                  </div>
-                </div>
-
-                <p className="text-[10px] text-slate-500 font-medium italic text-right">
-                  Client: Oxford High-Tech Research Institute Co., Ltd. • Signed: Kumiko Yoshioka (JFRL)
+                <p className="text-[10px] text-slate-500 font-medium italic text-right pt-2 border-t border-slate-200">
+                  Client: Oxford High-Tech Research Institute Co., Ltd. • JFRL
                 </p>
               </div>
 
               {/* Document 2: Bactericidal Efficiency Test (MRSA) */}
-              <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl text-white space-y-4 shadow-md">
-                <div className="flex justify-between items-start border-b border-slate-800 pb-3">
-                  <div>
-                    <span className="text-[10px] font-mono font-bold text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">
-                      BACTERICIDAL TEST REPORT
-                    </span>
-                    <h4 className="font-extrabold text-white text-sm mt-1">
-                      No. 23056849001-0401
-                    </h4>
-                    <p className="text-[11px] font-mono text-slate-400">Issued: June 30, 2023 (English: July 17, 2023)</p>
+              <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl text-white space-y-4 shadow-md flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex justify-between items-start border-b border-slate-800 pb-3">
+                    <div>
+                      <span className="text-[10px] font-mono font-bold text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">
+                        MRSA TEST REPORT
+                      </span>
+                      <h4 className="font-extrabold text-white text-sm mt-1">
+                        No. 23056849001-0401
+                      </h4>
+                      <p className="text-[11px] font-mono text-slate-400">Issued: July 17, 2023 (JFRL)</p>
+                    </div>
+                    <Activity className="w-6 h-6 text-rose-400 shrink-0" />
                   </div>
-                  <Activity className="w-6 h-6 text-rose-400" />
+
+                  <div className="space-y-1 text-xs">
+                    <p className="font-extrabold text-rose-300">
+                      Organism: MRSA (Staphylococcus aureus IID 1677)
+                    </p>
+                    <p className="text-slate-400 text-[11px]">
+                      Bactericidal efficiency measured at 15s to 120s exposure.
+                    </p>
+                  </div>
+
+                  {/* Test Table */}
+                  <div className="bg-slate-950 border border-slate-800 rounded-xl p-3 space-y-2 text-xs font-mono">
+                    <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                      <span className="text-slate-400">Initial Control</span>
+                      <span className="text-slate-200 font-bold">9.0 × 10⁵ / mL</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                      <span className="text-slate-400">After 15s</span>
+                      <span className="text-amber-300 font-bold">7.0 × 10⁵ / mL</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                      <span className="text-slate-400">After 30s</span>
+                      <span className="text-amber-300 font-bold">5.9 × 10⁵ / mL</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
+                      <span className="text-slate-400">After 60s</span>
+                      <span className="text-amber-300 font-bold">6.3 × 10⁴ / mL</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 bg-emerald-950/60 p-1.5 rounded border border-emerald-500/40 text-[11px]">
+                      <span className="text-emerald-300 font-bold">After 120s</span>
+                      <span className="text-emerald-400 font-black px-1.5 py-0.5 bg-emerald-500/20 rounded">
+                        &lt;1000/mL (UNDETECTED)
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-1 text-xs">
-                  <p className="font-extrabold text-rose-300">
-                    Test Organism: MRSA (Staphylococcus aureus IID 1677)
-                  </p>
-                  <p className="text-slate-400 text-[11px]">
-                    Bactericidal efficiency measured at 15s, 30s, 60s, and 120s exposure.
-                  </p>
+                <p className="text-[10px] text-slate-400 font-medium italic text-right pt-2 border-t border-slate-800">
+                  Client: Oxford High-Tech Research Institute Co., Ltd. • JFRL
+                </p>
+              </div>
+
+              {/* Document 3: BMSA FQREC Resistant E. coli Eradication Test Report */}
+              <div className="p-5 bg-indigo-950 border border-indigo-800 rounded-2xl text-white space-y-4 shadow-md flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex justify-between items-start border-b border-indigo-800 pb-3">
+                    <div>
+                      <span className="text-[10px] font-mono font-bold text-indigo-300 bg-indigo-900 px-2 py-0.5 rounded border border-indigo-700">
+                        FQREC TEST REPORT
+                      </span>
+                      <h4 className="font-extrabold text-white text-sm mt-1">
+                        Report No. R5-31
+                      </h4>
+                      <p className="text-[11px] font-mono text-indigo-300">Issued: Sept 21, 2023 (BMSA)</p>
+                    </div>
+                    <Award className="w-6 h-6 text-amber-400 shrink-0" />
+                  </div>
+
+                  <div className="space-y-1 text-xs">
+                    <p className="font-extrabold text-indigo-200">
+                      Gunma Univ. Med. School FQREC E. coli (IMGR1240 / 1251)
+                    </p>
+                    <p className="text-indigo-300 text-[11px]">
+                      Fluoroquinolone-Resistant E. coli Superbug (2.8 × 10⁸ CFU/mL)
+                    </p>
+                  </div>
+
+                  {/* Test Table */}
+                  <div className="bg-slate-950 border border-indigo-900 rounded-xl p-3 space-y-2 text-xs font-mono">
+                    <div className="flex justify-between items-center py-1 border-b border-indigo-900 text-[11px]">
+                      <span className="text-slate-400">Initial Concentration</span>
+                      <span className="text-indigo-200 font-bold">2.8 × 10⁸ CFU/mL</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 border-b border-indigo-900 text-[11px]">
+                      <span className="text-slate-400">At 1 Minute Exposure</span>
+                      <span className="text-amber-300 font-bold">Some Alive (+)</span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 bg-emerald-950/80 p-1.5 rounded border border-emerald-500/50 text-[11px]">
+                      <span className="text-emerald-300 font-bold">At 5 Min (x8~x15 Dilution)</span>
+                      <span className="text-emerald-300 font-black px-1.5 py-0.5 bg-emerald-500/30 rounded uppercase">
+                        ALL BACTERIA DIED (-)
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-indigo-300 italic pt-1 text-center">
+                      Tested across x8, x10, x15 dilutions (0/3 colonies surviving)
+                    </div>
+                  </div>
                 </div>
 
-                {/* Test Table */}
-                <div className="bg-slate-950 border border-slate-800 rounded-xl p-3 space-y-2 text-xs font-mono">
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                    <span className="text-slate-400">Initial Control</span>
-                    <span className="text-slate-200 font-bold">9.0 × 10⁵ / mL</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                    <span className="text-slate-400">After 15 Seconds</span>
-                    <span className="text-amber-300 font-bold">7.0 × 10⁵ / mL</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                    <span className="text-slate-400">After 30 Seconds</span>
-                    <span className="text-amber-300 font-bold">5.9 × 10⁵ / mL</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                    <span className="text-slate-400">After 60 Seconds</span>
-                    <span className="text-amber-300 font-bold">6.3 × 10⁴ / mL</span>
-                  </div>
-                  <div className="flex justify-between items-center py-1 bg-emerald-950/60 p-1.5 rounded border border-emerald-500/40 text-[11px]">
-                    <span className="text-emerald-300 font-bold">After 120 Seconds</span>
-                    <span className="text-emerald-400 font-black px-2 py-0.5 bg-emerald-500/20 rounded">
-                      &lt;1000 / mL (UNDETECTED)
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-[10px] text-slate-400 font-medium italic text-right">
-                  Client: Oxford High-Tech Research Institute Co., Ltd. • Signed: Kumiko Yoshioka (JFRL)
+                <p className="text-[10px] text-indigo-300 font-medium italic text-right pt-2 border-t border-indigo-900">
+                  NPO Biomedical Science Association Narashino Laboratory
                 </p>
               </div>
 
