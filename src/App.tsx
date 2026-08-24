@@ -21,7 +21,10 @@ import {
   MapPin,
   Briefcase,
   Zap,
-  Clock
+  Clock,
+  UserCheck,
+  Users,
+  Handshake
 } from 'lucide-react';
 import { translations } from './translations';
 
@@ -265,6 +268,16 @@ export default function App() {
                 <p className="text-base font-black text-slate-900">{t.compBrandNameVal}</p>
               </div>
 
+              {/* Representative Director / CEO */}
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-purple-800 font-mono font-bold text-xs uppercase">
+                  <UserCheck className="w-4 h-4 text-purple-600" />
+                  <span>{t.compCEO}</span>
+                </div>
+                <p className="text-base font-black text-slate-900">{t.compCEOVal}</p>
+              </div>
+
+              {/* Founder & Chief Researcher */}
               <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
                 <div className="flex items-center gap-2 text-emerald-800 font-mono font-bold text-xs uppercase">
                   <Award className="w-4 h-4 text-emerald-600" />
@@ -737,6 +750,72 @@ export default function App() {
               </p>
             </div>
 
+          </div>
+
+          {/* 🤝 30-Year Trust & Global Scholarly Collaboration Section */}
+          <div className="pt-12 border-t border-slate-200 mt-12 space-y-8">
+            <div className="text-center max-w-3xl mx-auto space-y-2">
+              <span className="px-3.5 py-1.5 bg-indigo-100 text-indigo-900 border border-indigo-200 font-mono font-black text-xs rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                <Handshake className="w-3.5 h-3.5 text-indigo-600" />
+                <span>GLOBAL COLLABORATION & TRUST</span>
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                {t.synergyHeaderTitle}
+              </h3>
+              <p className="text-slate-600 text-xs sm:text-sm font-medium">
+                {t.synergyHeaderSub}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {/* Card 1: 30-Year Trust & 5 Elite Researchers */}
+              <div className="bg-gradient-to-br from-white via-slate-50 to-blue-50/50 border-2 border-blue-100 hover:border-blue-300 rounded-3xl p-6 sm:p-8 space-y-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center font-black">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <span className="px-3 py-1 bg-blue-100 text-blue-900 font-mono font-extrabold text-[11px] rounded-full">
+                      {t.synergyCard1Badge}
+                    </span>
+                  </div>
+                  <h4 className="text-lg font-black text-slate-900 leading-snug">
+                    {t.synergyCard1Title}
+                  </h4>
+                  <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
+                    {t.synergyCard1Desc}
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-blue-100/60 flex items-center justify-between text-xs font-mono font-bold text-blue-800">
+                  <span>30+ Years Leadership</span>
+                  <span className="px-2.5 py-1 bg-blue-100 rounded-lg">5 Senior JP Researchers</span>
+                </div>
+              </div>
+
+              {/* Card 2: Prof. Shigeo Ohta Collaboration */}
+              <div className="bg-gradient-to-br from-white via-slate-50 to-purple-50/50 border-2 border-purple-100 hover:border-purple-300 rounded-3xl p-6 sm:p-8 space-y-4 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center font-black">
+                      <Sparkles className="w-6 h-6" />
+                    </div>
+                    <span className="px-3 py-1 bg-purple-100 text-purple-900 font-mono font-extrabold text-[11px] rounded-full">
+                      {t.synergyCard2Badge}
+                    </span>
+                  </div>
+                  <h4 className="text-lg font-black text-slate-900 leading-snug">
+                    {t.synergyCard2Title}
+                  </h4>
+                  <p className="text-slate-700 text-xs sm:text-sm leading-relaxed font-medium">
+                    {t.synergyCard2Desc}
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-purple-100/60 flex items-center justify-between text-xs font-mono font-bold text-purple-800">
+                  <span>Prof. Shigeo Ohta (太田成男)</span>
+                  <span className="px-2.5 py-1 bg-purple-100 rounded-lg">Partner & Sponsor • New Joint Patents</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
