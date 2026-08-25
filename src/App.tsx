@@ -24,7 +24,9 @@ import {
   Clock,
   UserCheck,
   Users,
-  Handshake
+  Handshake,
+  Loader2,
+  Settings
 } from 'lucide-react';
 import { translations } from './translations';
 
@@ -35,6 +37,9 @@ export default function App() {
 
   // JFRL Official Laboratory Certificates Modal State
   const [showJfrlModal, setShowJfrlModal] = useState<boolean>(false);
+
+  // Target Recipient Email
+  const RECIPIENT_EMAIL = 'arthursophia2207@icloud.com';
 
   // Inquiry Form State
   const [formData, setFormData] = useState({
@@ -48,6 +53,15 @@ export default function App() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
+
+    const categoryLabel = t[formData.category as keyof typeof t] || formData.category;
+    const subject = encodeURIComponent(`[Oxford High-Tech Inquiry] ${categoryLabel} - ${formData.name}`);
+    const body = encodeURIComponent(
+      `Full Name / Organization: ${formData.name}\nOfficial Corporate Email: ${formData.email}\nInquiry Category: ${categoryLabel}\n\nMessage:\n${formData.message}\n\n---\nTarget Recipient: ${RECIPIENT_EMAIL}`
+    );
+
+    // Direct mailto link dispatch
+    window.location.href = `mailto:${RECIPIENT_EMAIL}?subject=${subject}&body=${body}`;
     setFormSubmitted(true);
   };
 
@@ -920,88 +934,36 @@ export default function App() {
             </p>
           </div>
 
-          {/* Form Card */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-xl space-y-6">
-            
-            {formSubmitted ? (
-              <div className="p-8 bg-emerald-50 border border-emerald-300 rounded-2xl text-center space-y-4">
-                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                <h3 className="text-xl font-black text-slate-900">Corporate Inquiry Successfully Received</h3>
-                <p className="text-slate-700 text-sm font-medium">{t.submitSuccess}</p>
-                <button
-                  onClick={() => setFormSubmitted(false)}
-                  className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition shadow-xs"
-                >
-                  Submit Another Inquiry
-                </button>
+            {/* Clean Direct Email Contact Card to arthursophia2207@icloud.com */}
+            <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-xl text-center space-y-6 max-w-2xl mx-auto">
+              <div className="w-16 h-16 bg-blue-50 border border-blue-200 rounded-2xl flex items-center justify-center mx-auto shadow-xs">
+                <Mail className="w-8 h-8 text-blue-900" />
               </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} className="space-y-5">
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-extrabold text-slate-800">{t.fieldName}</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g., Dr. John Smith / Oxford Health Corp"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium transition"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-extrabold text-slate-800">{t.fieldEmail}</label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="e.g., contact@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium transition"
-                    />
-                  </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                  Direct Email Contact
+                </h3>
+                <p className="text-slate-600 text-sm font-medium">
+                  Click the button below to send a direct inquiry email to our team.
+                </p>
+                <div className="pt-2">
+                  <span className="text-blue-950 font-mono text-base sm:text-lg font-black bg-blue-50 py-2.5 px-5 rounded-xl border border-blue-200/80 inline-block shadow-2xs">
+                    arthursophia2207@icloud.com
+                  </span>
                 </div>
+              </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-extrabold text-slate-800">{t.fieldCategory}</label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium transition"
-                  >
-                    <option value="catLicensing">{t.catLicensing}</option>
-                    <option value="catAmrData">{t.catAmrData}</option>
-                    <option value="catDementiaData">{t.catDementiaData}</option>
-                    <option value="catAcademic">{t.catAcademic}</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-extrabold text-slate-800">{t.fieldMsg}</label>
-                  <textarea
-                    rows={4}
-                    required
-                    placeholder="Please describe your organization and specific technology transfer or data requirements..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-hidden focus:border-blue-600 focus:bg-white font-medium resize-none transition"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-sm rounded-xl shadow-lg transition flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
+              <div className="pt-2">
+                <a
+                  href="mailto:arthursophia2207@icloud.com?subject=%5BOxford%20High-Tech%20Inquiry%5D"
+                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-sm rounded-xl shadow-lg transition hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Send className="w-4 h-4 text-blue-200" />
-                  <span>{t.btnSubmit}</span>
-                </button>
-
-              </form>
-            )}
-
-          </div>
+                  <span>Send Direct Email (arthursophia2207@icloud.com)</span>
+                </a>
+              </div>
+            </div>
 
         </div>
       </section>
