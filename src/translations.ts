@@ -142,11 +142,11 @@ export const translations = {
     authSubtitle: "Representative Jisuk Shin & Founder Dr. Yukinobu Mori",
     authP1: "Oxford High-Tech Research Institute Co., Ltd. is managed by Institute Representative Jisuk Shin, with scientific research directed by Founder & Chief Researcher Hon. Dr. Yukinobu Mori. Over the past 30+ years, Dr. Mori has dedicated his career to applying quantum physics to medical and life science breakthroughs, filing 20+ patent applications as an independent inventor.",
     
-    upennTitle: "Quantum Mechanics Mastery (University of Pennsylvania)",
-    upennDesc: "Mastered Advanced Quantum Mechanics at the University of Pennsylvania, USA, laying the theoretical foundation for molecular ion control.",
+    upennTitle: "Quantum Physics Mastery (University of Pennsylvania)",
+    upennDesc: "Mastered Advanced Quantum Physics at the University of Pennsylvania, USA, laying the theoretical foundation for molecular ion control.",
     
     paulingTitle: "Nobel-Level Mentorship & Quantum Chemistry (Dr. Linus Pauling)",
-    paulingDesc: "Visiting researcher at the Linus Pauling Institute of Science and Medicine under two-time Nobel Laureate Dr. Linus Pauling. Taught the most secret quantum formula applying Quantum Mechanics to Chemistry, Biology, and Molecular Science, directly inspiring the invention of SN Water and the Mg+H2 Dementia Water Generator.",
+    paulingDesc: "Visiting researcher at the Linus Pauling Institute of Science and Medicine under two-time Nobel Laureate Dr. Linus Pauling. Taught the most secret quantum formula applying Quantum Physics to Chemistry, Biology, and Molecular Science, directly inspiring the invention of SN Water and the Mg+H2 Dementia Water Generator.",
     
     claytonTitle: "Honorary Doctorate of Medicine (Preventive Medicine)",
     claytonDesc: "Awarded the title of Honorary Doctor of Medicine from Clayton University (St. Paul, MO) upon the strong personal recommendation of Dr. Linus Pauling.",
@@ -376,11 +376,11 @@ export const translations = {
     authSubtitle: "研究所代表 申志淑 ＆ 創設者 兼 最高研究員 森幸信名誉博士",
     authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は30年以上にわたり量子物理学の医学・生物学応用を研究し、個人発明家として20件以上の特許を出願・保有しています。",
     
-    upennTitle: "ペンシルベニア大学（米国）量子力学修めて",
-    upennDesc: "米国ペンシルベニア大学にて response 高度量子力学を修め、イオン分子制御の理論的基礎を確立。",
+    upennTitle: "ペンシルベニア大学（米国）量子物理学修了",
+    upennDesc: "米国ペンシルベニア大学にて高度量子物理学を修め、イオン分子制御の理論的基礎を確立。",
     
     paulingTitle: "ノーベル賞受賞者 ライナス・ポーリング博士への師事",
-    paulingDesc: "ノーベル賞2度受賞のライナス・ポーリング博士が hosted するライナス・ポーリング科学医学研究所にて客員研究員を務める。量子力学を化学・生物学・分子科学へ応用する極秘量子フォーミュラの伝授を受け、SN水およびMg+H2認知症予防装置の発明へと結実。",
+    paulingDesc: "ノーベル賞2度受賞のライナス・ポーリング博士が率いるライナス・ポーリング科学医学研究所にて客員研究員を務める。量子物理学を化学・生物学・分子科学へ応用する極秘量子フォーミュラの伝授を受け、SN水およびMg+H2認知症予防装置の発明へと結実。",
     
     claytonTitle: "クレイトン大学 医学名誉博士号 授与",
     claytonDesc: "ライナス・ポーリング博士の強力な推薦を受け、米国クレイトン大学より『予防医学 名誉博士号』を授与される。",
@@ -608,11 +608,11 @@ export const translations = {
     authSubtitle: "신지숙 연구소 대표 & 설립자 겸 최고 연구원 모리 유키노부 명예박사",
     authP1: "옥스포드 하이테크 리서치 인스티튜트 주식회사의 경영은 신지숙 연구소 대표(대표이사)가 총괄하며, 기술 연구개발 및 원천 특허는 설립자 겸 최고 연구원인 모리 유키노부 명예박사가 이끌고 있습니다. 모리 유키노부 명예박사는 지난 30여 년간 양자물리학을 의학 및 생명과학에 응용하는 연구에 전념하여 개인 발명가로서 20여 건의 특허를 출원 및 보유하고 있습니다.",
     
-    upennTitle: "펜실베이니아 대학교(미국) 양자역학 수료",
-    upennDesc: "미국 펜실베이니아 대학교에서 고도 양자역학 과정을 수료하여 이온 분자 제어의 이론적 기틀을 확립하였습니다.",
+    upennTitle: "펜실베이니아 대학교(미국) 양자물리학 수료",
+    upennDesc: "미국 펜실베이니아 대학교에서 고도 양자물리학 과정을 수료하여 이온 분자 제어의 이론적 기틀을 확립하였습니다.",
     
     paulingTitle: "노벨상 수상자 라이너스 폴링 박사 사사",
-    paulingDesc: "노벨상 2회 수상자인 라이너스 폴링 박사의 라이너스 폴링 과학의학연구소 객원연구원으로 재직하며, 양자역학을 화학·생물학·분자과학에 응용하는 극비 양자 포뮬러를 전수받아 SN Water 및 Mg+H2 치매 예방장치를 개발하였습니다.",
+    paulingDesc: "노벨상 2회 수상자인 라이너스 폴링 박사의 라이너스 폴링 과학의학연구소 객원연구원으로 재직하며, 양자물리학을 화학·생물학·분자과학에 응용하는 극비 양자 포뮬러를 전수받아 SN Water 및 Mg+H2 치매 예방장치를 개발하였습니다.",
     
     claytonTitle: "클레이튼 대학교 의학 명예박사 학위 수여",
     claytonDesc: "라이너스 폴링 박사의 강력한 친필 추천으로 미국 클레이튼 대학교로부터 '예방의학 명예박사' 학위를 수여받았습니다.",
