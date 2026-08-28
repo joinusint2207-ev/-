@@ -458,6 +458,7 @@ export default function App() {
 
               {/* Open Modal Button */}
               <button
+                id="btn-open-jfrl-inspector"
                 onClick={() => setShowJfrlModal(true)}
                 className="w-full py-3 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-xs sm:text-sm rounded-xl transition flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] active:scale-[0.98] mt-4"
               >
@@ -467,6 +468,120 @@ export default function App() {
 
             </div>
 
+          </div>
+
+          {/* 🔬 IN VITRO CERTIFIED BACTERICIDAL TEST RESULTS SUMMARY */}
+          <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl space-y-6">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-800 pb-6">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <FlaskConical className="w-3.5 h-3.5" />
+                    <span>IN VITRO LABORATORY DATA</span>
+                  </span>
+                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>100% ERADICATED</span>
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                  {t.strainsTableTitle}
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm font-medium">
+                  {t.strainsTableSub}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2 shrink-0">
+                <div className="px-3 py-1.5 bg-blue-900/60 border border-blue-600/40 rounded-xl text-blue-200 text-xs font-mono font-bold flex items-center gap-1.5">
+                  <Award className="w-4 h-4 text-amber-400" />
+                  <span>{t.mhlwAuthorityBadge}</span>
+                </div>
+                <div className="px-3 py-1.5 bg-emerald-900/60 border border-emerald-600/40 rounded-xl text-emerald-200 text-xs font-mono font-bold flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-emerald-400" />
+                  <span>{t.reproducibilityBadge}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Major Strains Eradication Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+              
+              {/* Strain 1: MRSA */}
+              <div className="bg-slate-900/90 border border-rose-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-rose-400/60 transition">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 bg-rose-950 text-rose-300 border border-rose-800 text-[10px] font-mono font-bold rounded">
+                      SUPERBUG #1
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">JFRL Certified</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-extrabold text-white leading-snug">
+                    {t.strainMrsaTitle}
+                  </h4>
+                  <div className="pt-2">
+                    <span className="text-xs font-mono text-slate-400">Exposure Time:</span>
+                    <p className="text-sm font-black text-amber-300">{t.strainMrsaTime}</p>
+                  </div>
+                </div>
+                <div className="p-3 bg-emerald-950/70 border border-emerald-500/40 rounded-xl text-center">
+                  <p className="text-xs font-black text-emerald-300">{t.strainMrsaResult}</p>
+                </div>
+              </div>
+
+              {/* Strain 2: General & Enteric Pathogens */}
+              <div className="bg-slate-900/90 border border-blue-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-blue-400/60 transition">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 bg-blue-950 text-blue-300 border border-blue-800 text-[10px] font-mono font-bold rounded">
+                      PATHOGENS
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">JFRL Certified</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-extrabold text-white leading-snug">
+                    {t.strainGeneralTitle}
+                  </h4>
+                  <div className="pt-2">
+                    <span className="text-xs font-mono text-slate-400">Exposure Time:</span>
+                    <p className="text-sm font-black text-amber-300">{t.strainGeneralTime}</p>
+                  </div>
+                </div>
+                <div className="p-3 bg-emerald-950/70 border border-emerald-500/40 rounded-xl text-center">
+                  <p className="text-xs font-black text-emerald-300">{t.strainGeneralResult}</p>
+                </div>
+              </div>
+
+              {/* Strain 3: FQREC Multidrug-Resistant E. coli */}
+              <div className="bg-slate-900/90 border border-indigo-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-indigo-400/60 transition">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-0.5 bg-indigo-950 text-indigo-300 border border-indigo-800 text-[10px] font-mono font-bold rounded">
+                      DRUG RESISTANT
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">BMSA Certified</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-extrabold text-white leading-snug">
+                    {t.strainFqrecTitle}
+                  </h4>
+                  <div className="pt-2">
+                    <span className="text-xs font-mono text-slate-400">Exposure & Dilution:</span>
+                    <p className="text-sm font-black text-amber-300">{t.strainFqrecTime}</p>
+                  </div>
+                </div>
+                <div className="p-3 bg-emerald-950/70 border border-emerald-500/40 rounded-xl text-center">
+                  <p className="text-xs font-black text-emerald-300">{t.strainFqrecResult}</p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Bottom Summary Notice */}
+            <div className="p-4 bg-slate-950/80 border border-slate-800 rounded-2xl flex items-start gap-3 text-xs text-slate-300">
+              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+              <p className="leading-relaxed font-medium">
+                {t.inVitroSummaryNotice}
+              </p>
+            </div>
           </div>
 
           {/* 🌟 Technological Greatness & Unmatched Differentiation (3 Pillars) */}
@@ -1068,13 +1183,13 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Document 2: Bactericidal Efficiency Test (MRSA) */}
+              {/* Document 2: Bactericidal Efficiency Test (MRSA & General Pathogens) */}
               <div className="p-5 bg-slate-900 border border-slate-800 rounded-2xl text-white space-y-4 shadow-md flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex justify-between items-start border-b border-slate-800 pb-3">
                     <div>
                       <span className="text-[10px] font-mono font-bold text-rose-300 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">
-                        MRSA TEST REPORT
+                        MRSA & PATHOGENS REPORT
                       </span>
                       <h4 className="font-extrabold text-white text-sm mt-1">
                         No. 23056849001-0401
@@ -1086,35 +1201,33 @@ export default function App() {
 
                   <div className="space-y-1 text-xs">
                     <p className="font-extrabold text-rose-300">
-                      Organism: MRSA (Staphylococcus aureus IID 1677)
+                      MRSA (S. aureus IID 1677) & General Pathogens
                     </p>
                     <p className="text-slate-400 text-[11px]">
-                      Bactericidal efficiency measured at 15s to 120s exposure.
+                      Bactericidal efficiency measured from 15s to 120s exposure.
                     </p>
                   </div>
 
                   {/* Test Table */}
                   <div className="bg-slate-950 border border-slate-800 rounded-xl p-3 space-y-2 text-xs font-mono">
                     <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                      <span className="text-slate-400">Initial Control</span>
+                      <span className="text-slate-400">MRSA Initial Count</span>
                       <span className="text-slate-200 font-bold">9.0 × 10⁵ / mL</span>
                     </div>
                     <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                      <span className="text-slate-400">After 15s</span>
-                      <span className="text-amber-300 font-bold">7.0 × 10⁵ / mL</span>
-                    </div>
-                    <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                      <span className="text-slate-400">After 30s</span>
-                      <span className="text-amber-300 font-bold">5.9 × 10⁵ / mL</span>
-                    </div>
-                    <div className="flex justify-between items-center py-1 border-b border-slate-800 text-[11px]">
-                      <span className="text-slate-400">After 60s</span>
-                      <span className="text-amber-300 font-bold">6.3 × 10⁴ / mL</span>
+                      <span className="text-slate-400">MRSA (15s ~ 60s)</span>
+                      <span className="text-amber-300 font-bold">7.0 × 10⁵ → 6.3 × 10⁴</span>
                     </div>
                     <div className="flex justify-between items-center py-1 bg-emerald-950/60 p-1.5 rounded border border-emerald-500/40 text-[11px]">
-                      <span className="text-emerald-300 font-bold">After 120s</span>
+                      <span className="text-emerald-300 font-bold">MRSA (120s)</span>
                       <span className="text-emerald-400 font-black px-1.5 py-0.5 bg-emerald-500/20 rounded">
                         &lt;1000/mL (UNDETECTED)
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center py-1 bg-blue-950/60 p-1.5 rounded border border-blue-500/40 text-[11px]">
+                      <span className="text-blue-300 font-bold">E. coli / Salmonella / Pseudomonas (15~60s)</span>
+                      <span className="text-blue-200 font-black px-1.5 py-0.5 bg-blue-500/20 rounded">
+                        100% ERADICATED
                       </span>
                     </div>
                   </div>
