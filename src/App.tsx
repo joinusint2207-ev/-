@@ -944,7 +944,7 @@ export default function App() {
                 </div>
                 <div className="pt-4 border-t border-blue-100/60 flex items-center justify-between text-xs font-mono font-bold text-blue-800">
                   <span>30+ Years Leadership</span>
-                  <span className="px-2.5 py-1 bg-blue-100 rounded-lg">5 Senior JP Researchers</span>
+                  <span className="px-2.5 py-1 bg-blue-100 rounded-lg">Elite Senior JP Researchers</span>
                 </div>
               </div>
 

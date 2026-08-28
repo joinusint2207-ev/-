@@ -24,12 +24,12 @@ export const translations = {
     // Hero Section
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • Official Corporate Portal",
     heroHeading: "Leading Global Innovations in Preventive Medicine & Advanced Applied Quantum Physics",
-    heroLead: "Official corporate portal of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories). Led by Institute Representative Jisuk Shin and Founder & Chief Researcher Hon. Dr. Yukinobu Mori—featuring 40 years of Quantum Physics expertise, 20+ patent applications, pioneering 15-second MRSA superbug eradication (SN Water) and the World's First Patented Mg+H2 Ion Water Generator for Dementia Prevention.",
+    heroLead: "Official corporate portal of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories). Led by Institute Representative Jisuk Shin and Founder & Chief Researcher Hon. Dr. Yukinobu Mori—featuring 30+ years of Quantum Physics expertise, 20+ patent applications, pioneering 15-second MRSA superbug eradication (SN Water) and the World's First Patented Mg+H2 Ion Water Generator for Dementia Prevention.",
     btnAmr: "Explore MRSA Breakthrough",
     btnMgDementia: "Explore Dementia Patent (Mg+H2)",
     btnFounder: "Leadership & Founder Profile",
     
-    statYears: "40+ Years",
+    statYears: "30+ Years",
     statYearsLabel: "Quantum Physics Research",
     statPatents: "20+ Filed",
     statPatentsLabel: "Patent Applications Filed",
@@ -61,7 +61,7 @@ export const translations = {
     amrBadge: "WHO-Critical Eradication Solution • Trade Secret #1",
     amrHeading: "15-Second Elimination of MRSA Superbugs & Multidrug-Resistant Strains via SN Water",
     amrCrisisTitle: "The Global AMR Superbug Crisis:",
-    amrCrisisDesc: "The World Health Organization (WHO) warns that multidrug-resistant bacteria are escalating rapidly; without an effective cure, over 40 million people will die by 2050, causing more than 10 million deaths annually.",
+    amrCrisisDesc: "The World Health Organization (WHO) warns that multidrug-resistant bacteria are escalating rapidly; without an effective cure, over 40 million people will die directly by 2050 (over 10 million annually), and related diseases are projected to claim up to 170 million lives worldwide.",
     amrEradTitle: "SN Water Eradication (Proprietary Trade Secret):",
     amrEradDesc: "Oxford High-Tech Research Institute developed SN Water (Strongly Acidic Ionized Water) that rapidly eliminates the two most fatal and critical superbug strains identified by WHO—MRSA (Methicillin-Resistant Staphylococcus aureus, accounting for >72% of resistant infection deaths) in just 15~120 seconds, and FQREC (Fluoroquinolone-Resistant E. coli) within 1~5 minutes—down to undetectable levels (100% complete eradication). Intentionally kept unpatented as a proprietary trade secret (Coca-Cola formula model) to safeguard its quantum formula.",
     amrPaulingOriginTitle: "Strongly Acidic Yet Completely Drinkable: The Quantum Physics Legacy of Nobel Laureate Dr. Linus Pauling",
@@ -140,7 +140,7 @@ export const translations = {
     // Founder Profile & Resume Section
     authTitle: "LEADERSHIP & RESEARCH AUTHORITY",
     authSubtitle: "Representative Jisuk Shin & Founder Dr. Yukinobu Mori",
-    authP1: "Oxford High-Tech Research Institute Co., Ltd. is managed by Institute Representative Jisuk Shin, with scientific research directed by Founder & Chief Researcher Hon. Dr. Yukinobu Mori. Over the past 40 years, Dr. Mori has dedicated his career to applying quantum physics to medical and life science breakthroughs, filing 20+ patent applications as an independent inventor.",
+    authP1: "Oxford High-Tech Research Institute Co., Ltd. is managed by Institute Representative Jisuk Shin, with scientific research directed by Founder & Chief Researcher Hon. Dr. Yukinobu Mori. Over the past 30+ years, Dr. Mori has dedicated his career to applying quantum physics to medical and life science breakthroughs, filing 20+ patent applications as an independent inventor.",
     
     upennTitle: "Quantum Mechanics Mastery (University of Pennsylvania)",
     upennDesc: "Mastered Advanced Quantum Mechanics at the University of Pennsylvania, USA, laying the theoretical foundation for molecular ion control.",
@@ -156,10 +156,10 @@ export const translations = {
 
     // 30 Years Trust & Prof. Shigeo Ohta Synergy
     synergyHeaderTitle: "30 YEARS OF TRUST, ELITE RESEARCHERS & COLLABORATION WITH NOBEL CANDIDATE PROF. SHIGEO OHTA",
-    synergyHeaderSub: "30-Year Korean Leadership, 5 Senior Japanese Researchers, and Partnership with Hydrogen Life Science Authority Prof. Shigeo Ohta",
+    synergyHeaderSub: "Leadership of Jisuk Shin, Elite Senior Japanese Researchers, and Partnership with Hydrogen Life Science Authority Prof. Shigeo Ohta",
     synergyCard1Badge: "30-Year Trust & Elite Research Team",
-    synergyCard1Title: "30 Years of Unwavering Trust & 5-Member Elite 'Dream Team'",
-    synergyCard1Desc: "Guided by our Korean institute leader (Jisuk Shin) for over 30 years, alongside 5 elite Japanese senior researchers who have stood in unwavering trust with Founder Dr. Mori, and backed by 30+ years of steadfast partners, this cross-border synergy powers our leap onto the global commercial stage.",
+    synergyCard1Title: "30 Years of Unwavering Trust & Elite Research Team",
+    synergyCard1Desc: "Over the past 30+ years, our institute has advanced proprietary antibacterial and bio-technologies. Guided by Institute Representative Jisuk Shin, alongside elite Japanese senior researchers who have stood in unwavering trust with Founder Dr. Mori, and backed by 30+ years of steadfast partners, this cross-border synergy powers our leap onto the global commercial stage.",
     synergyCard2Badge: "Nobel Candidate Partner & New Joint Patents",
     synergyCard2Title: "Partnership with Nobel Candidate Prof. Shigeo Ohta & Upcoming Joint Patent Applications",
     synergyCard2Desc: "Our institute directly applied for and holds the original patent for the Mg+H2 Dementia Water Generator. Prof. Shigeo Ohta, a world authority in hydrogen life sciences and leading candidate for the Nobel Prize, serves as our company's key partner and advisor. Through this active collaboration, we are currently preparing to file groundbreaking new joint patents together.",
@@ -260,12 +260,12 @@ export const translations = {
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 公式企業ポータル",
     heroHeading: "予防医学および高度応用量子科学におけるグローバルイノベーションを牽引",
-    heroLead: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社（Oxford High-Tech Laboratories）公式企業ポータル。研究所代表 申志淑（Jisuk Shin）および創設者 兼 最高研究員 森幸信名誉博士（量子物理学40年の実績・20件以上の特許出願）の指導のもと、15秒MRSA殺菌SN水および世界初の特許取得済み『認知症予防・治療用 Mg+H2イオン水生成装置』を公開いたします。",
+    heroLead: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社（Oxford High-Tech Laboratories）公式企業ポータル。研究所代表 申志淑（Jisuk Shin）および創設者 兼 最高研究員 森幸信名誉博士（量子物理学30余年の実績・20件以上の特許出願）の指導のもと、15秒MRSA殺菌SN水および世界初の特許取得済み『認知症予防・治療用 Mg+H2イオン水生成装置』を公開いたします。",
     btnAmr: "MRSA殺菌技術を見る",
     btnMgDementia: "認知症予防特許（Mg+H2水）を見る",
     btnFounder: "経営陣・創設者略歴を見る",
     
-    statYears: "40年以上",
+    statYears: "30年以上",
     statYearsLabel: "量子物理学の研究・実績",
     statPatents: "20件以上出願",
     statPatentsLabel: "特許出願実績（創設者個人出願）",
@@ -296,7 +296,7 @@ export const translations = {
     amrBadge: "WHO最重要課題ソリューション • ノウハウ秘匿 #1",
     amrHeading: "SN水によるMRSA超多剤耐性菌および各種病原菌の15秒〜120秒完全死滅",
     amrCrisisTitle: "世界的なAMR（薬剤耐性菌）の危機：",
-    amrCrisisDesc: "世界保健機関（WHO）は薬剤耐性菌の拡大に警告を発しており、有効な対策が講じられない場合、2050年までに年間1,000万人以上、累計4,000万人以上が死亡に至ると予測されています。",
+    amrCrisisDesc: "世界保健機関（WHO）は薬剤耐性菌の拡大に強い警告を発しており、有効な対策が講じられない場合、2050年までに年間1,000万人以上、直接累計4,000万人以上が死亡し、関連疾患による死亡者数は実に1億7,000万人に達すると予測されています。",
     amrEradTitle: "SN水の殺菌力（独自ノウハウ秘匿）：",
     amrEradDesc: "当研究所が開発した強酸性イオン水『SN水』は、WHOが指定する最も危険な2大耐性菌——耐性菌死亡原因の72%以上を占めるMRSA（メチシリン耐性黄色ブドウ球菌）をわずか15秒〜120秒で、FQREC（フルオロキノロン耐性大腸菌）を1〜5分以内に検出限界未満へと100%完全死滅させます。量子フォーミュラ保護のため、特許化せずノウハウ秘匿（コカ・コーラ方式）として厳重管理されています。",
     amrPaulingOriginTitle: "強酸性でありながら飲用可能な奇跡：ノーベル賞受賞者 ライナス・ポーリング博士の量子物理学の遺産",
@@ -374,7 +374,7 @@ export const translations = {
 
     authTitle: "経営陣および研究権威",
     authSubtitle: "研究所代表 申志淑 ＆ 創設者 兼 最高研究員 森幸信名誉博士",
-    authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は40年以上にわたり量子物理学の医学・生物学応用を研究し、個人発明家として20件以上の特許を出願・保有しています。",
+    authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は30年以上にわたり量子物理学の医学・生物学応用を研究し、個人発明家として20件以上の特許を出願・保有しています。",
     
     upennTitle: "ペンシルベニア大学（米国）量子力学修めて",
     upennDesc: "米国ペンシルベニア大学にて response 高度量子力学を修め、イオン分子制御の理論的基礎を確立。",
@@ -390,10 +390,10 @@ export const translations = {
 
     // 30 Years Trust & Prof. Shigeo Ohta Synergy
     synergyHeaderTitle: "30年の揺るぎない信頼、精鋭研究陣、そしてノーベル賞候補・太田成男教授とのコラボレーション",
-    synergyHeaderSub: "30年以上を牽引する韓国人代表（申志淑 代表）、5名の日本人精鋭研究員、および水素生命科学の権威・太田成男教授との強力なパートナーシップ",
+    synergyHeaderSub: "研究所代表 申志淑の経営統括、優秀な日本人精鋭研究員陣、および水素生命科学の権威・太田成男教授との強力なパートナーシップ",
     synergyCard1Badge: "30年の信頼 ＆ 精鋭ドリームチーム",
-    synergyCard1Title: "30年の歳月と5名のドリームチーム、堅固な絆",
-    synergyCard1Desc: "当研究所は過去30年余りにわたり、独創的な抗菌・殺菌およびバイオ技術の高度化に邁進してまいりました。30年以上研究所を牽引する韓国人代表（申志淑 代表 / Jisuk Shin）、創設者である森博士と変わらぬ信頼で歩みをともにしてきた5名の日本人精鋭研究員、そして30年以上の実績を持つパートナー企業の堅固な信頼が、グローバル躍進の強力な原動力となっています。",
+    synergyCard1Title: "30年の歳月と優秀な研究陣、堅固な絆",
+    synergyCard1Desc: "当研究所は過去30年余りにわたり、独創的な抗菌・殺菌およびバイオ技術の高度化に邁進してまいりました。研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者である森博士と変わらぬ信頼で歩みをともにしてきた優秀な日本人精鋭研究員陣、そして30年以上の実績を持つパートナー企業の堅固な信頼が、グローバル躍進の強力な原動力となっています。",
     synergyCard2Badge: "ノーベル賞候補の巨匠 ＆ 新規共同特許推進",
     synergyCard2Title: "水素生命科学の権威・太田成男教授（ノーベル賞候補）とのパートナーシップ ＆ 新規共同特許出願",
     synergyCard2Desc: "当研究所は世界初の『認知症予防 Mg+H2イオン水生成装置』の基本特許を自社で出願・保有しています。水素生命科学の第一人者でありノーベル賞候補として挙げられる太田成男教授が当社のパートナー兼後援者として参画しており、この強固なコラボレーションにより現在新たな共同特許の出願を準備しております。",
@@ -476,7 +476,7 @@ export const translations = {
     founderTitle: "설립자 겸 최고 연구원",
     founderName: "모리 유키노부 명예박사",
     ceoTitle: "연구소 대표 / 대표이사",
-    ceoName: "신지숙 (Jisuk Shin)",
+    ceoName: "신지숙",
     
     title: "OXFORD HIGH-TECH RESEARCH INSTITUTE CO., LTD.",
     subtitle: "옥스포드 하이테크 리서치 인스티튜트 주식회사 | 예방의학 및 양자과학 글로벌 선도기업",
@@ -492,12 +492,12 @@ export const translations = {
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 공식 기업 포털",
     heroHeading: "예방의학 및 첨단 응용 양자과학의 글로벌 혁신을 선도하다",
-    heroLead: "옥스포드 하이테크 리서치 인스티튜트 주식회사(Oxford High-Tech Research Institute Co., Ltd. / Oxford High-Tech Laboratories)의 공식 기업 웹사이트입니다. 신지숙(Jisuk Shin) 연구소 대표의 총괄 경영과 설립자 겸 최고 연구원 모리 유키노부 명예박사(양자물리학 40년 연구·20여 건 특허 출원)의 학술 지도 아래, 15초 만에 MRSA를 사멸시키는 SN Water 기술 및 세계 최초 특허 보유 『치매 예방·치료용 Mg+H2 이온수 생성장치』를 공개합니다.",
+    heroLead: "옥스포드 하이테크 리서치 인스티튜트 주식회사(Oxford High-Tech Research Institute Co., Ltd. / Oxford High-Tech Laboratories)의 공식 기업 웹사이트입니다. 신지숙 연구소 대표의 총괄 경영과 설립자 겸 최고 연구원 모리 유키노부 명예박사(양자물리학 30여 년 연구·20여 건 특허 출원)의 학술 지도 아래, 15초 만에 MRSA를 사멸시키는 SN Water 기술 및 세계 최초 특허 보유 『치매 예방·치료용 Mg+H2 이온수 생성장치』를 공개합니다.",
     btnAmr: "MRSA 박멸 기술 보기",
     btnMgDementia: "치매 예방 특허(Mg+H2) 보기",
     btnFounder: "경영진 및 설립자 프로필 보기",
     
-    statYears: "40년 이상",
+    statYears: "30년 이상",
     statYearsLabel: "양자물리학 연구 및 전문성",
     statPatents: "20여 건 출원",
     statPatentsLabel: "특허 출원 경험 (설립자 개인 출원)",
@@ -513,7 +513,7 @@ export const translations = {
     compBrandName: "연구 브랜드 / 연구소",
     compBrandNameVal: "옥스포드 하이테크 연구소 (Oxford High-Tech Laboratories)",
     compCEO: "연구소 대표 / 대표이사",
-    compCEOVal: "신지숙 (Jisuk Shin, 대표이사)",
+    compCEOVal: "신지숙 대표이사",
     compFounder: "설립자 겸 최고 연구원",
     compFounderVal: "모리 유키노부 명예박사 (의학 명예박사)",
     compHQ: "본사 소재지",
@@ -528,7 +528,7 @@ export const translations = {
     amrBadge: "WHO 최우선 과제 솔루션 • 노하우 비닉 #1",
     amrHeading: "SN Water를 통한 MRSA 슈퍼박테리아 및 주요 다제내성균의 15초~120초 완전 사멸",
     amrCrisisTitle: "글로벌 AMR(약물 내성균) 슈퍼박테리아 위기:",
-    amrCrisisDesc: "세계보건기구(WHO)는 다제내성균의 확산을 경고하고 있으며, 적절한 치료법이 없을 경우 2050년까지 매년 1,000만 명 이상, 누적 4,000만 명 이상이 사망할 것으로 예측됩니다.",
+    amrCrisisDesc: "세계보건기구(WHO)는 다제내성균의 확산을 경고하고 있으며, 적절한 치료법이 없을 경우 2050년까지 매년 1,000만 명 이상, 누적 4,000만 명 이상이 사망하고 이와 관련된 질병으로 사망할 인구는 무려 1억 7천만 명에 달할 것으로 예상됩니다.",
     amrEradTitle: "SN Water의 독자적 사멸력 (영업비밀 보호):",
     amrEradDesc: "당 연구소가 개발한 강산성 이온수 'SN Water'는 WHO가 지정한 전 세계에서 가장 치명적인 양대 슈퍼박테리아 균주인 MRSA(메티실린 내성 황색포도상구균, 내성균 사망 원인의 72% 이상 차지)를 단 15초~120초 만에, FQREC(플루오로퀴놀론 내성 대장균)를 1~5분 이내에 검출 한계 미만으로 100% 완전 사멸시킵니다. 양자 포뮬러의 영구적 보호를 위해 특허 출원 대신 코카콜라 방식의 노하우 비닉(Trade Secret)으로 엄격히 관리됩니다.",
     amrPaulingOriginTitle: "강산성인데 마실 수 있는 기적: 노벨상 수상자 라이너스 폴링 박사의 양자물리학 유산",
@@ -605,8 +605,8 @@ export const translations = {
     mgWhy4Desc: "볼페 박사의 논문에 따르면 마그네슘은 인체 내 세포에서 300가지 이상의 대사 반응을 조절하는 필수 조효소(Cofactor)입니다. 단백질 합성, 미토콘드리아 막 안정화, 신경 전달, 알츠하이머, 뇌졸중, 고혈압, 2형 당뇨 예방에 결정적 역할을 수행합니다.",
 
     authTitle: "연구소 대표 및 연구 권위",
-    authSubtitle: "신지숙(Jisuk Shin) 연구소 대표 & 설립자 겸 최고 연구원 모리 유키노부 명예박사",
-    authP1: "옥스포드 하이테크 리서치 인스티튜트 주식회의 경영은 신지숙(Jisuk Shin) 연구소 대표(대표이사)가 총괄하며, 기술 연구개발 및 원천 특허는 설립자 겸 최고 연구원인 모리 유키노부 명예박사가 이끌고 있습니다. 모리 유키노부 명예박사는 지난 40여 년간 양자물리학을 의학 및 생명과학에 응용하는 연구에 전념하여 개인 발명가로서 20여 건의 특허를 출원 및 보유하고 있습니다.",
+    authSubtitle: "신지숙 연구소 대표 & 설립자 겸 최고 연구원 모리 유키노부 명예박사",
+    authP1: "옥스포드 하이테크 리서치 인스티튜트 주식회사의 경영은 신지숙 연구소 대표(대표이사)가 총괄하며, 기술 연구개발 및 원천 특허는 설립자 겸 최고 연구원인 모리 유키노부 명예박사가 이끌고 있습니다. 모리 유키노부 명예박사는 지난 30여 년간 양자물리학을 의학 및 생명과학에 응용하는 연구에 전념하여 개인 발명가로서 20여 건의 특허를 출원 및 보유하고 있습니다.",
     
     upennTitle: "펜실베이니아 대학교(미국) 양자역학 수료",
     upennDesc: "미국 펜실베이니아 대학교에서 고도 양자역학 과정을 수료하여 이온 분자 제어의 이론적 기틀을 확립하였습니다.",
@@ -622,10 +622,10 @@ export const translations = {
 
     // 30 Years Trust & Prof. Shigeo Ohta Synergy
     synergyHeaderTitle: "30년의 묵은 신뢰, 정예 연구진, 그리고 노벨상 후보 오타 시게오 교수와의 콜라보레이션",
-    synergyHeaderSub: "30년 이상 연구소를 이끌어온 한국인 수장(신지숙 대표 / Jisuk Shin), 5인의 일본 정예 연구진, 그리고 수소 생명과학의 세계적 석학 오타 시게오 교수와의 강력한 파트너십",
-    synergyCard1Badge: "30년 묵은 신뢰 & 5인 드림팀",
-    synergyCard1Title: "30년의 세월과 5인의 드림팀, 굳건한 동행",
-    synergyCard1Desc: "본 연구소는 지난 30여 년간 독창적인 항균·살균 및 바이오 기술 고도화에 매진해 왔습니다. 30년 이상 연구소를 단단하게 이끌어온 한국인 수장(신지숙 대표 / Jisuk Shin)과, 창립자이신 모리 박사님과 변함없는 믿음으로 함께해 온 5분의 일본 소수 정예 연구진, 그리고 30년 이상 연구소의 버팀목이 되어 준 파트너사들의 굳건한 신뢰가 글로벌 도약의 강력한 원동력이 되고 있습니다.",
+    synergyHeaderSub: "신지숙 연구소 대표의 총괄 경영, 훌륭하신 일본 정예 연구진, 그리고 수소 생명과학의 세계적 석학 오타 시게오 교수와의 강력한 파트너십",
+    synergyCard1Badge: "30년 묵은 신뢰 & 정예 드림팀",
+    synergyCard1Title: "30년의 세월과 훌륭한 연구진, 굳건한 동행",
+    synergyCard1Desc: "본 연구소는 지난 30여 년간 독창적인 항균·살균 및 바이오 기술 고도화에 매진해 왔습니다. 신지숙 연구소 대표의 총괄 경영 아래, 창립자이신 모리 박사님과 변함없는 믿음으로 함께해 온 훌륭하신 일본 정예 연구원들, 그리고 30년 이상 연구소의 버팀목이 되어 준 파트너사들의 굳건한 신뢰가 글로벌 도약의 강력한 원동력이 되고 있습니다.",
     synergyCard2Badge: "노벨상 후보 석학 & 신규 공동 특허 추진",
     synergyCard2Title: "수소 생명과학의 석학 오타 시게오 교수(노벨상 후보)와의 파트너십 & 신규 특허 출원",
     synergyCard2Desc: "당사는 세계 최초 '치매 예방 Mg+H2 이온수 생성장치' 원천 특허를 직접 출원하여 소유하고 있으며, 수소 생명과학 분야 노벨상 후보로 손꼽히는 세계적 석학 오타 시게오 교수가 당사의 든든한 파트너이자 후원자로 함께하고 있습니다. 오타 시게오 교수와의 독창적인 콜라보레이션을 바탕으로 현재 혁신적인 신규 공동 특허 출원을 준비 중에 있습니다.",
