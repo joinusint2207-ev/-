@@ -93,8 +93,8 @@ export const translations = {
     superioritySub: "Three Scientifically Proven Pillars Validated by Japanese Government-Accredited Laboratories",
     sup1Title: "1. Official Drinking Safety Overturning the Myth 'Eradication Means Toxicity'",
     sup1Desc: "According to JFRL Certificate No. 23056849001-0301, SN Water passed Japanese Ministry of Health, Labour and Welfare (MHLW) Notification No. 370 standards for soft drinks. It achieved CONFORMity in turbidity, foreign matter, coliforms, as well as toxic heavy metals including Arsenic (silver diethyldithiocarbamate method) and Lead (atomic absorption spectrophotometry method). Proves it is a non-toxic liquid safe at human drinking water levels.",
-    sup2Title: "2. Absolute Selective Bactericidal Elimination of MRSA & Pathogens in 15~120 Seconds",
-    sup2Desc: "According to JFRL Test No. 23056849001-0401 on Staphylococcus aureus IID 1677 (MRSA) at 20°C, initial viable count dropped from 9.0 × 10⁵/mL down to <1000/mL (below detection limit) within 120 seconds, alongside general bacteria (E. coli, Pseudomonas, Salmonella) eliminated in 15~60 seconds. Demonstrates selective bactericidal power—completely safe for human consumption yet eliminating lethal superbugs rapidly.",
+    sup2Title: "2. Absolute Selective Bactericidal Elimination of MRSA, FQREC & Pathogens in 15s~5min",
+    sup2Desc: "According to JFRL Test No. 23056849001-0401 and BMSA Test No. R5-31, SN Water dropped initial viable MRSA count from 9.0 × 10⁵/mL down to <1000/mL (undetectable) within 120 seconds, eliminated FQREC (IMGR1240/1251) within 1~5 minutes (even at 15x dilution), alongside standard pathogens (E. coli, Pseudomonas, Salmonella) in 15~60 seconds. Demonstrates selective bactericidal power—completely safe for human consumption yet eliminating WHO top priority superbugs rapidly.",
     sup3Title: "3. Unshakable Reproducibility Proven Across 2004 & 2023 Studies",
     sup3Desc: "The greatest challenge in biomedical research is reproducibility. Following the initial validation in 2004, our technology underwent identical verification in 2023—spanning nearly 20 years. We possess all data proving that the formula's physical/chemical stability and bactericidal/safety data are consistently reproduced over decades.",
     
@@ -202,6 +202,20 @@ export const translations = {
     submitSuccess: "Thank you. Your inquiry has been received. Oxford High-Tech Research Institute Co., Ltd. will review and respond promptly.",
 
     // Footer
+    profileTitle: "CORPORATE OVERVIEW",
+    profileSub: "Official Corporate Registration & Global Verification Records",
+    profileCompNameLabel: "Corporate Name",
+    profileCompNameVal: "Oxford High-Tech Research Institute Co., Ltd.",
+    profileTypeLabel: "Entity Type",
+    profileTypeVal: "Joint-Stock Corporation",
+    profileCapitalLabel: "Paid-in Capital",
+    profileCapitalVal: "100 Million KRW (Approx. $75,000 USD / ¥11M JPY)",
+    profileLeadershipLabel: "Executive Leadership",
+    profileLeadershipVal: "Representative Director: Jisuk Shin | Founder & Chief Researcher: Hon. Dr. Yukinobu Mori",
+    profileBusinessLabel: "Core Business Domains",
+    profileBusinessVal: "Advanced Quantum Physics & Chemistry-based Bio Ionized Water (SN Water) R&D, World-First Patented Mg+H2 Dementia Water Generator Technology Licensing & Global Commercialization",
+    profileCertLabel: "Accredited Validations",
+    profileCertVal: "Japanese MHLW Soft Drink Standards Conformity (JFRL No. 23056849001-0301), MRSA 120s Complete Eradication (JFRL No. 23056849001-0401), FQREC Superbug Eradication (BMSA No. R5-31)",
     footerCopy: "© Oxford High-Tech Research Institute Co., Ltd. All rights reserved.",
     footerNote: "Oxford High-Tech Research Institute Co., Ltd. (Tokyo & Oxford). All technologies backed by 20+ filed patent applications and official government laboratory test reports (JFRL & MHLW standards)."
   },
@@ -213,7 +227,7 @@ export const translations = {
     founderTitle: "創設者 兼 最高研究員",
     founderName: "森 幸信 名誉博士",
     ceoTitle: "研究所代表 / 代表取締役",
-    ceoName: "申 智淑 (Jisuk Shin)",
+    ceoName: "申 志淑 (Jisuk Shin)",
     
     title: "OXFORD HIGH-TECH RESEARCH INSTITUTE CO., LTD.",
     subtitle: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社 | 予防医学・量子科学のパイオニア",
@@ -228,7 +242,7 @@ export const translations = {
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 公式企業ポータル",
     heroHeading: "予防医学および高度応用量子科学におけるグローバルイノベーションを牽引",
-    heroLead: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社（Oxford High-Tech Laboratories）公式企業ポータル。研究所代表 申智淑（Jisuk Shin）および創設者 兼 最高研究員 森幸信名誉博士（量子物理学40年の実績・20件以上の特許出願）の指導のもと、15秒MRSA殺菌SN水および世界初の特許取得済み『認知症予防・治療用 Mg+H2イオン水生成装置』を公開いたします。",
+    heroLead: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社（Oxford High-Tech Laboratories）公式企業ポータル。研究所代表 申志淑（Jisuk Shin）および創設者 兼 最高研究員 森幸信名誉博士（量子物理学40年の実績・20件以上の特許出願）の指導のもと、15秒MRSA殺菌SN水および世界初の特許取得済み『認知症予防・治療用 Mg+H2イオン水生成装置』を公開いたします。",
     btnAmr: "MRSA殺菌技術を見る",
     btnMgDementia: "認知症予防特許（Mg+H2水）を見る",
     btnFounder: "経営陣・創設者略歴を見る",
@@ -249,7 +263,7 @@ export const translations = {
     compBrandName: "研究ブランド / ラボ",
     compBrandNameVal: "オックスフォード・ハイテック・ラボラトリーズ",
     compCEO: "研究所代表 / 代表取締役",
-    compCEOVal: "申 智淑 (Jisuk Shin)",
+    compCEOVal: "申 志淑 (Jisuk Shin)",
     compFounder: "創設者 兼 最高研究員",
     compFounderVal: "森 幸信 名誉博士 (医学名誉博士)",
     compHQ: "本社所在地",
@@ -297,8 +311,8 @@ export const translations = {
     superioritySub: "日本政府登録検査機関等により証明された3大核心的差別化要素",
     sup1Title: "1. 『殺菌力＝毒性』の常識を覆す公式清涼飲料水適合性（無毒性）",
     sup1Desc: "JFRL成績書(第23056849001-0301号)によれば、本サンプルは厚生労働省告示第370号(食品・添加物等の規格基準)の清涼飲料水規格試験に完全適合。濁度、異物、大腸菌群に加え、銀ジエチルジチオカルバメート法によるヒ素や原子吸光光度法による鉛等の重金属試験でも『適合』を達成。『人間が飲用しても safe な飲料水レベルの無毒性殺菌液』であることが公的に証明されています。",
-    sup2Title: "2. 安全でありながらMRSA・病原菌を15秒〜120秒で完全殺菌する選択的殺菌力",
-    sup2Desc: "JFRL殺菌効率試験(第23056849001-0401号)によれば、MRSA(IID 1677)に対し120秒後に<1000/mL(検出限界未満)に急減。大腸菌・緑膿菌・サルモネラ等の一般細菌も15〜60秒で死滅。人体に無害な飲用安全性を備えながら、致死的な耐性菌・病原菌を迅速に制御する驚異の選択的殺菌力です。",
+    sup2Title: "2. 安全でありながらMRSA・FQREC・病原菌を15秒〜5分で完全殺菌する選択的殺菌力",
+    sup2Desc: "JFRL殺菌効率試験(第23056849001-0401号)およびBMSA試験(第R5-31号)によれば、MRSA(IID 1677)に対し120秒後に<1000/mL(検出限界未満)に急減。さらにFQREC耐性大腸菌(IMGR1240/1251)に対しても15倍希釈液で1〜5分以内に100%完全死滅を確認。大腸菌・緑膿菌・サルモネラ等の一般細菌も15〜60秒で死滅。人体に無害な飲用安全性を備えながら、WHO指定の最重要耐性菌・病原菌を迅速に制御する驚異の選択的殺菌力です。",
     sup3Title: "3. 2004年＆2023年試験で証明された『揺るぎない実験再現性』",
     sup3Desc: "バイオ研究の最大の難題は実験の再現性です。当社は2004年の第1次検証に続き、2023年の最新検証に至るまで約20年間にわたる実証データを保有しています。長年の歳月が流れてもフォーミュラの物理・化学的安定性と殺菌・安全データが一貫して再現される点は、本技術の本質的信頼性を保証します。",
     
@@ -341,8 +355,8 @@ export const translations = {
     mgWhy4Desc: "ヴォルペ博士の論文によると、マグネシウムは体内細胞で300種類以上の代謝反応に関与する必須補酵素です。タンパク質合成、ミトコンドリア膜の安定化、神経伝達、アルツハイマー病・脳卒中・高血圧・2型糖尿病の予防に極めて重要な役割を果たします。",
 
     authTitle: "経営陣および研究権威",
-    authSubtitle: "研究所代表 申智淑 ＆ 創設者 兼 最高研究員 森幸信名誉博士",
-    authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申智淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は40年以上にわたり量子物理学の医学・生物学応用を研究し、個人発明家として20件以上の特許を出願・保有しています。",
+    authSubtitle: "研究所代表 申志淑 ＆ 創設者 兼 最高研究員 森幸信名誉博士",
+    authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は40年以上にわたり量子物理学の医学・生物学応用を研究し、個人発明家として20件以上の特許を出願・保有しています。",
     
     upennTitle: "ペンシルベニア大学（米国）量子力学修めて",
     upennDesc: "米国ペンシルベニア大学にて response 高度量子力学を修め、イオン分子制御の理論的基礎を確立。",
@@ -358,10 +372,10 @@ export const translations = {
 
     // 30 Years Trust & Prof. Shigeo Ohta Synergy
     synergyHeaderTitle: "30年の揺るぎない信頼、精鋭研究陣、そしてノーベル賞候補・太田成男教授とのコラボレーション",
-    synergyHeaderSub: "30年以上を牽引する韓国人代表（申智淑 代表）、5名の日本人精鋭研究員、および水素生命科学の権威・太田成男教授との強力なパートナーシップ",
+    synergyHeaderSub: "30年以上を牽引する韓国人代表（申志淑 代表）、5名の日本人精鋭研究員、および水素生命科学の権威・太田成男教授との強力なパートナーシップ",
     synergyCard1Badge: "30年の信頼 ＆ 精鋭ドリームチーム",
     synergyCard1Title: "30年の歳月と5名のドリームチーム、堅固な絆",
-    synergyCard1Desc: "当研究所は過去30年余りにわたり、独創的な抗菌・殺菌およびバイオ技術の高度化に邁進してまいりました。30年以上研究所を牽引する韓国人代表（申智淑 代表 / Jisuk Shin）、創設者である森博士と変わらぬ信頼で歩みをともにしてきた5名の日本人精鋭研究員、そして30年以上の実績を持つパートナー企業の堅固な信頼が、グローバル躍進の強力な原動力となっています。",
+    synergyCard1Desc: "当研究所は過去30年余りにわたり、独創的な抗菌・殺菌およびバイオ技術の高度化に邁進してまいりました。30年以上研究所を牽引する韓国人代表（申志淑 代表 / Jisuk Shin）、創設者である森博士と変わらぬ信頼で歩みをともにしてきた5名の日本人精鋭研究員、そして30年以上の実績を持つパートナー企業の堅固な信頼が、グローバル躍進の強力な原動力となっています。",
     synergyCard2Badge: "ノーベル賞候補の巨匠 ＆ 新規共同特許推進",
     synergyCard2Title: "水素生命科学の権威・太田成男教授（ノーベル賞候補）とのパートナーシップ ＆ 新規共同特許出願",
     synergyCard2Desc: "当研究所は世界初の『認知症予防 Mg+H2イオン水生成装置』の基本特許を自社で出願・保有しています。水素生命科学の第一人者でありノーベル賞候補として挙げられる太田成男教授が当社のパートナー兼後援者として参画しており、この強固なコラボレーションにより現在新たな共同特許の出願を準備しております。",
@@ -402,6 +416,21 @@ export const translations = {
     btnSubmit: "企業お問い合わせを送信",
     submitSuccess: "お問い合わせを受け付けました。オックスフォード・ハイテック・リサーチ・インスティテュート株式会社よりご連絡いたします。",
 
+    // Footer
+    profileTitle: "会社概要",
+    profileSub: "公式登記情報および公認機関検証記録",
+    profileCompNameLabel: "法人名",
+    profileCompNameVal: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社",
+    profileTypeLabel: "法人形態",
+    profileTypeVal: "株式会社 (Joint-Stock Corporation)",
+    profileCapitalLabel: "資本金",
+    profileCapitalVal: "約1,100万円 (100,000,000 KRW / 1億ウォン)",
+    profileLeadershipLabel: "役員・研究統括",
+    profileLeadershipVal: "代表取締役：申 志淑 (Jisuk Shin) | 創設者 兼 最高研究員：森 幸信 名誉博士",
+    profileBusinessLabel: "主な事業内容",
+    profileBusinessVal: "先端量子物理・量子化学に基づく抗菌イオン水（SN水）原典技術R&D、世界初特許取得済『認知症予防・治療用Mg+H2イオン水生成装置』の技術ライセンスおよびグローバル事業化",
+    profileCertLabel: "公認検証・認証機関",
+    profileCertVal: "厚生労働省告示第370号清涼飲料水規格適合(JFRL 第23056849001-0301号)、MRSA120秒死滅(JFRL 第23056849001-0401号)、FQREC耐性菌完全死滅(BMSA 第R5-31号)",
     footerCopy: "© Oxford High-Tech Research Institute Co., Ltd. All rights reserved.",
     footerNote: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社 (東京・オックスフォード)。掲載されているすべての技術は、20件以上の特許出願および公式実験報告書（JFRLおよび厚生労働省基準）に裏付けられています。"
   },
@@ -497,8 +526,8 @@ export const translations = {
     superioritySub: "정부 공인 기관 검증으로 입증된 SN Water의 3대 핵심 차별화 요소",
     sup1Title: "1. \"대부분 사멸시키면 유해하다\"는 통념을 깬 공식 음용 안전성",
     sup1Desc: "JFRL 성적서(No. 23056849001-0301)에 따르면, 본 샘플은 일본 후생노동성 고시 제370호(식품·식품첨가물 등에 관한 규격기준)에 따른 청량음료수 성분 기준을 정식으로 거쳤습니다. 그 결과 탁도, 이물질(침전 및 고형 이물), 대장균군을 포함한 모든 일반 기준에 적합(Conform) 판정을 받았으며, 은디에틸디티오카바메이트법으로 측정한 비소와 원자흡광광도법으로 측정한 납 등 유해 중금속 항목에서도 완벽히 적합 판정을 받았습니다. 즉, \"인간이 마셔도 안전한 음료수 수준의 무독성 용액\"임이 정부 공인 기관을 통해 공식적으로 증명된 것입니다.",
-    sup2Title: "2. 안전하면서도 MRSA 및 유해 병원균을 15초~120초 만에 완벽히 사멸시키는 살균력",
-    sup2Desc: "JFRL 살균 효율 테스트(No. 23056849001-0401)에 따르면, MRSA(황색포도상구균 IID 1677)는 120초 이내에 <1000/mL(검출 한계 미만)로 완전 사멸하였으며, 대장균, 녹농균, 살모넬라, 황색포도상구균 등 일반 세균 역시 15초~60초 이내에 모두 검출 한계 미만으로 사멸되었습니다. 인체에 무해한 음용 안전성을 갖추었음에도 불구하고, 치명적인 약제 내성균 및 유해 세균을 신속히 제어하는 놀라운 선택적 살균력을 보여줍니다.",
+    sup2Title: "2. 안전하면서도 MRSA·FQREC 및 유해 병원균을 15초~5분 만에 완벽히 사멸시키는 살균력",
+    sup2Desc: "JFRL 살균 효율 테스트(No. 23056849001-0401) 및 BMSA 성적서(제R5-31호)에 따르면, MRSA(황색포도상구균 IID 1677)는 120초 이내에 <1000/mL(검출 한계 미만)로 완전 사멸하였으며, FQREC 내성 대장균(IMGR1240/1251) 역시 15배 희석액에서도 1~5분 이내에 100% 완전 사멸되었습니다. 대장균, 녹농균, 살모넬라 등 일반 세균 역시 15초~60초 이내에 모두 검출 한계 미만으로 사멸되었습니다. 인체에 무해한 음용 안전성을 갖추었음에도 불구하고, WHO 최우선 경고 대상인 치명적 다제내성균 및 유해 세균을 신속히 제어하는 놀라운 선택적 살균력을 보여줍니다.",
     sup3Title: "3. 2004년 & 2023년 테스트로 증명된 20년의 '흔들리지 않는 완벽한 재현성'",
     sup3Desc: "바이오 연구의 가장 큰 난제는 실험의 재현성입니다. 당사는 2004년 1차 검증에 이어, 2023년 최신 검증에 이르기까지 약 20년에 걸친 시점별 실증을 거쳤으며, 이 모든 데이터를 완벽히 보유하고 있습니다. 오랜 세월이 흘러도 포뮬러의 물리·화학적 안정성과 살균·안전 데이터가 일관되게 재현된다는 점은 이 기술이 단순한 일회성 현상이 아님을 명백히 보증합니다.",
     
@@ -602,6 +631,21 @@ export const translations = {
     btnSubmit: "기업 문의 제출하기",
     submitSuccess: "문의가 정상 접수되었습니다. 옥스포드 하이테크 리서치 인스티튜트 주식회사에서 신속히 검토 후 답변드리겠습니다.",
 
+    // Footer
+    profileTitle: "회사 개요",
+    profileSub: "공식 법인 등기 정보 및 공인 인증 기록",
+    profileCompNameLabel: "법인명",
+    profileCompNameVal: "옥스포드 하이테크 리서치 인스티튜트 주식회사",
+    profileTypeLabel: "법인 형태",
+    profileTypeVal: "주식회사",
+    profileCapitalLabel: "자본금",
+    profileCapitalVal: "100,000,000원 (금 일억원)",
+    profileLeadershipLabel: "대표 및 연구진",
+    profileLeadershipVal: "대표이사: 신지숙 | 설립자 겸 최고연구원: 모리 유키노부 명예박사",
+    profileBusinessLabel: "주요 사업",
+    profileBusinessVal: "첨단 양자물리·양자화학 기반 항균 이온수(SN Water) 원천기술 R&D, 세계 최초 특허 취득 '치매 예방·치료용 Mg+H2 수소 이온수 생성장치' 기술 라이선싱 및 글로벌 사업화",
+    profileCertLabel: "공인 검증 및 인증",
+    profileCertVal: "일본 후생노동성(MHLW) 청량음료수 규격 적합(JFRL 제23056849001-0301호), MRSA 120초 사멸(JFRL 제23056849001-0401호), FQREC 100% 완전 사멸(BMSA 제R5-31호)",
     footerCopy: "© Oxford High-Tech Research Institute Co., Ltd. All rights reserved.",
     footerNote: "옥스포드 하이테크 리서치 인스티튜트 주식회사 (도쿄 & 옥스퍼드). 본 웹사이트에 게재된 모든 기술은 20여 건의 특허 출원 및 공식 정부 지정 기관(JFRL 및 후생노동성 기준) 성적서에 의해 입증되었습니다."
   }

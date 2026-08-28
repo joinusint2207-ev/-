@@ -26,7 +26,9 @@ import {
   Users,
   Handshake,
   Loader2,
-  Settings
+  Settings,
+  Coins,
+  Scale
 } from 'lucide-react';
 import { translations } from './translations';
 
@@ -380,15 +382,25 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* 🌟 Nobel Laureate Dr. Linus Pauling Quantum Physics Legacy & Drinkable Strong Acid Origin */}
-                <div className="p-4 sm:p-5 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl space-y-2 shadow-sm">
-                  <div className="flex items-center gap-2 text-blue-900 font-black text-xs uppercase tracking-wider">
-                    <Award className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span className="break-keep">{t.amrPaulingOriginTitle}</span>
+                {/* 🌟 Nobel Laureate Dr. Linus Pauling Quantum Physics Legacy & Drinkable Strong Acid Origin (High-Visibility Spotlight) */}
+                <div className="relative overflow-hidden p-5 sm:p-6 bg-gradient-to-br from-amber-500/10 via-blue-500/10 to-indigo-500/15 border-2 border-amber-400/80 rounded-2xl space-y-3 shadow-lg ring-4 ring-amber-400/10">
+                  <div className="absolute top-0 right-0 -mt-2 -mr-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-extrabold text-[10px] sm:text-xs px-3 py-1 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-yellow-200" />
+                    <span>Nobel Laureate Legacy</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal break-keep">
-                    {t.amrPaulingOriginDesc}
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <div className="p-2.5 bg-amber-100 border border-amber-300 rounded-xl text-amber-700 shadow-sm shrink-0 mt-0.5">
+                      <Award className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <h4 className="text-sm sm:text-base font-black text-slate-900 leading-snug break-keep flex items-center gap-1.5">
+                        <span className="text-amber-800">★</span> {t.amrPaulingOriginTitle}
+                      </h4>
+                      <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed font-medium break-keep">
+                        {t.amrPaulingOriginDesc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Speed Comparison Banner */}
@@ -1095,11 +1107,74 @@ export default function App() {
       </section>
 
 
+      {/* 🏛️ 6. CORPORATE OVERVIEW (会社概要 / 공식 법인 개요 - 글로벌 표준 단일 테이블) */}
+      <section className="py-10 bg-slate-900/90 text-slate-200 border-t border-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          
+          <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+            <Building2 className="w-4 h-4 text-blue-400" />
+            <h3 className="text-sm font-mono font-bold text-white tracking-wider uppercase">
+              {t.profileTitle}
+            </h3>
+          </div>
+
+          {/* Clean Institutional Table Layout */}
+          <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950/80 text-xs sm:text-sm">
+            <dl className="divide-y divide-slate-800/80">
+              
+              {/* Row 1: Legal Name */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 px-5 py-3 hover:bg-slate-900/40 transition-colors">
+                <dt className="font-mono text-slate-400 font-medium sm:col-span-1">{t.profileCompNameLabel}</dt>
+                <dd className="text-slate-100 font-semibold sm:col-span-3 mt-1 sm:mt-0">
+                  {t.profileCompNameVal}
+                </dd>
+              </div>
+
+              {/* Row 2: Structure & Capital (단 한 번만 깔끔하게 표기) */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 px-5 py-3 hover:bg-slate-900/40 transition-colors">
+                <dt className="font-mono text-slate-400 font-medium sm:col-span-1">{t.profileTypeLabel} / {t.profileCapitalLabel}</dt>
+                <dd className="text-slate-200 sm:col-span-3 mt-1 sm:mt-0 flex flex-wrap items-center gap-x-4 gap-y-1">
+                  <span>{t.profileTypeVal}</span>
+                  <span className="text-slate-600">•</span>
+                  <span>{t.profileCapitalLabel}: <strong className="text-slate-100 font-mono font-semibold">{t.profileCapitalVal}</strong></span>
+                </dd>
+              </div>
+
+              {/* Row 3: Leadership */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 px-5 py-3 hover:bg-slate-900/40 transition-colors">
+                <dt className="font-mono text-slate-400 font-medium sm:col-span-1">{t.profileLeadershipLabel}</dt>
+                <dd className="text-slate-200 sm:col-span-3 mt-1 sm:mt-0">
+                  {t.profileLeadershipVal}
+                </dd>
+              </div>
+
+              {/* Row 4: Core Business */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 px-5 py-3 hover:bg-slate-900/40 transition-colors">
+                <dt className="font-mono text-slate-400 font-medium sm:col-span-1">{t.profileBusinessLabel}</dt>
+                <dd className="text-slate-300 sm:col-span-3 mt-1 sm:mt-0 leading-relaxed text-xs">
+                  {t.profileBusinessVal}
+                </dd>
+              </div>
+
+              {/* Row 5: Validations */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 px-5 py-3 hover:bg-slate-900/40 transition-colors">
+                <dt className="font-mono text-slate-400 font-medium sm:col-span-1">{t.profileCertLabel}</dt>
+                <dd className="text-slate-300 sm:col-span-3 mt-1 sm:mt-0 leading-relaxed text-xs">
+                  {t.profileCertVal}
+                </dd>
+              </div>
+
+            </dl>
+          </div>
+
+        </div>
+      </section>
+
       {/* 🏛️ FOOTER */}
-      <footer className="py-8 bg-slate-100 text-slate-600 text-xs border-t border-slate-200">
+      <footer className="py-6 bg-slate-950 text-slate-400 text-xs border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-4">
-          <p className="font-bold text-slate-800">{t.footerCopy}</p>
-          <p className="text-slate-600 max-w-xl text-right font-medium leading-relaxed">
+          <p className="font-bold text-slate-300">{t.footerCopy}</p>
+          <p className="text-slate-400 max-w-xl text-right font-medium leading-relaxed">
             {t.footerNote}
           </p>
         </div>
