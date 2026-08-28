@@ -352,52 +352,63 @@ export default function App() {
           {/* Main MRSA Solution Spotlight Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            {/* Left Card: The Crisis vs. SN Water Solution */}
-            <div className="lg:col-span-7 bg-slate-900 text-white rounded-3xl p-6 sm:p-10 space-y-6 shadow-2xl flex flex-col justify-between relative overflow-hidden border border-slate-800">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-rose-600/10 rounded-full blur-3xl pointer-events-none" />
+            {/* Left Card: The Crisis vs. SN Water Solution (Clean, Bright Medical White & Platinum Palette) */}
+            <div className="lg:col-span-7 bg-white text-slate-900 rounded-3xl p-6 sm:p-10 space-y-6 shadow-xl flex flex-col justify-between relative overflow-hidden border-2 border-slate-200">
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="space-y-6">
+              <div className="space-y-6 relative z-10">
                 
-                {/* WHO Crisis Box */}
-                <div className="p-4 bg-rose-950/60 border border-rose-500/30 rounded-2xl space-y-2">
-                  <div className="flex items-center gap-2 text-rose-400 font-black text-xs uppercase tracking-wider">
+                {/* WHO Crisis Box (Crisp Rose/Crimson Light Alert) */}
+                <div className="p-4 sm:p-5 bg-rose-50 border border-rose-200 rounded-2xl space-y-2">
+                  <div className="flex items-center gap-2 text-rose-700 font-black text-xs uppercase tracking-wider">
                     <Activity className="w-4 h-4" />
                     <span>{t.amrCrisisTitle}</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
+                  <p className="text-xs sm:text-sm text-rose-950 leading-relaxed font-medium">
                     {t.amrCrisisDesc}
                   </p>
                 </div>
 
                 {/* SN Water Eradication & Trade Secret */}
                 <div className="space-y-3">
-                  <h3 className="text-xl sm:text-2xl font-black text-emerald-400 flex items-center gap-2">
-                    <ShieldCheck className="w-6 h-6 text-emerald-400" />
+                  <h3 className="text-xl sm:text-2xl font-black text-blue-900 flex items-center gap-2">
+                    <ShieldCheck className="w-6 h-6 text-emerald-600 shrink-0" />
                     <span>{t.amrEradTitle}</span>
                   </h3>
-                  <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal">
+                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
                     {t.amrEradDesc}
+                  </p>
+                </div>
+
+                {/* 🌟 Nobel Laureate Dr. Linus Pauling Quantum Physics Legacy & Drinkable Strong Acid Origin */}
+                <div className="p-4 sm:p-5 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl space-y-2 shadow-sm">
+                  <div className="flex items-center gap-2 text-blue-900 font-black text-xs uppercase tracking-wider">
+                    <Award className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span className="break-keep">{t.amrPaulingOriginTitle}</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal break-keep">
+                    {t.amrPaulingOriginDesc}
                   </p>
                 </div>
 
                 {/* Speed Comparison Banner */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <div className="p-3.5 bg-emerald-950/80 border border-emerald-500/40 rounded-xl space-y-1">
-                    <p className="text-[11px] font-mono text-emerald-400 font-extrabold uppercase">SN Water Eradication</p>
-                    <p className="text-xs font-black text-white">{t.amrCompareFast}</p>
+                  <div className="p-3.5 bg-emerald-50 border-2 border-emerald-300 rounded-xl space-y-1 shadow-sm">
+                    <p className="text-[11px] font-mono text-emerald-800 font-extrabold uppercase">SN Water Eradication</p>
+                    <p className="text-xs font-black text-emerald-950">{t.amrCompareFast}</p>
                   </div>
-                  <div className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl space-y-1">
-                    <p className="text-[11px] font-mono text-slate-400 font-bold uppercase">Conventional Antibiotics</p>
-                    <p className="text-xs font-medium text-slate-400">{t.amrCompareSlow}</p>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+                    <p className="text-[11px] font-mono text-slate-500 font-bold uppercase">Conventional Antibiotics</p>
+                    <p className="text-xs font-medium text-slate-600">{t.amrCompareSlow}</p>
                   </div>
                 </div>
 
               </div>
 
               {/* Bottom Trade Secret Security Badge */}
-              <div className="pt-4 border-t border-slate-800 flex items-center gap-3 text-slate-400 text-xs font-mono">
-                <Lock className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Protected via Proprietary Trade Secret (Coca-Cola Formula Model)</span>
+              <div className="pt-4 border-t border-slate-200 flex items-center gap-3 text-slate-600 text-xs font-mono">
+                <Lock className="w-4 h-4 text-amber-600 shrink-0" />
+                <span className="font-semibold text-slate-700">Protected via Proprietary Trade Secret (Coca-Cola Formula Model)</span>
               </div>
 
             </div>
