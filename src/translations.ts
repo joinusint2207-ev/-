@@ -18,6 +18,7 @@ export const translations = {
     navMgDementia: "Dementia Prevention Patent (Mg+H2 Water)",
     navFounder: "Leadership & Founder Profile",
     navPatents: "Patents & IP (20+ Filed)",
+    navMedia: "Media & Press",
     navContact: "Corporate Inquiry",
 
     // Hero Section
@@ -186,6 +187,22 @@ export const translations = {
     p3Cat: "Medical & Applied Quantum Sciences",
     p3Safety: "International & National Filings",
 
+    // Media Coverage & Press
+    mediaSectionBadge: "MEDIA & PRESS COVERAGE",
+    mediaSectionTitle: "Verified in Leading Bio-Tech Media & Major Portals",
+    mediaSectionSub: "Officially published in BioTimes and fully indexed across Google, Naver, and Daum search engines.",
+    mediaPublisher: "BioTimes (Korea's Leading Bio-Healthcare Journal)",
+    mediaDate: "Special Feature Interview",
+    mediaArticleTitle: "[BioTimes Special Interview] Oxford High-Tech CEO Jisuk Shin: 'Accelerating Global Bio-Partnerships with 20-Year Accumulated AMR Data'",
+    mediaSummaryLead: "Highlights from the official press interview covering Oxford High-Tech's origin at Oxford University Science Park, 20-year antibacterial data, Japanese JFRL test verification, and opening of external joint-research opportunities.",
+    mediaKeyPoint1: "20-Year Validated Antibacterial Dataset: Demonstrating rapid eradication of Superbugs (MRSA & FQREC) based on quantum physics & chemistry.",
+    mediaKeyPoint2: "Rigorous Government Lab Verification: Tested by Japan Food Research Laboratories (JFRL) & compliant with Ministry of Health, Labour and Welfare (MHLW) non-toxic safety standards.",
+    mediaKeyPoint3: "Open Innovation & Dementia Water Generator: Expanding global licensing and academic partnerships for world-first patented Mg+H2 dementia prevention technology.",
+    mediaPortalBadgeGoogle: "Google Indexed",
+    mediaPortalBadgeNaver: "Naver Indexed",
+    mediaPortalBadgeDaum: "Daum Indexed",
+    mediaReadArticleBtn: "Read Original BioTimes Article Online",
+
     // Inquiry & Contact
     contactTitle: "CORPORATE INQUIRY & TECHNOLOGY LICENSING",
     contactSubtitle: "Direct Communication with Oxford High-Tech Research Institute Co., Ltd.",
@@ -238,6 +255,7 @@ export const translations = {
     navMgDementia: "認知症予防特許（Mg+H2水）",
     navFounder: "経営陣・創設者略歴",
     navPatents: "特許・知的財産（20件出願）",
+    navMedia: "メディア報道",
     navContact: "企業お問い合わせ",
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 公式企業ポータル",
@@ -402,6 +420,22 @@ export const translations = {
     p3Cat: " medical ＆ 応用量子科学",
     p3Safety: "国際 ＆ 国内出願実績",
 
+    // Media Coverage & Press
+    mediaSectionBadge: "公式メディア報道・特集インタビュー",
+    mediaSectionTitle: "韓日バイオ専門メディアおよび主要ポータル公式報道",
+    mediaSectionSub: "韓国バイオ専門誌『バイオタイムズ（BioTimes）』特集インタビュー掲載。Google・Naver・Daum 各種主要ポータルにて正式検索・閲覧可能。",
+    mediaPublisher: "バイオタイムズ (BioTimes・韓国バイオ専門誌)",
+    mediaDate: "企画特別インタビュー",
+    mediaArticleTitle: "【バイオタイムズ 企画インタビュー】オックスフォード・ハイテック 申志淑代表「20年蓄積した耐性菌データをもとに、グローバル・バイオ協力を本格化」",
+    mediaSummaryLead: "英国オックスフォード大学サイエンスパークでの創設背景、20年蓄積のAMR耐性菌（MRSA・FQREC）殺菌データ、日本食品分析センター（JFRL）および厚労省安全基準の検証、グローバル共同研究の拡張計画に関する公式報道記録。",
+    mediaKeyPoint1: "20年間蓄積された抗菌データ：量子物理・量子化学を応用し、MRSAやFQRECなどのスーパー耐性菌を急速死滅させる実証データを確保。",
+    mediaKeyPoint2: "日本公認機関の厳格な検証：日本食品分析センター（JFRL）での殺菌検証および厚生労働省清涼飲料水規格適合による無毒性・安全性を確立。",
+    mediaKeyPoint3: "オープンイノベーションと認知症予防装置：世界初の特許取得済み『Mg+H2認知症予防水生成装置』およびSN水のグローバルライセンシングを推進。",
+    mediaPortalBadgeGoogle: "Google 検索対応",
+    mediaPortalBadgeNaver: "Naver 検索対応",
+    mediaPortalBadgeDaum: "Daum 検索対応",
+    mediaReadArticleBtn: "バイオタイムズ 元記事（全文）を見る",
+
     contactTitle: "企業お問い合わせ ＆ 技術ライセンス",
     contactSubtitle: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社 直通窓口",
     contactDesc: "技術ライセンス、企業提携、投資、公式 in vitro データ（JFRL 2004/2023およびMg+H2認知症イオン水生成装置）のお問い合わせは下記フォームより送信してください。",
@@ -453,6 +487,7 @@ export const translations = {
     navMgDementia: "치매 예방 특허 (Mg+H2 이온수)",
     navFounder: "경영진 및 설립자 프로필",
     navPatents: "특허 및 지적재산 (20여 건)",
+    navMedia: "공식 언론 보도",
     navContact: "기업 문의 및 제휴",
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 공식 기업 포털",
@@ -616,6 +651,22 @@ export const translations = {
     p3No: "20여 건의 특허 출원 (모리 유키노부 명예박사, 설립자 겸 최고 연구원)",
     p3Cat: "의학 및 응용 양자과학",
     p3Safety: "국제 및 국내 출원 완료",
+
+    // Media Coverage & Press
+    mediaSectionBadge: "공식 언론 보도 및 기획 인터뷰",
+    mediaSectionTitle: "국내외 바이오 전문 언론 및 주요 포털 공인 보도",
+    mediaSectionSub: "바이오 전문 언론 <바이오타임즈> 공식 인터뷰 기사 보도 — 구글(Google), 네이버(Naver), 다음(Daum) 국내외 3대 포털 정식 검색 및 송고 완료.",
+    mediaPublisher: "바이오타임즈 (BioTimes)",
+    mediaDate: "기획 특별 인터뷰",
+    mediaArticleTitle: "[바이오타임즈 기획 인터뷰] 옥스퍼드 하이테크 리서치 인스티튜트 신지숙 대표 \"20년 축적 항생제 내성 데이터로 글로벌 바이오 협력 본격화\"",
+    mediaSummaryLead: "영국 옥스퍼드대학교 사이언스 파크 설립 배경, 20년간 축적된 항생제 내성균(MRSA·FQREC) 100% 살균 데이터, 일본식품분석센터(JFRL) 검증 및 후생성 청량음료수 무독성 적합 통과, 글로벌 오픈 이노베이션 전개 내용을 심층 보도.",
+    mediaKeyPoint1: "20년 축적 항균 데이터베이스: 양자물리학·화학 응용을 통해 슈퍼박테리아(MRSA, FQREC)를 단시간 내 완벽 사멸시키는 객관적 실증 확보.",
+    mediaKeyPoint2: "일본 공인 시험기관의 엄격한 검증: 일본식품분석센터(JFRL) 살균 검증 및 후생노동성 청량음료수 규격 적합을 통한 무독성·인체 안전성 공인.",
+    mediaKeyPoint3: "글로벌 개방형 협력 및 치매수 장치: 세계 최초 특허 취득 'Mg+H2 치매 예방 이온수 생성장치' 및 SN Water 기술의 글로벌 기술이전 본격 추진.",
+    mediaPortalBadgeGoogle: "Google 검색 등록",
+    mediaPortalBadgeNaver: "Naver 뉴스 검색",
+    mediaPortalBadgeDaum: "Daum 뉴스 송고",
+    mediaReadArticleBtn: "바이오타임즈 원문 기사 전문 확인하기",
 
     contactTitle: "기업 문의 및 기술 라이선싱",
     contactSubtitle: "옥스포드 하이테크 리서치 인스티튜트 주식회사 직통 창구",

@@ -28,7 +28,10 @@ import {
   Loader2,
   Settings,
   Coins,
-  Scale
+  Scale,
+  Newspaper,
+  ExternalLink,
+  Search
 } from 'lucide-react';
 import { translations } from './translations';
 
@@ -91,11 +94,12 @@ export default function App() {
             </a>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-5 text-xs font-bold text-slate-600">
+            <nav className="hidden lg:flex items-center gap-4.5 text-xs font-bold text-slate-600">
               <a href="#overview" className="hover:text-blue-600 transition-colors">{t.navOverview}</a>
               <a href="#mrsa" className="hover:text-blue-600 transition-colors text-blue-700 font-extrabold">{t.navAmr}</a>
               <a href="#dementia" className="hover:text-purple-700 transition-colors text-indigo-700 font-extrabold">{t.navMgDementia}</a>
               <a href="#founder" className="hover:text-blue-600 transition-colors">{t.navFounder}</a>
+              <a href="#media" className="hover:text-blue-600 transition-colors">{t.navMedia}</a>
               <a href="#patents" className="hover:text-blue-600 transition-colors">{t.navPatents}</a>
               <a href="#contact" className="hover:text-blue-600 transition-colors">{t.navContact}</a>
             </nav>
@@ -968,6 +972,138 @@ export default function App() {
                 </div>
               </div>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 📰 MEDIA & PRESS COVERAGE (공식 언론 보도 및 특집 인터뷰 - 바이오타임즈 / 구글·네이버·다음 검색 보도) */}
+      <section id="media" className="py-16 sm:py-20 bg-gradient-to-b from-slate-50 via-blue-50/30 to-white border-b border-slate-200 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="px-3.5 py-1 bg-blue-100 border border-blue-300 text-blue-900 font-mono font-black text-xs rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+              <Newspaper className="w-3.5 h-3.5 text-blue-700" />
+              <span>{t.mediaSectionBadge}</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+              {t.mediaSectionTitle}
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed">
+              {t.mediaSectionSub}
+            </p>
+          </div>
+
+          {/* Featured Press Card */}
+          <div className="bg-white border-2 border-blue-200/80 rounded-3xl shadow-xl p-6 sm:p-10 space-y-8 relative overflow-hidden hover:border-blue-400 transition-colors">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Top Bar: Publisher + Portal Badges */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-2xl bg-blue-900 text-white flex items-center justify-center font-black shadow-md">
+                  <Newspaper className="w-6 h-6 text-blue-300" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-extrabold text-slate-900 text-base sm:text-lg">
+                      {t.mediaPublisher}
+                    </span>
+                    <span className="px-2.5 py-0.5 bg-blue-100 text-blue-800 text-[11px] font-mono font-bold rounded-md">
+                      {t.mediaDate}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500 font-mono">
+                    Bio-Medical Technology Journal &amp; Press
+                  </p>
+                </div>
+              </div>
+
+              {/* Verified Portal Indexing Badges (Google, Naver, Daum) */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  <span>{t.mediaPortalBadgeGoogle}</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>{t.mediaPortalBadgeNaver}</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold rounded-full shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                  <span>{t.mediaPortalBadgeDaum}</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Main Article Content */}
+            <div className="space-y-4">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">
+                {t.mediaArticleTitle}
+              </h3>
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
+                {t.mediaSummaryLead}
+              </p>
+            </div>
+
+            {/* 3 Key Takeaways Checklist Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-blue-700 font-bold text-xs font-mono">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                  <span>01. 20-Year AMR Dataset</span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
+                  {t.mediaKeyPoint1}
+                </p>
+              </div>
+
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs font-mono">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>02. JFRL &amp; MHLW Verification</span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
+                  {t.mediaKeyPoint2}
+                </p>
+              </div>
+
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-purple-700 font-bold text-xs font-mono">
+                  <Sparkles className="w-4 h-4 text-purple-600 shrink-0" />
+                  <span>03. Open Innovation &amp; Patents</span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
+                  {t.mediaKeyPoint3}
+                </p>
+              </div>
+            </div>
+
+            {/* Article Linkout & Search Guide Footer */}
+            <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2 text-xs text-slate-500">
+                <Search className="w-4 h-4 text-slate-400 shrink-0" />
+                <span>
+                  {lang === 'kr'
+                    ? "포털 3사(구글, 네이버, 다음)에서 '신지숙 SN Water' 또는 '옥스퍼드 하이테크 리서치 인스티튜트' 검색 시 기사 전문 확인 가능"
+                    : lang === 'jp'
+                    ? "主要ポータル（Google・Naver・Daum）にて『申志淑 SN Water』または『オックスフォード・ハイテック』で検索可能"
+                    : "Searchable across Google, Naver, and Daum via 'Jisuk Shin SN Water' or 'Oxford High-Tech Research Institute'"}
+                </span>
+              </div>
+
+              <a
+                href="https://www.biotimes.co.kr/news/articleView.html?idxno=34045"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-900 hover:bg-blue-800 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95 text-center shrink-0"
+              >
+                <span>{t.mediaReadArticleBtn}</span>
+                <ExternalLink className="w-4 h-4 text-blue-300" />
+              </a>
+            </div>
+
           </div>
 
         </div>
