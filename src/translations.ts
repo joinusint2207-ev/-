@@ -83,8 +83,8 @@ export const translations = {
     strainFqrecTime: "1 ~ 5 min (at 8x~15x dilution)",
     strainFqrecResult: "100% Complete Eradication (All Died / -)",
     inVitroSummaryNotice: "Objective in vitro data objectively proves complete eradication of refractory multidrug-resistant bacteria and pathogens under certified laboratory conditions.",
-    mhlwAuthorityBadge: "Issued under MHLW Approval (Ministry of Health, Labour and Welfare Standards)",
-    reproducibilityBadge: "2004 & 2023 Tested: 100% Reproducibility Proven",
+    mhlwAuthorityBadge: "MHLW Standard Approved (JFRL Issued)",
+    reproducibilityBadge: "2004 & 2023 Studies: 20-Year Reproducibility Proven",
     
     // Tech Superiority & Differentiation
     superiorityTitle: "Technological Greatness & Unmatched Differentiation",

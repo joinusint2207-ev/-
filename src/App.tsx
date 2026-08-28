@@ -471,10 +471,10 @@ export default function App() {
           </div>
 
           {/* 🔬 IN VITRO CERTIFIED BACTERICIDAL TEST RESULTS SUMMARY */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl space-y-6">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-slate-800 pb-6">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl space-y-6 overflow-hidden">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 border-b border-slate-800 pb-6">
+              <div className="space-y-2 max-w-2xl">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="px-3 py-1 bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
                     <FlaskConical className="w-3.5 h-3.5" />
                     <span>IN VITRO LABORATORY DATA</span>
@@ -484,22 +484,22 @@ export default function App() {
                     <span>100% ERADICATED</span>
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight break-keep">
                   {t.strainsTableTitle}
                 </h3>
-                <p className="text-slate-300 text-xs sm:text-sm font-medium">
+                <p className="text-slate-300 text-xs sm:text-sm font-medium leading-relaxed break-keep">
                   {t.strainsTableSub}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 shrink-0">
-                <div className="px-3 py-1.5 bg-blue-900/60 border border-blue-600/40 rounded-xl text-blue-200 text-xs font-mono font-bold flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-amber-400" />
-                  <span>{t.mhlwAuthorityBadge}</span>
+              <div className="flex flex-wrap sm:flex-nowrap lg:flex-col xl:flex-row gap-2.5">
+                <div className="px-3.5 py-2 bg-blue-900/50 border border-blue-500/40 rounded-xl text-blue-100 text-xs font-medium flex items-center gap-2 shadow-sm">
+                  <Award className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span className="leading-tight">{t.mhlwAuthorityBadge}</span>
                 </div>
-                <div className="px-3 py-1.5 bg-emerald-900/60 border border-emerald-600/40 rounded-xl text-emerald-200 text-xs font-mono font-bold flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-emerald-400" />
-                  <span>{t.reproducibilityBadge}</span>
+                <div className="px-3.5 py-2 bg-emerald-900/50 border border-emerald-500/40 rounded-xl text-emerald-100 text-xs font-medium flex items-center gap-2 shadow-sm">
+                  <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="leading-tight">{t.reproducibilityBadge}</span>
                 </div>
               </div>
             </div>
