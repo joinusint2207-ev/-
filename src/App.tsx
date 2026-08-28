@@ -251,94 +251,7 @@ export default function App() {
       </section>
 
 
-      {/* 🏢 1. COMPANY OVERVIEW SECTION */}
-      <section id="overview" className="py-16 sm:py-20 bg-slate-100/90 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="px-3.5 py-1 bg-blue-200 border border-blue-300 text-blue-900 font-mono font-black text-xs rounded-full uppercase">
-              Corporate Profile
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              {t.companySectionTitle}
-            </h2>
-            <p className="text-slate-700 font-semibold text-sm sm:text-base">
-              {t.companySectionSub}
-            </p>
-          </div>
-
-          {/* Corporate Details Grid */}
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg space-y-6">
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
-                <div className="flex items-center gap-2 text-blue-800 font-mono font-bold text-xs uppercase">
-                  <Building2 className="w-4 h-4 text-blue-600" />
-                  <span>{t.compLegalName}</span>
-                </div>
-                <p className="text-base font-black text-slate-900">{t.compLegalNameVal}</p>
-              </div>
-
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
-                <div className="flex items-center gap-2 text-indigo-800 font-mono font-bold text-xs uppercase">
-                  <FlaskConical className="w-4 h-4 text-indigo-600" />
-                  <span>{t.compBrandName}</span>
-                </div>
-                <p className="text-base font-black text-slate-900">{t.compBrandNameVal}</p>
-              </div>
-
-              {/* Representative Director / CEO */}
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
-                <div className="flex items-center gap-2 text-purple-800 font-mono font-bold text-xs uppercase">
-                  <UserCheck className="w-4 h-4 text-purple-600" />
-                  <span>{t.compCEO}</span>
-                </div>
-                <p className="text-base font-black text-slate-900">{t.compCEOVal}</p>
-              </div>
-
-              {/* Founder & Chief Researcher */}
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
-                <div className="flex items-center gap-2 text-emerald-800 font-mono font-bold text-xs uppercase">
-                  <Award className="w-4 h-4 text-emerald-600" />
-                  <span>{t.compFounder}</span>
-                </div>
-                <p className="text-base font-black text-slate-900">{t.compFounderVal}</p>
-              </div>
-
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
-                <div className="flex items-center gap-2 text-amber-800 font-mono font-bold text-xs uppercase">
-                  <MapPin className="w-4 h-4 text-amber-600" />
-                  <span>{t.compHQ}</span>
-                </div>
-                <p className="text-sm font-extrabold text-slate-900">{t.compHQVal}</p>
-              </div>
-
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 md:col-span-2">
-                <div className="flex items-center gap-2 text-blue-900 font-mono font-bold text-xs uppercase">
-                  <Globe className="w-4 h-4 text-blue-700" />
-                  <span>{t.compRnd}</span>
-                </div>
-                <p className="text-sm sm:text-base font-black text-slate-900">{t.compRndVal}</p>
-              </div>
-
-              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2 md:col-span-2">
-                <div className="flex items-center gap-2 text-slate-800 font-mono font-bold text-xs uppercase">
-                  <Briefcase className="w-4 h-4 text-slate-700" />
-                  <span>{t.compDomain}</span>
-                </div>
-                <p className="text-sm font-bold text-slate-800 leading-relaxed">{t.compDomainVal}</p>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* 🦠 2. FLAGSHIP TECHNOLOGY: MRSA & AMR ERADICATION (SN Water) */}
+      {/* 🦠 1. FLAGSHIP TECHNOLOGY: MRSA & AMR ERADICATION (SN Water) */}
       <section id="mrsa" className="py-16 sm:py-24 bg-white border-b border-slate-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -1244,7 +1157,7 @@ export default function App() {
 
 
       {/* 🏛️ 6. CORPORATE OVERVIEW (会社概要 / 공식 법인 개요 - 글로벌 표준 단일 테이블) */}
-      <section className="py-10 bg-slate-900/90 text-slate-200 border-t border-slate-800">
+      <section id="overview" className="py-12 bg-slate-900/90 text-slate-200 border-t border-slate-800 scroll-mt-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
