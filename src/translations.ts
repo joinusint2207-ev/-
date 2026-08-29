@@ -23,14 +23,14 @@ export const translations = {
 
     // Hero Section
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • Official Corporate Portal",
-    heroHeading: "Leading Global Innovations in Preventive Medicine & Advanced Applied Quantum Physics",
-    heroLead: "Official corporate portal of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories). Led by Institute Representative Jisuk Shin and Founder & Chief Researcher Hon. Dr. Yukinobu Mori—featuring 30+ years of Quantum Physics expertise, 20+ patent applications, pioneering 15-second MRSA superbug eradication (SN Water) and the World's First Patented Mg+H2 Ion Water Generator for Dementia Prevention.",
+    heroHeading: "Leading Global Innovations in Preventive Medicine & Advanced Applied Quantum Mechanics",
+    heroLead: "Official corporate portal of Oxford High-Tech Research Institute Co., Ltd. (Oxford High-Tech Laboratories). Led by Institute Representative Jisuk Shin and Founder & Chief Researcher Hon. Dr. Yukinobu Mori—featuring 30+ years of dedicated Quantum Mechanics specialization and 20+ patent applications, developing 15-second MRSA superbug eradication (SN Water) through quantum molecular ion control alongside the World's First Patented Mg+H2 Ion Water Generator for Dementia Prevention.",
     btnAmr: "Explore MRSA Breakthrough",
     btnMgDementia: "Explore Dementia Patent (Mg+H2)",
     btnFounder: "Leadership & Founder Profile",
     
     statYears: "30+ Years",
-    statYearsLabel: "Quantum Physics Research",
+    statYearsLabel: "Quantum Mechanics Specialization",
     statPatents: "20+ Filed",
     statPatentsLabel: "Patent Applications Filed",
     statOxford: "Oxford & Tokyo",
@@ -54,7 +54,7 @@ export const translations = {
     compRnd: "R&D Centers",
     compRndVal: "Oxford University Science Park, UK & Tokyo R&D Center, Japan",
     compDomain: "Core Businesses & Core Patents",
-    compDomainVal: "Preventive Medicine, MRSA/AMR Eradication Ionized Water (SN Water), World's 1st Patented Mg+H2 Ion Water Generator for Dementia Prevention, Applied Quantum Chemistry Formulas",
+    compDomainVal: "Preventive Medicine, Quantum Mechanics-Based MRSA/AMR Eradication Ionized Water (SN Water), World's 1st Patented Mg+H2 Ion Water Generator for Dementia Prevention, Applied Quantum Chemistry Formulas",
 
     // MRSA & AMR Eradication Section (1st Flagship Core Tech)
     amrTitle: "1ST CORE FLAGSHIP INNOVATION: MRSA & AMR ERADICATION",
@@ -64,7 +64,7 @@ export const translations = {
     amrCrisisDesc: "The World Health Organization (WHO) warns that multidrug-resistant bacteria are escalating rapidly; without an effective cure, over 40 million people will die directly by 2050 (over 10 million annually), and related diseases are projected to claim up to 170 million lives worldwide.",
     amrEradTitle: "SN Water Eradication (Proprietary Trade Secret):",
     amrEradDesc: "Oxford High-Tech Research Institute developed SN Water (Strongly Acidic Ionized Water) that rapidly eliminates the two most fatal and critical superbug strains identified by WHO—MRSA (Methicillin-Resistant Staphylococcus aureus, accounting for >72% of resistant infection deaths) in just 15~120 seconds, and FQREC (Fluoroquinolone-Resistant E. coli) within 1~5 minutes—down to undetectable levels (100% complete eradication). Intentionally kept unpatented as a proprietary trade secret (Coca-Cola formula model) to safeguard its quantum formula.",
-    amrPaulingOriginTitle: "Strongly Acidic Yet Completely Drinkable: The Quantum Physics Legacy of Nobel Laureate Dr. Linus Pauling",
+    amrPaulingOriginTitle: "Strongly Acidic Yet Completely Drinkable: The Quantum Mechanics Legacy of Nobel Laureate Dr. Linus Pauling",
     amrPaulingOriginDesc: "Most people assume strongly acidic water must be toxic or harmful—and for chemically synthesized substances, that is indeed true. However, the true greatness of our proprietary technology lies in the fact that despite being strongly acidic, SN Water is completely non-toxic and safe enough for human consumption. This miraculous selective safety was achieved by applying the quantum mechanics and quantum chemistry formulas directly passed down by two-time Nobel Laureate Dr. Linus Pauling to the fundamental structure of water molecules.",
     amrValidationTitle: "Official MHLW Highest Authority Compliance & JFRL Certification:",
     amrValidationDesc: "All bactericidal efficacy and non-toxic safety datasets were issued by Japan Food Research Laboratories (JFRL), an authorized testing body operating under the strict standards and approval of the Ministry of Health, Labour and Welfare (MHLW) of Japan—the highest authority overseeing pharmaceuticals and food safety. Passed the world's most stringent MHLW beverage criteria (Notification No. 370).",
@@ -140,13 +140,13 @@ export const translations = {
     // Founder Profile & Resume Section
     authTitle: "LEADERSHIP & RESEARCH AUTHORITY",
     authSubtitle: "Representative Jisuk Shin & Founder Dr. Yukinobu Mori",
-    authP1: "Oxford High-Tech Research Institute Co., Ltd. is managed by Institute Representative Jisuk Shin, with scientific research directed by Founder & Chief Researcher Hon. Dr. Yukinobu Mori. Over the past 30+ years, Dr. Mori has dedicated his career to applying quantum physics to medical and life science breakthroughs, filing 20+ patent applications as an independent inventor.",
+    authP1: "Oxford High-Tech Research Institute Co., Ltd. is managed by Institute Representative Jisuk Shin, with scientific research directed by Founder & Chief Researcher Hon. Dr. Yukinobu Mori. Over the past 30+ years, Dr. Mori has dedicated his career to specializing in Quantum Mechanics and applying it to life sciences and molecular control, creating the breakthrough SN Water technology and filing 20+ patent applications as an independent inventor.",
     
     upennTitle: "Quantum Physics Mastery (University of Pennsylvania)",
     upennDesc: "Mastered Advanced Quantum Physics at the University of Pennsylvania, USA, laying the theoretical foundation for molecular ion control.",
     
     paulingTitle: "Nobel-Level Mentorship & Quantum Chemistry (Dr. Linus Pauling)",
-    paulingDesc: "Visiting researcher at the Linus Pauling Institute of Science and Medicine under two-time Nobel Laureate Dr. Linus Pauling. Taught the most secret quantum formula applying Quantum Physics to Chemistry, Biology, and Molecular Science, directly inspiring the invention of SN Water and the Mg+H2 Dementia Water Generator.",
+    paulingDesc: "Visiting researcher at the Linus Pauling Institute of Science and Medicine under two-time Nobel Laureate Dr. Linus Pauling. Taught the most secret quantum formula applying Quantum Mechanics to Chemistry, Biology, and Molecular Science, directly creating SN Water and the Mg+H2 Dementia Water Generator.",
     
     claytonTitle: "Honorary Doctorate of Medicine (Preventive Medicine)",
     claytonDesc: "Awarded the title of Honorary Doctor of Medicine from Clayton University (St. Paul, MO) upon the strong personal recommendation of Dr. Linus Pauling.",
@@ -260,13 +260,13 @@ export const translations = {
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 公式企業ポータル",
     heroHeading: "予防医学および高度応用量子科学におけるグローバルイノベーションを牽引",
-    heroLead: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社（Oxford High-Tech Laboratories）公式企業ポータル。研究所代表 申志淑（Jisuk Shin）および創設者 兼 最高研究員 森幸信名誉博士（量子物理学30余年の実績・20件以上の特許出願）の指導のもと、15秒MRSA殺菌SN水および世界初の特許取得済み『認知症予防・治療用 Mg+H2イオン水生成装置』を公開いたします。",
+    heroLead: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社（Oxford High-Tech Laboratories）公式企業ポータル。研究所代表 申志淑（Jisuk Shin）および創設者 兼 最高研究員 森幸信名誉博士（量子力学30余年の専門研究・20件以上の特許出願）の指導のもと、量子力学に基づく水分子制御により開発された15秒MRSA殺菌SN水および世界初の特許取得済み『認知症予防・治療用 Mg+H2イオン水生成装置』を公開いたします。",
     btnAmr: "MRSA殺菌技術を見る",
     btnMgDementia: "認知症予防特許（Mg+H2水）を見る",
     btnFounder: "経営陣・創設者略歴を見る",
     
     statYears: "30年以上",
-    statYearsLabel: "量子物理学の研究・実績",
+    statYearsLabel: "量子力学の専門研究・実績",
     statPatents: "20件以上出願",
     statPatentsLabel: "特許出願実績（創設者個人出願）",
     statOxford: "オックスフォード ＆ 東京",
@@ -289,7 +289,7 @@ export const translations = {
     compRnd: "研究開発拠点",
     compRndVal: "英国オックスフォード大学サイエンスパーク ＆ 東京R&Dセンター",
     compDomain: "主要事業 ＆ 核心特許",
-    compDomainVal: "予防医学、MRSA/AMR耐性菌殺菌イオン水（SN水）、世界初特許『認知症予防・治療用 Mg+H2イオン水生成装置』、応用量子化学フォーミュラ",
+    compDomainVal: "予防医学、量子力学に基づくMRSA/AMR耐性菌殺菌イオン水（SN水）、世界初特許『認知症予防・治療用 Mg+H2イオン水生成装置』、応用量子化学フォーミュラ",
 
     // JP
     amrTitle: "核心特許技術 1：MRSA・AMR耐性菌殺菌技術（SN水）",
@@ -299,8 +299,8 @@ export const translations = {
     amrCrisisDesc: "世界保健機関（WHO）は薬剤耐性菌の拡大に強い警告を発しており、有効な対策が講じられない場合、2050年までに年間1,000万人以上、直接累計4,000万人以上が死亡し、関連疾患による死亡者数は実に1億7,000万人に達すると予測されています。",
     amrEradTitle: "SN水の殺菌力（独自ノウハウ秘匿）：",
     amrEradDesc: "当研究所が開発した強酸性イオン水『SN水』は、WHOが指定する最も危険な2大耐性菌——耐性菌死亡原因の72%以上を占めるMRSA（メチシリン耐性黄色ブドウ球菌）をわずか15秒〜120秒で、FQREC（フルオロキノロン耐性大腸菌）を1〜5分以内に検出限界未満へと100%完全死滅させます。量子フォーミュラ保護のため、特許化せずノウハウ秘匿（コカ・コーラ方式）として厳重管理されています。",
-    amrPaulingOriginTitle: "強酸性でありながら飲用可能な奇跡：ノーベル賞受賞者 ライナス・ポーリング博士の量子物理学の遺産",
-    amrPaulingOriginDesc: "強酸性イオン水と聞けば、誰もが『毒性がある、有害である』と考えます。化学的に合成した物質であればその通りです。しかし、当社の技術の偉大性はまさに『強酸性』でありながら人間が飲めるほど完全に無害である点にあります。これこそが、ノーベル賞を2度受賞したライナス・ポーリング博士から直接伝授された量子物理学・量子化学の原理を水分子構造に応用して誕生した、SN水だけの圧倒的な技術的結晶です。",
+    amrPaulingOriginTitle: "強酸性でありながら飲用可能な奇跡：ノーベル賞受賞者 ライナス・ポーリング博士の量子力学の遺産",
+    amrPaulingOriginDesc: "強酸性イオン水と聞けば、誰もが『毒性がある、有害である』と考えます。化学的に合成した物質であればその通りです。しかし、当社の技術の偉大性はまさに『強酸性』でありながら人間が飲めるほど完全に無害である点にあります。これこそが、ノーベル賞を2度受賞したライナス・ポーリング博士から直接伝授された量子力学・量子化学の原理を水分子構造に応用して誕生した、SN水だけの圧倒的な技術的結晶です。",
     amrValidationTitle: "厚生労働省（MHLW）の厳格な基準・承認に基づく公認機関（JFRL）発行データ：",
     amrValidationDesc: "当社が確保したすべての殺菌および無毒性データは、日本の医薬品・食品安全を統括する最高権威機関である厚生労働省（MHLW）の厳格な基準と承認のもとで運営される公認分析機関（日本食品分析センター / JFRL）より発行されました。世界で最も厳格とされる厚生労働省の清涼飲料水規格基準（告示第370号）を完全にクリアした公認データです。",
     amrDataYearsTitle: "2004年および2023年試験による完璧な再現性の証明：",
@@ -374,13 +374,13 @@ export const translations = {
 
     authTitle: "経営陣および研究権威",
     authSubtitle: "研究所代表 申志淑 ＆ 創設者 兼 最高研究員 森幸信名誉博士",
-    authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は30年以上にわたり量子物理学の医学・生物学応用を研究し、個人発明家として20件以上の特許を出願・保有しています。",
+    authP1: "オックスフォード・ハイテック・リサーチ・インスティテュート株式会社は、研究所代表 申志淑（Jisuk Shin）の経営統括のもと、創設者 兼 最高研究員である森幸信名誉博士が学術・研究開発を統括しています。森幸信名誉博士は30年以上にわたり量子力学（Quantum Mechanics）の医学・生物学・分子制御への応用に特化して研究を重ね、その量子力学的制御によりSN水を開発、個人発明家として20件以上の特許を出願・保有しています。",
     
     upennTitle: "ペンシルベニア大学（米国）量子物理学修了",
-    upennDesc: "米国ペンシルベニア大学にて高度量子物理学を修め、イオン分子制御の理論的基礎を確立。",
+    upennDesc: "米国ペンシルベニア大学にて高度量子物理学（Advanced Quantum Physics）を修め、イオン分子制御の理論的基礎を確立。",
     
-    paulingTitle: "ノーベル賞受賞者 ライナス・ポーリング博士への師事",
-    paulingDesc: "ノーベル賞2度受賞のライナス・ポーリング博士が率いるライナス・ポーリング科学医学研究所にて客員研究員を務める。量子物理学を化学・生物学・分子科学へ応用する極秘量子フォーミュラの伝授を受け、SN水およびMg+H2認知症予防装置の発明へと結実。",
+    paulingTitle: "ノーベル賞受賞者 ライナス・ポーリング博士への師事（量子力学・量子化学の伝授）",
+    paulingDesc: "ノーベル賞2度受賞のライナス・ポーリング博士が率いるライナス・ポーリング科学医学研究所にて客員研究員を務める。量子力学を化学・生物学・分子科学へ応用する極秘量子フォーミュラの伝授を受け、これを基にSN水およびMg+H2認知症予防装置を開発・完成。",
     
     claytonTitle: "クレイトン大学 医学名誉博士号 授与",
     claytonDesc: "ライナス・ポーリング博士の強力な推薦を受け、米国クレイトン大学より『予防医学 名誉博士号』を授与される。",
@@ -462,7 +462,7 @@ export const translations = {
     profileLeadershipLabel: "役員・研究統括",
     profileLeadershipVal: "代表取締役：申 志淑 (Jisuk Shin) | 創設者 兼 最高研究員：森 幸信 名誉博士",
     profileBusinessLabel: "主な事業内容",
-    profileBusinessVal: "先端量子物理・量子化学に基づく抗菌イオン水（SN水）原典技術R&D、世界初特許取得済『認知症予防・治療用Mg+H2イオン水生成装置』の技術ライセンスおよびグローバル事業化",
+    profileBusinessVal: "先端量子力学・量子化学に基づく抗菌イオン水（SN水）原典技術R&D、世界初特許取得済『認知症予防・治療用Mg+H2イオン水生成装置』の技術ライセンスおよびグローバル事業化",
     profileCertLabel: "公認検証・認証機関",
     profileCertVal: "厚生労働省告示第370号清涼飲料水規格適合(JFRL 第23056849001-0301号)、MRSA120秒死滅(JFRL 第23056849001-0401号)、FQREC耐性菌完全死滅(BMSA 第R5-31号)",
     footerCopy: "© Oxford High-Tech Research Institute Co., Ltd. All rights reserved.",
@@ -472,14 +472,14 @@ export const translations = {
     companyName: "옥스포드 하이테크 리서치 인스티튜트 주식회사",
     companyEnglishName: "Oxford High-Tech Research Institute Co., Ltd.",
     companyBrand: "Oxford High-Tech Laboratories",
-    companyTagline: "예방의학 및 응용 양자과학 글로벌 선도 기업",
+    companyTagline: "예방의학 및 응용 양자역학 글로벌 선도 기업",
     founderTitle: "설립자 겸 최고 연구원",
     founderName: "모리 유키노부 명예박사",
     ceoTitle: "연구소 대표 / 대표이사",
     ceoName: "신지숙",
     
     title: "OXFORD HIGH-TECH RESEARCH INSTITUTE CO., LTD.",
-    subtitle: "옥스포드 하이테크 리서치 인스티튜트 주식회사 | 예방의학 및 양자과학 글로벌 선도기업",
+    subtitle: "옥스포드 하이테크 리서치 인스티튜트 주식회사 | 예방의학 및 양자역학 글로벌 선도기업",
     badge: "공식 기업 포털",
     
     navOverview: "회사 개요",
@@ -491,14 +491,14 @@ export const translations = {
     navContact: "기업 문의 및 제휴",
 
     heroBadge: "Oxford High-Tech Research Institute Co., Ltd. • 공식 기업 포털",
-    heroHeading: "예방의학 및 첨단 응용 양자과학의 글로벌 혁신을 선도하다",
-    heroLead: "옥스포드 하이테크 리서치 인스티튜트 주식회사(Oxford High-Tech Research Institute Co., Ltd. / Oxford High-Tech Laboratories)의 공식 기업 웹사이트입니다. 신지숙 연구소 대표의 총괄 경영과 설립자 겸 최고 연구원 모리 유키노부 명예박사(양자물리학 30여 년 연구·20여 건 특허 출원)의 학술 지도 아래, 15초 만에 MRSA를 사멸시키는 SN Water 기술 및 세계 최초 특허 보유 『치매 예방·치료용 Mg+H2 이온수 생성장치』를 공개합니다.",
+    heroHeading: "예방의학 및 첨단 응용 양자역학의 글로벌 혁신을 선도하다",
+    heroLead: "옥스포드 하이테크 리서치 인스티튜트 주식회사(Oxford High-Tech Research Institute Co., Ltd. / Oxford High-Tech Laboratories)의 공식 기업 웹사이트입니다. 신지숙 연구소 대표의 총괄 경영과 설립자 겸 최고 연구원 모리 유키노부 명예박사(양자역학 30여 년 전문 연구·20여 건 특허 출원)의 학술 지도 아래, 정통 양자역학을 물 분자 제어에 응용하여 완성한 15초 MRSA 사멸 SN Water 기술 및 세계 최초 특허 보유 『치매 예방·치료용 Mg+H2 이온수 생성장치』를 공개합니다.",
     btnAmr: "MRSA 박멸 기술 보기",
     btnMgDementia: "치매 예방 특허(Mg+H2) 보기",
     btnFounder: "경영진 및 설립자 프로필 보기",
     
     statYears: "30년 이상",
-    statYearsLabel: "양자물리학 연구 및 전문성",
+    statYearsLabel: "양자역학 전문 연구 및 응용",
     statPatents: "20여 건 출원",
     statPatentsLabel: "특허 출원 경험 (설립자 개인 출원)",
     statOxford: "옥스퍼드 & 도쿄",
@@ -507,7 +507,7 @@ export const translations = {
     statAmrLabel: "MRSA 슈퍼박테리아 100% 완전 사멸",
 
     companySectionTitle: "회사 개요",
-    companySectionSub: "첨단 예방의학 및 양자과학 솔루션을 통한 글로벌 헬스케어 혁신",
+    companySectionSub: "첨단 예방의학 및 양자역학 솔루션을 통한 글로벌 헬스케어 혁신",
     compLegalName: "공식 법인명",
     compLegalNameVal: "옥스포드 하이테크 리서치 인스티튜트 주식회사 (Oxford High-Tech Research Institute Co., Ltd.)",
     compBrandName: "연구 브랜드 / 연구소",
@@ -521,7 +521,7 @@ export const translations = {
     compRnd: "연구개발 센터",
     compRndVal: "영국 옥스퍼드 대학교 사이언스 파크 & 일본 도쿄 R&D 센터",
     compDomain: "주요 사업 및 핵심 특허",
-    compDomainVal: "예방의학, MRSA/AMR 내성균 박멸 이온수(SN Water), 세계 최초 특허 보유 『치매 예방·치료용 Mg+H2 이온수 생성장치』, 응용 양자화학 포뮬러",
+    compDomainVal: "예방의학, 양자역학 기반 MRSA/AMR 내성균 박멸 이온수(SN Water), 세계 최초 특허 보유 『치매 예방·치료용 Mg+H2 이온수 생성장치』, 응용 양자화학 포뮬러",
 
     // KR
     amrTitle: "핵심 원천 기술 1: MRSA·AMR 내성균 및 주요 병원균 박멸 기술 (SN Water)",
@@ -531,8 +531,8 @@ export const translations = {
     amrCrisisDesc: "세계보건기구(WHO)는 다제내성균의 확산을 경고하고 있으며, 적절한 치료법이 없을 경우 2050년까지 매년 1,000만 명 이상, 누적 4,000만 명 이상이 사망하고 이와 관련된 질병으로 사망할 인구는 무려 1억 7천만 명에 달할 것으로 예상됩니다.",
     amrEradTitle: "SN Water의 독자적 사멸력 (영업비밀 보호):",
     amrEradDesc: "당 연구소가 개발한 강산성 이온수 'SN Water'는 WHO가 지정한 전 세계에서 가장 치명적인 양대 슈퍼박테리아 균주인 MRSA(메티실린 내성 황색포도상구균, 내성균 사망 원인의 72% 이상 차지)를 단 15초~120초 만에, FQREC(플루오로퀴놀론 내성 대장균)를 1~5분 이내에 검출 한계 미만으로 100% 완전 사멸시킵니다. 양자 포뮬러의 영구적 보호를 위해 특허 출원 대신 코카콜라 방식의 노하우 비닉(Trade Secret)으로 엄격히 관리됩니다.",
-    amrPaulingOriginTitle: "강산성인데 마실 수 있는 기적: 노벨상 수상자 라이너스 폴링 박사의 양자물리학 유산",
-    amrPaulingOriginDesc: "강산성 이온수라면 다들 '독성이다, 유해하다'라고 생각합니다. 사실 화학적으로 인위 합성한 물질이라면 유해한 것이 맞습니다. 하지만 저희가 가진 이 기술의 위대함은 바로 '강산성'임에도 불구하고 인간이 마실 수 있을 만큼 완벽히 무해하다는 사실입니다. 이것이 바로 노벨상 2회 수상자인 라이너스 폴링(Linus Pauling) 박사로부터 직접 전수받은 양자물리학 및 양자화학 원리를 물 분자 구조에 적용하여 탄생시킨 SN Water만의 독보적 위대함입니다.",
+    amrPaulingOriginTitle: "강산성인데 마실 수 있는 기적: 노벨상 수상자 라이너스 폴링 박사의 양자역학 유산",
+    amrPaulingOriginDesc: "강산성 이온수라면 다들 '독성이다, 유해하다'라고 생각합니다. 사실 화학적으로 인위 합성한 물질이라면 유해한 것이 맞습니다. 하지만 저희가 가진 이 기술의 위대함은 바로 '강산성'임에도 불구하고 인간이 마실 수 있을 만큼 완벽히 무해하다는 사실입니다. 이것이 바로 노벨상 2회 수상자인 라이너스 폴링(Linus Pauling) 박사로부터 직접 전수받은 정통 양자역학(Quantum Mechanics) 및 양자화학 원리를 물 분자 구조에 적용하여 탄생시킨 SN Water만의 독보적 위대함입니다.",
     amrValidationTitle: "일본 후생노동성(MHLW) 엄격 기준·승인 하의 공인 분석 기관(JFRL) 발행 데이터:",
     amrValidationDesc: "당사가 확보한 모든 살균 및 독성 무해성 데이터는, 일본 의약품 및 식품 안전을 총괄하는 최고 권위 기관인 후생노동성(MHLW)의 엄격한 기준과 승인 하에 운영되는 공인 분석 기관(일본식품분석센터 / JFRL)에서 발행되었습니다. 전 세계 제약·바이오 업계에서 가장 까다롭기로 소문난 후생노동성의 청량음료수 규격 기준(고시 제370호)을 완벽하게 통과한 공인 데이터입니다.",
     amrDataYearsTitle: "2004년 & 2023년 테스트로 입증된 완벽한 재현성(Reproducibility) 보유:",
@@ -606,13 +606,13 @@ export const translations = {
 
     authTitle: "연구소 대표 및 연구 권위",
     authSubtitle: "신지숙 연구소 대표 & 설립자 겸 최고 연구원 모리 유키노부 명예박사",
-    authP1: "옥스포드 하이테크 리서치 인스티튜트 주식회사의 경영은 신지숙 연구소 대표(대표이사)가 총괄하며, 기술 연구개발 및 원천 특허는 설립자 겸 최고 연구원인 모리 유키노부 명예박사가 이끌고 있습니다. 모리 유키노부 명예박사는 지난 30여 년간 양자물리학을 의학 및 생명과학에 응용하는 연구에 전념하여 개인 발명가로서 20여 건의 특허를 출원 및 보유하고 있습니다.",
+    authP1: "옥스포드 하이테크 리서치 인스티튜트 주식회사의 경영은 신지숙 연구소 대표(대표이사)가 총괄하며, 기술 연구개발 및 원천 특허는 설립자 겸 최고 연구원인 모리 유키노부 명예박사가 이끌고 있습니다. 모리 유키노부 명예박사는 지난 30여 년간 양자역학(Quantum Mechanics)을 의학 및 생명과학에 응용하는 전문 연구에 전념하여, 이를 바탕으로 혁신적인 SN Water 원천기술과 치매수 생성장치를 개발하고 개인 발명가로서 20여 건의 특허를 출원 및 보유하고 있습니다.",
     
     upennTitle: "펜실베이니아 대학교(미국) 양자물리학 수료",
-    upennDesc: "미국 펜실베이니아 대학교에서 고도 양자물리학 과정을 수료하여 이온 분자 제어의 이론적 기틀을 확립하였습니다.",
+    upennDesc: "미국 펜실베이니아 대학교에서 고도 양자물리학(Advanced Quantum Physics) 과정을 수료하여 물 분자 및 이온 제어의 이론적 기틀을 확립하였습니다.",
     
-    paulingTitle: "노벨상 수상자 라이너스 폴링 박사 사사",
-    paulingDesc: "노벨상 2회 수상자인 라이너스 폴링 박사의 라이너스 폴링 과학의학연구소 객원연구원으로 재직하며, 양자물리학을 화학·생물학·분자과학에 응용하는 극비 양자 포뮬러를 전수받아 SN Water 및 Mg+H2 치매 예방장치를 개발하였습니다.",
+    paulingTitle: "노벨상 수상자 라이너스 폴링 박사 사사 (양자역학·양자화학 전수)",
+    paulingDesc: "노벨상 2회 수상자인 라이너스 폴링 박사의 라이너스 폴링 과학의학연구소 객원연구원으로 재직하며, 양자역학을 화학·생물학·분자과학에 응용하는 극비 양자 포뮬러를 전수받아 이를 바탕으로 SN Water 및 Mg+H2 치매 예방장치를 직접 개발·완성하였습니다.",
     
     claytonTitle: "클레이튼 대학교 의학 명예박사 학위 수여",
     claytonDesc: "라이너스 폴링 박사의 강력한 친필 추천으로 미국 클레이튼 대학교로부터 '예방의학 명예박사' 학위를 수여받았습니다.",
@@ -649,7 +649,7 @@ export const translations = {
 
     p3Name: "개인 발명가 특허 포트폴리오 (20여 건 출원)",
     p3No: "20여 건의 특허 출원 (모리 유키노부 명예박사, 설립자 겸 최고 연구원)",
-    p3Cat: "의학 및 응용 양자과학",
+    p3Cat: "의학 및 응용 양자역학",
     p3Safety: "국제 및 국내 출원 완료",
 
     // Media Coverage & Press
@@ -660,7 +660,7 @@ export const translations = {
     mediaDate: "기획 특별 인터뷰",
     mediaArticleTitle: "[바이오타임즈 기획 인터뷰] 옥스퍼드 하이테크 리서치 인스티튜트 신지숙 대표 \"20년 축적 항생제 내성 데이터로 글로벌 바이오 협력 본격화\"",
     mediaSummaryLead: "영국 옥스퍼드대학교 사이언스 파크 설립 배경, 20년간 축적된 항생제 내성균(MRSA·FQREC) 100% 살균 데이터, 일본식품분석센터(JFRL) 검증 및 후생성 청량음료수 무독성 적합 통과, 글로벌 오픈 이노베이션 전개 내용을 심층 보도.",
-    mediaKeyPoint1: "20년 축적 항균 데이터베이스: 양자물리학·화학 응용을 통해 슈퍼박테리아(MRSA, FQREC)를 단시간 내 완벽 사멸시키는 객관적 실증 확보.",
+    mediaKeyPoint1: "20년 축적 항균 데이터베이스: 양자역학·양자화학 응용을 통해 슈퍼박테리아(MRSA, FQREC)를 단시간 내 완벽 사멸시키는 객관적 실증 확보.",
     mediaKeyPoint2: "일본 공인 시험기관의 엄격한 검증: 일본식품분석센터(JFRL) 살균 검증 및 후생노동성 청량음료수 규격 적합을 통한 무독성·인체 안전성 공인.",
     mediaKeyPoint3: "글로벌 개방형 협력 및 치매수 장치: 세계 최초 특허 취득 'Mg+H2 치매 예방 이온수 생성장치' 및 SN Water 기술의 글로벌 기술이전 본격 추진.",
     mediaPortalBadgeGoogle: "Google 검색 등록",
@@ -694,7 +694,7 @@ export const translations = {
     profileLeadershipLabel: "대표 및 연구진",
     profileLeadershipVal: "대표이사: 신지숙 | 설립자 겸 최고연구원: 모리 유키노부 명예박사",
     profileBusinessLabel: "주요 사업",
-    profileBusinessVal: "첨단 양자물리·양자화학 기반 항균 이온수(SN Water) 원천기술 R&D, 세계 최초 특허 취득 '치매 예방·치료용 Mg+H2 수소 이온수 생성장치' 기술 라이선싱 및 글로벌 사업화",
+    profileBusinessVal: "첨단 양자역학·양자화학 기반 항균 이온수(SN Water) 원천기술 R&D, 세계 최초 특허 취득 '치매 예방·치료용 Mg+H2 수소 이온수 생성장치' 기술 라이선싱 및 글로벌 사업화",
     profileCertLabel: "공인 검증 및 인증",
     profileCertVal: "일본 후생노동성(MHLW) 청량음료수 규격 적합(JFRL 제23056849001-0301호), MRSA 120초 사멸(JFRL 제23056849001-0401호), FQREC 100% 완전 사멸(BMSA 제R5-31호)",
     footerCopy: "© Oxford High-Tech Research Institute Co., Ltd. All rights reserved.",
