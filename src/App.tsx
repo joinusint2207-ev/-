@@ -524,7 +524,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* 🏛️ INSTITUT PASTEUR KOREA ARL 5 CORE TARGET PATHOGENS BENCHMARK COMPARISON (Bright, Elegant High-End Light Theme) */}
+          {/* 🏛️ 5 CORE AMR TARGET PATHOGENS BENCHMARK COMPARISON (Bright, Elegant High-End Light Theme) */}
           <div className="bg-gradient-to-br from-indigo-50/90 via-white to-blue-50/90 text-slate-900 rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-indigo-300/80 shadow-2xl space-y-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
@@ -556,7 +556,7 @@ export default function App() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 bg-indigo-50 text-indigo-800 border border-indigo-200 text-[10px] font-mono font-bold rounded-lg">
-                      ARL TARGET #1
+                      CORE TARGET #1
                     </span>
                     <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold rounded">
                       {t.pasteurP1Cert}
@@ -588,7 +588,7 @@ export default function App() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 bg-indigo-50 text-indigo-800 border border-indigo-200 text-[10px] font-mono font-bold rounded-lg">
-                      ARL TARGET #2
+                      CORE TARGET #2
                     </span>
                     <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold rounded">
                       {t.pasteurP2Cert}
@@ -621,7 +621,7 @@ export default function App() {
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 bg-rose-100 text-rose-900 border border-rose-300 text-[10px] font-mono font-black rounded-lg flex items-center gap-1">
                       <Sparkles className="w-3 h-3 text-rose-600" />
-                      <span>ARL TARGET #3 (CORE SUPERBUG)</span>
+                      <span>CORE TARGET #3 (KEY SUPERBUG)</span>
                     </span>
                     <span className="px-2 py-0.5 bg-amber-50 text-amber-900 border border-amber-300 text-[10px] font-mono font-bold rounded">
                       {t.pasteurP3Cert}
@@ -653,7 +653,7 @@ export default function App() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 bg-indigo-50 text-indigo-800 border border-indigo-200 text-[10px] font-mono font-bold rounded-lg">
-                      ARL TARGET #4
+                      CORE TARGET #4
                     </span>
                     <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold rounded">
                       {t.pasteurP4Cert}
@@ -685,7 +685,7 @@ export default function App() {
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="px-2.5 py-1 bg-indigo-100 text-indigo-900 border border-indigo-300 text-[10px] font-mono font-black rounded-lg">
-                      ARL TARGET #5 (CLINICAL MULTIDRUG-RESISTANT)
+                      CORE TARGET #5 (CLINICAL MULTIDRUG-RESISTANT)
                     </span>
                     <span className="px-2 py-0.5 bg-amber-50 text-amber-900 border border-amber-300 text-[10px] font-mono font-bold rounded">
                       {t.pasteurP5Cert}
@@ -764,10 +764,15 @@ export default function App() {
               </div>
 
               {/* Pillar 2: Selective Bactericidal Power */}
-              <div className="bg-white border-2 border-rose-100 hover:border-rose-300 rounded-3xl p-6 space-y-4 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
+              <div className="bg-white border-2 border-rose-200 hover:border-rose-400 rounded-3xl p-6 space-y-4 shadow-sm transition-all hover:shadow-md flex flex-col justify-between">
                 <div className="space-y-3">
-                  <div className="w-10 h-10 bg-rose-100 text-rose-800 rounded-2xl flex items-center justify-center font-black">
-                    <Zap className="w-6 h-6" />
+                  <div className="flex items-center justify-between">
+                    <div className="w-10 h-10 bg-rose-100 text-rose-800 rounded-2xl flex items-center justify-center font-black">
+                      <Zap className="w-6 h-6" />
+                    </div>
+                    <span className="px-2.5 py-1 bg-rose-50 text-rose-800 border border-rose-200 text-[10px] font-mono font-bold rounded-lg">
+                      5 CORE TARGET PATHOGENS
+                    </span>
                   </div>
                   <h4 className="font-extrabold text-slate-900 text-base leading-snug">
                     {t.sup2Title}
@@ -775,10 +780,35 @@ export default function App() {
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
                     {t.sup2Desc}
                   </p>
+
+                  {/* 5 Core Pathogens Kill-Time Visual Chips */}
+                  <div className="pt-2 grid grid-cols-2 gap-1.5 text-[11px] font-medium">
+                    <div className="p-2 bg-rose-50/80 border border-rose-100 rounded-xl flex items-center justify-between">
+                      <span className="font-bold text-rose-950 truncate">① MRSA (IID 1677)</span>
+                      <span className="font-mono font-black text-rose-700 shrink-0 ml-1">120s (&lt;1000/mL)</span>
+                    </div>
+                    <div className="p-2 bg-amber-50/80 border border-amber-100 rounded-xl flex items-center justify-between">
+                      <span className="font-bold text-amber-950 truncate">② FQREC (IMGR1240)</span>
+                      <span className="font-mono font-black text-amber-800 shrink-0 ml-1">1~5m (15x)</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+                      <span className="font-bold text-slate-900 truncate">③ 녹농균 (Pseudomonas)</span>
+                      <span className="font-mono font-black text-emerald-700 shrink-0 ml-1">15s</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+                      <span className="font-bold text-slate-900 truncate">④ 황색포도상구균 (IFO 12732)</span>
+                      <span className="font-mono font-black text-emerald-700 shrink-0 ml-1">&lt;10/mL</span>
+                    </div>
+                    <div className="p-2 bg-slate-50 border border-slate-200 rounded-xl col-span-2 flex items-center justify-between">
+                      <span className="font-bold text-slate-900 truncate">⑤ 대장균 (E. coli, IFO 3972)</span>
+                      <span className="font-mono font-black text-emerald-700 shrink-0 ml-1">15s (100% 사멸)</span>
+                    </div>
+                  </div>
                 </div>
+
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono font-bold text-rose-700">
-                  <span>120s MRSA Elimination</span>
-                  <span className="px-2 py-0.5 bg-rose-50 text-rose-800 rounded">&lt;1000/mL UNDETECTED</span>
+                  <span>120s MRSA &amp; 5 Targets Elimination</span>
+                  <span className="px-2 py-0.5 bg-rose-50 text-rose-800 rounded">&lt;1000/mL &amp; 100% COMPLETE</span>
                 </div>
               </div>
 
@@ -1636,10 +1666,10 @@ export default function App() {
               <Award className="w-5 h-5 text-indigo-700 shrink-0 mt-0.5" />
               <div className="space-y-1">
                 <p className="font-extrabold text-indigo-950">
-                  Institut Pasteur Korea ARL 5 Core Target Pathogens Verification Match
+                  Global AMR Priority 5 Core Target Pathogens Verification Match
                 </p>
                 <p className="text-slate-700 leading-relaxed font-medium">
-                  The certified test reports above (JFRL &amp; BMSA) directly validate 100% complete eradication of all 5 target pathogens prioritized by the Institut Pasteur Korea Antibiotic Resistance Laboratory (ARL): <em>Pseudomonas aeruginosa</em> (15s), <em>Staphylococcus aureus</em> (&lt;10/mL), <em>MRSA</em> (120s), <em>Escherichia coli</em> (15s), and <em>FQREC</em> (5 min, 15x dilution).
+                  The certified test reports above (JFRL &amp; BMSA) directly validate 100% complete eradication of all 5 critical target pathogens: <em>Pseudomonas aeruginosa</em> (15s), <em>Staphylococcus aureus</em> (&lt;10/mL), <em>MRSA</em> (120s), <em>Escherichia coli</em> (15s), and <em>FQREC</em> (5 min, 15x dilution).
                 </p>
               </div>
             </div>
