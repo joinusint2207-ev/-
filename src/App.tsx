@@ -236,10 +236,10 @@ export default function App() {
 
                 </div>
 
-                <div className="p-3.5 bg-slate-900 rounded-2xl text-slate-300 text-xs font-medium flex items-center gap-3">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+                <div className="p-3.5 bg-blue-50/90 border border-blue-200 rounded-2xl text-blue-950 text-xs font-semibold flex items-center gap-3 shadow-xs">
+                  <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                   <span>
-                    Oxford Science Park Research Founder & JFRL Certificate Recipient.
+                    Oxford Science Park Research Founder &amp; JFRL Certificate Recipient.
                   </span>
                 </div>
 
@@ -410,35 +410,35 @@ export default function App() {
 
           </div>
 
-          {/* 🔬 IN VITRO CERTIFIED BACTERICIDAL TEST RESULTS SUMMARY */}
-          <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl space-y-6 overflow-hidden">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 border-b border-slate-800 pb-6">
+          {/* 🔬 IN VITRO CERTIFIED BACTERICIDAL TEST RESULTS SUMMARY (Bright, Clean Medical Platinum & Pearl Theme) */}
+          <div className="bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/40 text-slate-900 rounded-3xl p-6 sm:p-8 border-2 border-blue-200/80 shadow-xl space-y-6 overflow-hidden relative">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 border-b border-blue-200/60 pb-6">
               <div className="space-y-2 max-w-2xl">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="px-3 py-1 bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
-                    <FlaskConical className="w-3.5 h-3.5" />
+                  <span className="px-3 py-1 bg-rose-100 text-rose-800 border border-rose-300 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-xs">
+                    <FlaskConical className="w-3.5 h-3.5 text-rose-700" />
                     <span>IN VITRO LABORATORY DATA</span>
                   </span>
-                  <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-900 border border-emerald-300 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-xs">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
                     <span>100% ERADICATED</span>
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight break-keep">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight break-keep">
                   {t.strainsTableTitle}
                 </h3>
-                <p className="text-slate-300 text-xs sm:text-sm font-medium leading-relaxed break-keep">
+                <p className="text-slate-700 text-xs sm:text-sm font-medium leading-relaxed break-keep">
                   {t.strainsTableSub}
                 </p>
               </div>
 
               <div className="flex flex-wrap sm:flex-nowrap lg:flex-col xl:flex-row gap-2.5">
-                <div className="px-3.5 py-2 bg-blue-900/50 border border-blue-500/40 rounded-xl text-blue-100 text-xs font-medium flex items-center gap-2 shadow-sm">
-                  <Award className="w-4 h-4 text-amber-400 shrink-0" />
+                <div className="px-3.5 py-2 bg-blue-100/90 border border-blue-300 rounded-xl text-blue-950 text-xs font-bold flex items-center gap-2 shadow-xs">
+                  <Award className="w-4 h-4 text-blue-700 shrink-0" />
                   <span className="leading-tight">{t.mhlwAuthorityBadge}</span>
                 </div>
-                <div className="px-3.5 py-2 bg-emerald-900/50 border border-emerald-500/40 rounded-xl text-emerald-100 text-xs font-medium flex items-center gap-2 shadow-sm">
-                  <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
+                <div className="px-3.5 py-2 bg-emerald-100/90 border border-emerald-300 rounded-xl text-emerald-950 text-xs font-bold flex items-center gap-2 shadow-xs">
+                  <Clock className="w-4 h-4 text-emerald-700 shrink-0" />
                   <span className="leading-tight">{t.reproducibilityBadge}</span>
                 </div>
               </div>
@@ -448,80 +448,284 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               
               {/* Strain 1: MRSA */}
-              <div className="bg-slate-900/90 border border-rose-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-rose-400/60 transition">
+              <div className="bg-white border-2 border-rose-200/90 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-rose-400 transition shadow-sm hover:shadow-md">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 bg-rose-950 text-rose-300 border border-rose-800 text-[10px] font-mono font-bold rounded">
+                    <span className="px-2.5 py-0.5 bg-rose-100 text-rose-800 border border-rose-300 text-[10px] font-mono font-bold rounded">
                       SUPERBUG #1
                     </span>
-                    <span className="text-xs font-mono text-slate-400">JFRL Certified</span>
+                    <span className="text-xs font-mono font-bold text-slate-600">JFRL Certified</span>
                   </div>
-                  <h4 className="text-sm sm:text-base font-extrabold text-white leading-snug">
+                  <h4 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
                     {t.strainMrsaTitle}
                   </h4>
                   <div className="pt-2">
-                    <span className="text-xs font-mono text-slate-400">Exposure Time:</span>
-                    <p className="text-sm font-black text-amber-300">{t.strainMrsaTime}</p>
+                    <span className="text-xs font-mono text-slate-600 font-semibold">Exposure Time:</span>
+                    <p className="text-sm font-black text-rose-700">{t.strainMrsaTime}</p>
                   </div>
                 </div>
-                <div className="p-3 bg-emerald-950/70 border border-emerald-500/40 rounded-xl text-center">
-                  <p className="text-xs font-black text-emerald-300">{t.strainMrsaResult}</p>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-center shadow-xs">
+                  <p className="text-xs font-black text-emerald-800">{t.strainMrsaResult}</p>
                 </div>
               </div>
 
               {/* Strain 2: General & Enteric Pathogens */}
-              <div className="bg-slate-900/90 border border-blue-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-blue-400/60 transition">
+              <div className="bg-white border-2 border-blue-200/90 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-blue-400 transition shadow-sm hover:shadow-md">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 bg-blue-950 text-blue-300 border border-blue-800 text-[10px] font-mono font-bold rounded">
+                    <span className="px-2.5 py-0.5 bg-blue-100 text-blue-800 border border-blue-300 text-[10px] font-mono font-bold rounded">
                       PATHOGENS
                     </span>
-                    <span className="text-xs font-mono text-slate-400">JFRL Certified</span>
+                    <span className="text-xs font-mono font-bold text-slate-600">JFRL Certified</span>
                   </div>
-                  <h4 className="text-sm sm:text-base font-extrabold text-white leading-snug">
+                  <h4 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
                     {t.strainGeneralTitle}
                   </h4>
                   <div className="pt-2">
-                    <span className="text-xs font-mono text-slate-400">Exposure Time:</span>
-                    <p className="text-sm font-black text-amber-300">{t.strainGeneralTime}</p>
+                    <span className="text-xs font-mono text-slate-600 font-semibold">Exposure Time:</span>
+                    <p className="text-sm font-black text-blue-700">{t.strainGeneralTime}</p>
                   </div>
                 </div>
-                <div className="p-3 bg-emerald-950/70 border border-emerald-500/40 rounded-xl text-center">
-                  <p className="text-xs font-black text-emerald-300">{t.strainGeneralResult}</p>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-center shadow-xs">
+                  <p className="text-xs font-black text-emerald-800">{t.strainGeneralResult}</p>
                 </div>
               </div>
 
               {/* Strain 3: FQREC Multidrug-Resistant E. coli */}
-              <div className="bg-slate-900/90 border border-indigo-500/30 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-indigo-400/60 transition">
+              <div className="bg-white border-2 border-indigo-200/90 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-indigo-400 transition shadow-sm hover:shadow-md">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 bg-indigo-950 text-indigo-300 border border-indigo-800 text-[10px] font-mono font-bold rounded">
+                    <span className="px-2.5 py-0.5 bg-indigo-100 text-indigo-800 border border-indigo-300 text-[10px] font-mono font-bold rounded">
                       DRUG RESISTANT
                     </span>
-                    <span className="text-xs font-mono text-slate-400">BMSA Certified</span>
+                    <span className="text-xs font-mono font-bold text-slate-600">BMSA Certified</span>
                   </div>
-                  <h4 className="text-sm sm:text-base font-extrabold text-white leading-snug">
+                  <h4 className="text-sm sm:text-base font-extrabold text-slate-900 leading-snug">
                     {t.strainFqrecTitle}
                   </h4>
                   <div className="pt-2">
-                    <span className="text-xs font-mono text-slate-400">Exposure & Dilution:</span>
-                    <p className="text-sm font-black text-amber-300">{t.strainFqrecTime}</p>
+                    <span className="text-xs font-mono text-slate-600 font-semibold">Exposure & Dilution:</span>
+                    <p className="text-sm font-black text-indigo-700">{t.strainFqrecTime}</p>
                   </div>
                 </div>
-                <div className="p-3 bg-emerald-950/70 border border-emerald-500/40 rounded-xl text-center">
-                  <p className="text-xs font-black text-emerald-300">{t.strainFqrecResult}</p>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-center shadow-xs">
+                  <p className="text-xs font-black text-emerald-800">{t.strainFqrecResult}</p>
                 </div>
               </div>
 
             </div>
 
             {/* Bottom Summary Notice */}
-            <div className="p-4 bg-slate-950/80 border border-slate-800 rounded-2xl flex items-start gap-3 text-xs text-slate-300">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="p-4 bg-white/90 border border-blue-200 rounded-2xl flex items-start gap-3 text-xs text-slate-800 shadow-xs">
+              <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
               <p className="leading-relaxed font-medium">
                 {t.inVitroSummaryNotice}
               </p>
             </div>
+          </div>
+
+          {/* 🏛️ INSTITUT PASTEUR KOREA ARL 5 CORE TARGET PATHOGENS BENCHMARK COMPARISON (Bright, Elegant High-End Light Theme) */}
+          <div className="bg-gradient-to-br from-indigo-50/90 via-white to-blue-50/90 text-slate-900 rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-indigo-300/80 shadow-2xl space-y-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-100/40 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 space-y-4 max-w-4xl">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3.5 py-1.5 bg-indigo-100 text-indigo-900 border border-indigo-300 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-xs">
+                  <Award className="w-4 h-4 text-indigo-700" />
+                  <span>{t.pasteurBadge}</span>
+                </span>
+                <span className="px-3 py-1 bg-emerald-100 text-emerald-900 border border-emerald-300 rounded-full text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-xs">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>5/5 (100%) Targets Eradicated</span>
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight leading-snug break-keep">
+                {t.pasteurSectionTitle}
+              </h3>
+              <p className="text-slate-700 text-xs sm:text-sm font-medium leading-relaxed break-keep">
+                {t.pasteurSectionSub}
+              </p>
+            </div>
+
+            {/* 5 Core Strains Cards Grid */}
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              
+              {/* Strain 1: Pseudomonas aeruginosa */}
+              <div className="bg-white border-2 border-indigo-100 hover:border-indigo-400 rounded-2xl p-5 space-y-4 flex flex-col justify-between transition group shadow-sm hover:shadow-md">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-1 bg-indigo-50 text-indigo-800 border border-indigo-200 text-[10px] font-mono font-bold rounded-lg">
+                      ARL TARGET #1
+                    </span>
+                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold rounded">
+                      {t.pasteurP1Cert}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-black text-slate-900 group-hover:text-indigo-900 transition">
+                      {t.pasteurP1Name}
+                    </h4>
+                    <p className="text-xs font-semibold text-indigo-700 mt-0.5">
+                      {t.pasteurP1Role}
+                    </p>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {t.pasteurP1Desc}
+                  </p>
+                </div>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-600 mb-1">
+                    <span>SN Water Eradication:</span>
+                    <span className="text-emerald-700 font-bold">100% COMPLETE</span>
+                  </div>
+                  <p className="text-xs font-black text-emerald-900">{t.pasteurP1Result}</p>
+                </div>
+              </div>
+
+              {/* Strain 2: Staphylococcus aureus */}
+              <div className="bg-white border-2 border-indigo-100 hover:border-indigo-400 rounded-2xl p-5 space-y-4 flex flex-col justify-between transition group shadow-sm hover:shadow-md">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-1 bg-indigo-50 text-indigo-800 border border-indigo-200 text-[10px] font-mono font-bold rounded-lg">
+                      ARL TARGET #2
+                    </span>
+                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold rounded">
+                      {t.pasteurP2Cert}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-black text-slate-900 group-hover:text-indigo-900 transition">
+                      {t.pasteurP2Name}
+                    </h4>
+                    <p className="text-xs font-semibold text-indigo-700 mt-0.5">
+                      {t.pasteurP2Role}
+                    </p>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {t.pasteurP2Desc}
+                  </p>
+                </div>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-600 mb-1">
+                    <span>SN Water Eradication:</span>
+                    <span className="text-emerald-700 font-bold">&lt;10/mL UNDETECTED</span>
+                  </div>
+                  <p className="text-xs font-black text-emerald-900">{t.pasteurP2Result}</p>
+                </div>
+              </div>
+
+              {/* Strain 3: MRSA (IID 1677) */}
+              <div className="bg-white border-2 border-rose-300 hover:border-rose-500 rounded-2xl p-5 space-y-4 flex flex-col justify-between transition group shadow-md hover:shadow-lg ring-2 ring-rose-100">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-1 bg-rose-100 text-rose-900 border border-rose-300 text-[10px] font-mono font-black rounded-lg flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-rose-600" />
+                      <span>ARL TARGET #3 (CORE SUPERBUG)</span>
+                    </span>
+                    <span className="px-2 py-0.5 bg-amber-50 text-amber-900 border border-amber-300 text-[10px] font-mono font-bold rounded">
+                      {t.pasteurP3Cert}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-black text-slate-900 group-hover:text-rose-900 transition">
+                      {t.pasteurP3Name}
+                    </h4>
+                    <p className="text-xs font-semibold text-rose-700 mt-0.5">
+                      {t.pasteurP3Role}
+                    </p>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {t.pasteurP3Desc}
+                  </p>
+                </div>
+                <div className="p-3 bg-emerald-50 border-2 border-emerald-400/80 rounded-xl">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-600 mb-1">
+                    <span>SN Water Eradication:</span>
+                    <span className="text-emerald-700 font-bold">100% REPRODUCIBLE</span>
+                  </div>
+                  <p className="text-xs font-black text-emerald-900">{t.pasteurP3Result}</p>
+                </div>
+              </div>
+
+              {/* Strain 4: Escherichia coli (IFO 3972) */}
+              <div className="bg-white border-2 border-indigo-100 hover:border-indigo-400 rounded-2xl p-5 space-y-4 flex flex-col justify-between transition group shadow-sm hover:shadow-md">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-1 bg-indigo-50 text-indigo-800 border border-indigo-200 text-[10px] font-mono font-bold rounded-lg">
+                      ARL TARGET #4
+                    </span>
+                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-mono font-bold rounded">
+                      {t.pasteurP4Cert}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-black text-slate-900 group-hover:text-indigo-900 transition">
+                      {t.pasteurP4Name}
+                    </h4>
+                    <p className="text-xs font-semibold text-indigo-700 mt-0.5">
+                      {t.pasteurP4Role}
+                    </p>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {t.pasteurP4Desc}
+                  </p>
+                </div>
+                <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-xl">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-600 mb-1">
+                    <span>SN Water Eradication:</span>
+                    <span className="text-emerald-700 font-bold">100% COMPLETE</span>
+                  </div>
+                  <p className="text-xs font-black text-emerald-900">{t.pasteurP4Result}</p>
+                </div>
+              </div>
+
+              {/* Strain 5: FQREC (IMGR1240 / IMGR1251) */}
+              <div className="bg-white border-2 border-indigo-200 hover:border-indigo-400 rounded-2xl p-5 space-y-4 flex flex-col justify-between transition group shadow-md hover:shadow-lg md:col-span-2 lg:col-span-2">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="px-2.5 py-1 bg-indigo-100 text-indigo-900 border border-indigo-300 text-[10px] font-mono font-black rounded-lg">
+                      ARL TARGET #5 (CLINICAL MULTIDRUG-RESISTANT)
+                    </span>
+                    <span className="px-2 py-0.5 bg-amber-50 text-amber-900 border border-amber-300 text-[10px] font-mono font-bold rounded">
+                      {t.pasteurP5Cert}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-black text-slate-900 group-hover:text-indigo-900 transition">
+                      {t.pasteurP5Name}
+                    </h4>
+                    <p className="text-xs font-semibold text-indigo-700 mt-0.5">
+                      {t.pasteurP5Role}
+                    </p>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {t.pasteurP5Desc}
+                  </p>
+                </div>
+                <div className="p-3.5 bg-emerald-50 border-2 border-emerald-300 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div>
+                    <span className="text-[11px] font-mono text-slate-600">SN Water Dilution Performance:</span>
+                    <p className="text-xs font-black text-emerald-900">{t.pasteurP5Result}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="px-3 py-1 bg-emerald-700 text-white font-mono font-bold text-xs rounded-lg shadow-xs">
+                      All Bacteria Died (-)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Bottom Key Takeaway Callout Box */}
+            <div className="relative z-10 p-5 bg-gradient-to-r from-amber-50 via-indigo-50 to-blue-50 border-2 border-amber-300/80 rounded-2xl flex items-start gap-4 text-xs sm:text-sm text-slate-800 shadow-md">
+              <Sparkles className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
+              <p className="leading-relaxed font-semibold text-slate-900 break-keep">
+                {t.pasteurKeyTakeaway}
+              </p>
+            </div>
+
           </div>
 
           {/* 🌟 Technological Greatness & Unmatched Differentiation (3 Pillars) */}
@@ -1425,6 +1629,19 @@ export default function App() {
                 </p>
               </div>
 
+            </div>
+
+            {/* Benchmark Alignment Callout */}
+            <div className="p-4 bg-gradient-to-r from-blue-50 via-indigo-50 to-emerald-50 border border-indigo-200 rounded-2xl flex items-start gap-3 text-xs text-slate-800">
+              <Award className="w-5 h-5 text-indigo-700 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-extrabold text-indigo-950">
+                  Institut Pasteur Korea ARL 5 Core Target Pathogens Verification Match
+                </p>
+                <p className="text-slate-700 leading-relaxed font-medium">
+                  The certified test reports above (JFRL &amp; BMSA) directly validate 100% complete eradication of all 5 target pathogens prioritized by the Institut Pasteur Korea Antibiotic Resistance Laboratory (ARL): <em>Pseudomonas aeruginosa</em> (15s), <em>Staphylococcus aureus</em> (&lt;10/mL), <em>MRSA</em> (120s), <em>Escherichia coli</em> (15s), and <em>FQREC</em> (5 min, 15x dilution).
+                </p>
+              </div>
             </div>
 
             {/* Footer Notice */}

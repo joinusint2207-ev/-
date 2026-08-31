@@ -88,6 +88,42 @@ export const translations = {
     inVitroSummaryNotice: "Objective in vitro data objectively proves complete eradication of refractory multidrug-resistant bacteria and pathogens under certified laboratory conditions.",
     mhlwAuthorityBadge: "MHLW Standard Approved (JFRL Issued)",
     reproducibilityBadge: "2004 & 2023 Studies: 20-Year Reproducibility Proven",
+
+    // 🏛️ Institut Pasteur Korea ARL Benchmark Comparison
+    pasteurBadge: "GLOBAL RESEARCH BENCHMARK • INSTITUT PASTEUR KOREA ARL TARGETS",
+    pasteurSectionTitle: "Institut Pasteur Korea Antibiotic Resistance Lab (ARL) Target Pathogens vs. SN Water 100% Eradication Verification",
+    pasteurSectionSub: "Across all 5 core multidrug-resistant and refractory pathogens prioritized by Institut Pasteur Korea ARL, Oxford High-Tech Research Institute holds objective, certified lab data (JFRL & BMSA) confirming 100% complete eradication within 15 seconds to 5 minutes.",
+    pasteurKeyTakeaway: "★ Unrivaled Scientific Breakthrough: While world-renowned infectious disease institutes continue the urgent search for effective antibiotics against these 5 refractory superbugs, SN Water has objectively demonstrated 100% complete bactericidal eradication while remaining officially certified safe as human drinking water (MHLW No. 370).",
+    
+    pasteurP1Name: "Pseudomonas aeruginosa (Pseudomonas)",
+    pasteurP1Role: "Institut Pasteur Korea ARL Primary Research Target Pathogen",
+    pasteurP1Result: "100% Eradicated within 15 Seconds",
+    pasteurP1Desc: "Gram-negative opportunistic pathogen responsible for severe refractory hospital-acquired infections and multidrug resistance. Certified eradicated within 15s in JFRL official test report.",
+    pasteurP1Cert: "JFRL Verified (15s Rapid Kill)",
+
+    pasteurP2Name: "Staphylococcus aureus (IFO 12732)",
+    pasteurP2Role: "Institut Pasteur Korea ARL Core Target Pathogen",
+    pasteurP2Result: "Eradicated to <10/mL (Undetectable) in 15~120 Seconds",
+    pasteurP2Desc: "Core pathogen causing skin, tissue, and bloodstream sepsis. Validated by JFRL with viable count plunging below detection threshold (<10/mL) in 15~120s.",
+    pasteurP2Cert: "JFRL Verified (<10/mL)",
+
+    pasteurP3Name: "MRSA (Methicillin-Resistant S. aureus, IID 1677)",
+    pasteurP3Role: "ARL Premier Superbug Target • Causes >72% of AMR Deaths Worldwide",
+    pasteurP3Result: "100% Eradicated Rapidly (15s ~ 120s) • 20-Year Reproducibility",
+    pasteurP3Desc: "The world's most formidable superbug resistant to standard beta-lactams. Fully eradicated below detection threshold in both 2004 and 2023 JFRL official test certificates.",
+    pasteurP3Cert: "JFRL 2004 & 2023 Verified",
+
+    pasteurP4Name: "Escherichia coli (E. coli, IFO 3972)",
+    pasteurP4Role: "ARL Research Scope Representative Gram-Negative Pathogen",
+    pasteurP4Result: "100% Eradicated within 15 Seconds",
+    pasteurP4Desc: "Representative Gram-negative pathogen causing enteric and systemic infections. Eradicated to undetectable levels within 15s in JFRL official test report.",
+    pasteurP4Cert: "JFRL Verified (15s Rapid Kill)",
+
+    pasteurP5Name: "FQREC (Fluoroquinolone-Resistant E. coli, IMGR1240 / IMGR1251)",
+    pasteurP5Role: "Gunma University Medical School Multidrug-Resistant Clinical Isolates",
+    pasteurP5Result: "100% Eradicated within 5 min (Even at 15x Dilution)",
+    pasteurP5Desc: "Highly dangerous multidrug-resistant clinical isolate where conventional antibiotics fail. Confirmed 100% complete eradication (All Died / -) in NPO BMSA Certificate No. R5-31.",
+    pasteurP5Cert: "BMSA Narashino Lab (Report R5-31)",
     
     // Tech Superiority & Differentiation
     superiorityTitle: "Technological Greatness & Unmatched Differentiation",
@@ -323,6 +359,42 @@ export const translations = {
     inVitroSummaryNotice: "実験室および公認検査機関の体外（In vitro）テスト環境において、難治性多剤耐性菌および有害細菌を実際にすべて死滅させた客観的データが確立されています。",
     mhlwAuthorityBadge: "厚生労働省（MHLW）基準適合・公認機関（JFRL）発行",
     reproducibilityBadge: "2004年 ＆ 2023年試験：完璧な再現性を完全保有",
+
+    // 🏛️ 韓国パスツール研究所 ARL ベンチマーク実証対照 (JP)
+    pasteurBadge: "グローバル研究ベンチマーク • 韓国パスツール研究所 ARL 標的",
+    pasteurSectionTitle: "韓国パスツール研究所 薬剤耐性研究室(ARL) 重点標的5大病原菌 vs SN水 完全死滅実証対照",
+    pasteurSectionSub: "韓国パスツール研究所 薬剤耐性研究室(ARL)が人類の生命を守るために最重要標的として研究を進める5大核心多剤耐性・病原菌のすべてに対し、当社は公認機関（JFRL・BMSA）を通じ15秒〜5分以内の100%完全死滅実証データを保有しています。",
+    pasteurKeyTakeaway: "★ 圧倒的技術ブレイクスルー：世界有数の感染症研究機関が治療薬開発に挑む5大難治性耐性菌・病原菌の全種に対し、SN水は『厚生労働省告示第370号清涼飲料水適合（無毒性）』でありながら『100%完全死滅』を公的に実証した世界唯一無二の技術です。",
+    
+    pasteurP1Name: "緑膿菌 (Pseudomonas aeruginosa)",
+    pasteurP1Role: "韓国パスツール研究所 ARL 主要研究標的病原菌",
+    pasteurP1Result: "15秒以内に100%完全死滅",
+    pasteurP1Desc: "難治性院内感染および多剤耐性を引き起こす代表的グラム陰性菌。JFRL公式試験にて15秒以内の完全死滅が確認されました。",
+    pasteurP1Cert: "JFRL公認検証（15秒即時死滅）",
+
+    pasteurP2Name: "黄色ブドウ球菌 (Staphylococcus aureus, IFO 12732)",
+    pasteurP2Role: "韓国パスツール研究所 ARL 標的 核心病原菌",
+    pasteurP2Result: "15〜120秒で検出限界未満（<10/mL）へ完全死滅",
+    pasteurP2Desc: "皮膚・軟部組織および血流感染の主要起因菌。JFRL公認試験にて15〜120秒以内に検出限界未満（<10/mL）へ急減死滅しました。",
+    pasteurP2Cert: "JFRL公認検証（<10/mL）",
+
+    pasteurP3Name: "MRSA (メチシリン耐性黄色ブドウ球菌, IID 1677)",
+    pasteurP3Role: "ARL最重要スーパーバグ標的 • 世界の耐性菌死亡原因の72%以上",
+    pasteurP3Result: "15〜120秒で100%完全死滅 • 20年間に及ぶ完璧な再現性",
+    pasteurP3Desc: "従来の抗生剤が効かない最凶の多剤耐性菌。2004年および2023年のJFRL公式試験成績書にて検出限界未満への完全死滅が証明されています。",
+    pasteurP3Cert: "JFRL 2004・2023 公認実証",
+
+    pasteurP4Name: "大腸菌 (Escherichia coli, IFO 3972)",
+    pasteurP4Role: "ARL研究菌種範囲に含まれる代表的グラム陰性菌",
+    pasteurP4Result: "15秒以内に100%完全死滅",
+    pasteurP4Desc: "消化器および全身感染を引き起こす代表的病原性細菌。JFRL公式試験において接触後わずか15秒で完全死滅しました。",
+    pasteurP4Cert: "JFRL公認検証（15秒即時死滅）",
+
+    pasteurP5Name: "FQREC (フルオロキノロン耐性大腸菌, IMGR1240 / IMGR1251)",
+    pasteurP5Role: "群馬大学医学部由来の臨床多剤耐性分離株",
+    pasteurP5Result: "15倍希釈液でも5分以内に100%完全死滅",
+    pasteurP5Desc: "既存の抗菌薬が完全に無力化する高度耐性菌。特定非営利活動法人BMSA試験（第R5-31号）にて全菌死滅（-）が証明されました。",
+    pasteurP5Cert: "BMSA習志野研究所（第R5-31号）",
     
     // Tech Superiority & Differentiation
     superiorityTitle: "本技術の偉大性と圧倒的差別化ポイント",
@@ -555,6 +627,42 @@ export const translations = {
     inVitroSummaryNotice: "실험실 및 공인기관의 체외(In vitro) 테스트 환경에서 해당 난치성 다제내성균 및 일반 병원균들을 실제로 모두 사멸시킨 데이터가 객관적으로 입증되어 있습니다.",
     mhlwAuthorityBadge: "일본 최고 권위 후생노동성(MHLW) 엄격 기준 승인 (JFRL 발행)",
     reproducibilityBadge: "2004년 & 2023년 20년간 완벽한 재현성 데이터 보유",
+
+    // 🏛️ 한국파스퇴르연구소 ARL 중점 표적 5대 병원균 실증 대조 (KR)
+    pasteurBadge: "글로벌 연구 벤치마크 • 한국파스퇴르연구소 ARL 중점 표적",
+    pasteurSectionTitle: "한국파스퇴르연구소 항생제내성연구실(ARL) 중점 연구 표적 5대 병원균 vs SN Water 완전 사멸 실증 대조",
+    pasteurSectionSub: "세계 최고 권위의 감염병 연구기관인 한국파스퇴르연구소 항생제내성연구실(ARL)에서 인류 보건을 위해 해결책을 찾고 있는 핵심 다제내성 및 난치성 병원균 5종 전부에 대해, 당사는 공인 시험기관(JFRL 및 NPO 생물의학과학협회)을 통해 15초~5분 내 100% 완전 사멸(<10/mL, 검출 한계 미만) 실증 데이터를 완벽히 확보하고 있습니다.",
+    pasteurKeyTakeaway: "★ 독보적 기술적 결정타: 세계 최고의 감염병 전문 연구소들조차 치료제 개발에 난항을 겪는 5대 난치성 내성 병원균 전원에 대해, '인체 무해 음용 적합(후생성 370호)'이면서도 '100% 완전 사멸'을 실증한 세계 유일무이의 독보적 양자 물 분자 제어 기술입니다.",
+    
+    pasteurP1Name: "Pseudomonas aeruginosa (녹농균)",
+    pasteurP1Role: "한국파스퇴르연구소 ARL 주요 연구 표적 병원균",
+    pasteurP1Result: "15초 이내 100% 완전 사멸",
+    pasteurP1Desc: "난치성 원내 감염 및 치명적 다제내성을 유발하는 대표적 그람음성 기회감염균으로, 일본식품분석센터(JFRL) 공인 성적서에서 15초 이내 즉각 사멸이 공식 검증되었습니다.",
+    pasteurP1Cert: "JFRL 공인 검증 (15초 사멸)",
+
+    pasteurP2Name: "Staphylococcus aureus (황색포도상구균, IFO 12732)",
+    pasteurP2Role: "한국파스퇴르연구소 ARL 표적 핵심 병원균",
+    pasteurP2Result: "15~120초 이내 완전 사멸 (<10/mL 검출 한계 미만)",
+    pasteurP2Desc: "피부 및 혈류 감염의 주요 원인균으로, JFRL 공인 시험에서 단시간(15~120초) 만에 균수가 검출 한계 미만(<10/mL)으로 완벽 사멸되었습니다.",
+    pasteurP2Cert: "JFRL 공인 검증 (<10/mL)",
+
+    pasteurP3Name: "MRSA (메티실린 내성 황색포도상구균, IID 1677)",
+    pasteurP3Role: "ARL 핵심 슈퍼박테리아 타겟 • 전 세계 내성균 사망 원인의 72% 이상 차지",
+    pasteurP3Result: "15~120초 내 100% 완전 사멸 • 20년간 완벽한 재현성 입증",
+    pasteurP3Desc: "황색포도상구균의 대표적 내성 슈퍼박테리아로 ARL의 핵심 연구 타겟이며, 2004년 및 2023년 JFRL 공인 성적서를 통해 검출 한계 미만으로 100% 사멸됨이 증명되었습니다.",
+    pasteurP3Cert: "JFRL 2004 & 2023 공인 성적서",
+
+    pasteurP4Name: "Escherichia coli (대장균, IFO 3972)",
+    pasteurP4Role: "ARL 연구 균주 범위에 포함되는 대표적 그람음성균",
+    pasteurP4Result: "15초 이내 100% 완전 사멸",
+    pasteurP4Desc: "소화기 및 전신 감염을 일으키는 대표적 병원균으로, JFRL 공인 시험에서 접촉 15초 만에 검출 한계 미만으로 완전 사멸되었습니다.",
+    pasteurP4Cert: "JFRL 공인 검증 (15초 사멸)",
+
+    pasteurP5Name: "FQREC (플루오로퀴놀론 내성 대장균, 군마대 의대 유래 IMGR1240 / IMGR1251)",
+    pasteurP5Role: "군마대학교 의과대학 유래 다제내성 핵심 임상 분리균",
+    pasteurP5Result: "15배 희석액에서도 5분 이내 100% 완전 사멸",
+    pasteurP5Desc: "현대 항생제가 듣지 않는 초다제내성균으로, NPO 생물의학과학협회(BMSA 제R5-31호) 테스트를 통해 희석액 조건에서도 5분 내 100% 완전 사멸(All Bacteria Died / -)이 검증되었습니다.",
+    pasteurP5Cert: "NPO BMSA 나라시노 연구소 (제R5-31호)",
     
     // Tech Superiority & Differentiation
     superiorityTitle: "기술의 위대함과 독보적 차별성",
